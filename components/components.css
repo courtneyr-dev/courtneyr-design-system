@@ -1,0 +1,395 @@
+/* ==========================================================================
+   courtneyr.dev — Components
+   ==========================================================================
+   Canonical class-based components. All consume tokens from tokens.css.
+
+   Class prefix convention: .cr-{component}[-{variant}]
+   ========================================================================== */
+
+/* ==========================================================================
+   SHAPE-LAYERING — the signature visual element
+   --------------------------------------------------------------------------
+   Wrap any image, card, or figure in .cr-shape-frame to get a soft
+   background circle. Add .cr-shape-frame--orange or --periwinkle to change
+   the circle color.
+   ========================================================================== */
+.cr-shape-frame {
+  position: relative;
+  isolation: isolate;
+  display: inline-block;
+}
+
+.cr-shape-frame::before {
+  content: "";
+  position: absolute;
+  width: 115%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--cr-accent-shape);
+  opacity: 0.55;
+  top: -8%;
+  left: -8%;
+  z-index: -1;
+}
+
+.cr-shape-frame--orange::before { background: var(--cr-color-light-orange); opacity: 0.9; }
+.cr-shape-frame--periwinkle::before { background: var(--cr-color-periwinkle); opacity: 0.6; }
+.cr-shape-frame--violet::before { background: var(--cr-color-russian-violet); opacity: 0.15; }
+
+.cr-shape-frame > img,
+.cr-shape-frame > .wp-block-image {
+  border-radius: var(--cr-radius-lg);
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Double-blob variant for hero sections */
+.cr-shape-frame--double::after {
+  content: "";
+  position: absolute;
+  width: 40%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--cr-color-light-orange);
+  opacity: 0.9;
+  bottom: -8%;
+  right: -8%;
+  z-index: -1;
+}
+
+/* ==========================================================================
+   FLOATING BADGE — the small pill card that hovers off images
+   --------------------------------------------------------------------------
+   Apply .cr-float-badge to an absolutely-positioned element near a
+   .cr-shape-frame image. Use .cr-float-badge--primary for a filled orange
+   version.
+   ========================================================================== */
+.cr-float-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cr-space-2);
+  background: var(--cr-surface-elevated);
+  color: var(--cr-ink);
+  padding: var(--cr-space-2) var(--cr-space-3);
+  border-radius: var(--cr-radius-md);
+  box-shadow: var(--cr-shadow-float-badge);
+  font-size: var(--cr-size-small);
+  font-weight: var(--cr-weight-bold);
+  line-height: var(--cr-leading-tight);
+}
+
+.cr-float-badge--primary {
+  background: var(--cr-primary);
+  color: var(--cr-primary-ink);
+}
+
+.cr-float-badge__icon {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--cr-radius-full);
+  background: var(--cr-color-light-orange);
+  color: var(--cr-ink);
+  flex-shrink: 0;
+}
+
+.cr-float-badge__label {
+  display: block;
+  font-size: 0.625rem;
+  font-weight: var(--cr-weight-semibold);
+  opacity: 0.65;
+  text-transform: uppercase;
+  letter-spacing: var(--cr-tracking-wide);
+  font-stretch: var(--cr-stretch-condensed);
+}
+
+/* ==========================================================================
+   BUTTON
+   ========================================================================== */
+.cr-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cr-space-2);
+  padding: var(--cr-space-3) var(--cr-space-5);
+  border-radius: var(--cr-radius-full);
+  border: 2px solid transparent;
+  font-family: var(--cr-font-family);
+  font-weight: var(--cr-weight-bold);
+  font-size: var(--cr-size-small);
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--cr-motion-fast) var(--cr-ease-out),
+              background var(--cr-motion-fast) var(--cr-ease-out),
+              box-shadow var(--cr-motion-fast) var(--cr-ease-out);
+}
+
+.cr-button:hover { transform: translateY(-1px); }
+.cr-button:focus-visible {
+  outline: 2px solid var(--cr-accent);
+  outline-offset: 3px;
+}
+
+.cr-button--primary {
+  background: var(--cr-primary);
+  color: var(--cr-primary-ink);
+}
+.cr-button--primary:hover { background: var(--cr-primary-hover); }
+
+.cr-button--secondary {
+  background: var(--cr-color-russian-violet);
+  color: var(--cr-ink-inverse);
+}
+
+.cr-button--outline {
+  background: transparent;
+  color: var(--cr-ink);
+  border-color: var(--cr-ink);
+}
+.cr-button--outline:hover {
+  background: var(--cr-ink);
+  color: var(--cr-ink-inverse);
+}
+
+.cr-button--soft {
+  background: var(--cr-accent-shape);
+  color: var(--cr-color-russian-violet);
+}
+
+/* ==========================================================================
+   CHIP — small rounded pill for tags and post-type labels
+   ========================================================================== */
+.cr-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cr-space-1);
+  padding: var(--cr-space-1) var(--cr-space-3);
+  border-radius: var(--cr-radius-full);
+  font-family: var(--cr-font-family);
+  font-size: var(--cr-size-meta);
+  font-weight: var(--cr-weight-semibold);
+  font-stretch: var(--cr-stretch-condensed);
+  letter-spacing: var(--cr-tracking-widest);
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.cr-chip--solid {
+  background: var(--cr-color-russian-violet);
+  color: var(--cr-ink-inverse);
+}
+
+.cr-chip--outline {
+  background: transparent;
+  color: var(--cr-ink);
+  border: 1px solid var(--cr-border);
+}
+
+/* Post-type chip variants — drive stream card color coding */
+.cr-chip--blog     { background: var(--cr-type-blog); color: white; }
+.cr-chip--link     { background: var(--cr-type-link); color: white; }
+.cr-chip--video    { background: var(--cr-type-video); color: white; }
+.cr-chip--audio    { background: var(--cr-type-audio); color: white; }
+.cr-chip--quote    { background: var(--cr-type-quote); color: white; }
+.cr-chip--aside    { background: var(--cr-type-aside); color: white; }
+.cr-chip--status   { background: var(--cr-type-status); color: white; }
+.cr-chip--speaking { background: var(--cr-type-speaking); color: var(--cr-color-russian-violet); }
+.cr-chip--book     { background: var(--cr-type-book); color: white; }
+
+/* ==========================================================================
+   CARD
+   ========================================================================== */
+.cr-card {
+  background: var(--cr-surface);
+  border: 1px solid var(--cr-border);
+  border-radius: var(--cr-radius-lg);
+  padding: var(--cr-space-5);
+  transition: transform var(--cr-motion-base) var(--cr-ease-out),
+              box-shadow var(--cr-motion-base) var(--cr-ease-out);
+}
+
+.cr-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--cr-shadow-lg);
+}
+
+.cr-card--elevated {
+  background: var(--cr-surface-elevated);
+  box-shadow: var(--cr-shadow-md);
+}
+
+.cr-card--inverse {
+  background: var(--cr-color-russian-violet);
+  color: var(--cr-ink-inverse);
+  border-color: transparent;
+}
+
+/* ==========================================================================
+   STREAM CARD — the core aggregate-feed item
+   ==========================================================================
+   HTML pattern:
+
+   <article class="cr-stream-item cr-stream-item--blog">
+     <div class="cr-stream-item__avatar">📰</div>
+     <div class="cr-stream-item__body">
+       <div class="cr-stream-item__meta">
+         <span class="cr-chip cr-chip--blog">Blog</span>
+         <time>6 days ago</time>
+       </div>
+       <h3 class="cr-stream-item__title">...</h3>
+       <p class="cr-stream-item__tags">WordPress · AI tooling</p>
+     </div>
+   </article>
+   ========================================================================== */
+.cr-stream {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cr-space-3);
+}
+
+.cr-stream-item {
+  display: flex;
+  gap: var(--cr-space-4);
+  background: var(--cr-surface);
+  border: 1px solid var(--cr-border);
+  border-radius: var(--cr-radius-lg);
+  padding: var(--cr-space-5);
+  transition: transform var(--cr-motion-base) var(--cr-ease-out),
+              box-shadow var(--cr-motion-base) var(--cr-ease-out);
+}
+
+.cr-stream-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--cr-shadow-lg);
+}
+
+.cr-stream-item__avatar {
+  flex: 0 0 2.75rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--cr-radius-full);
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  background: color-mix(in srgb, var(--cr-accent-shape) 35%, transparent);
+}
+
+.cr-stream-item__body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.cr-stream-item__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--cr-space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--cr-space-2);
+  font-size: var(--cr-size-meta);
+  color: var(--cr-ink-muted);
+}
+
+.cr-stream-item__title {
+  font-family: var(--cr-font-family);
+  font-size: var(--cr-size-body);
+  font-weight: var(--cr-weight-bold);
+  font-stretch: var(--cr-stretch-wide);
+  line-height: var(--cr-leading-snug);
+  color: var(--cr-ink);
+  margin: 0 0 var(--cr-space-1);
+}
+
+.cr-stream-item--blog .cr-stream-item__title,
+.cr-stream-item--video .cr-stream-item__title {
+  font-size: var(--cr-size-h4);
+}
+
+.cr-stream-item--quote .cr-stream-item__title {
+  font-style: italic;
+  font-weight: var(--cr-weight-medium);
+}
+
+.cr-stream-item__tags {
+  font-family: var(--cr-font-family-mono);
+  font-size: var(--cr-size-meta);
+  color: var(--cr-ink-muted);
+  margin: 0;
+}
+
+/* ==========================================================================
+   HERO — hybrid intro section
+   ========================================================================== */
+.cr-hero {
+  position: relative;
+  isolation: isolate;
+  padding: var(--cr-space-12) var(--cr-space-6);
+  border-radius: var(--cr-radius-xl);
+  background: var(--cr-surface);
+  overflow: hidden;
+}
+
+.cr-hero__shape {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.cr-hero__shape--1 {
+  width: 18.75rem;
+  height: 18.75rem;
+  background: var(--cr-accent-shape);
+  opacity: 0.35;
+  top: -5rem;
+  right: -2.5rem;
+}
+
+.cr-hero__shape--2 {
+  width: 11.25rem;
+  height: 11.25rem;
+  background: var(--cr-color-light-orange);
+  opacity: 0.75;
+  bottom: -3.75rem;
+  left: 1.25rem;
+}
+
+.cr-hero__title {
+  font-family: var(--cr-font-family);
+  font-size: var(--cr-size-display);
+  font-weight: var(--cr-weight-black);
+  font-stretch: var(--cr-stretch-expanded);
+  letter-spacing: var(--cr-tracking-tight);
+  line-height: 1.05;
+  color: var(--cr-ink);
+  margin: 0 0 var(--cr-space-4);
+  max-width: 22ch;
+}
+
+.cr-hero__lead {
+  font-size: var(--cr-size-lead);
+  line-height: var(--cr-leading-relaxed);
+  color: var(--cr-ink);
+  opacity: 0.85;
+  max-width: 36ch;
+  margin: 0 0 var(--cr-space-6);
+}
+
+/* ==========================================================================
+   MOTION — drift animation for hero blobs
+   ========================================================================== */
+@keyframes cr-drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(0.375rem, -0.5rem) rotate(2deg); }
+}
+
+.cr-drift { animation: cr-drift 8s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cr-drift { animation: none; }
+  .cr-button:hover,
+  .cr-card:hover,
+  .cr-stream-item:hover { transform: none; }
+}

@@ -1,0 +1,199 @@
+/* ==========================================================================
+   courtneyr.dev — Design Tokens
+   ==========================================================================
+   Single source of truth for colors, type, spacing, radii, and motion.
+   Consumed by components.css and by the Ollie block theme via Manage CSS
+   Classes or a child theme's stylesheet.
+
+   Naming convention: --cr-{category}-{name}-{modifier}
+   ========================================================================== */
+
+:root {
+  /* ----------------------------------------------------------------------
+     Color — raw palette (never reference directly in components;
+     use semantic tokens below instead)
+     ---------------------------------------------------------------------- */
+  --cr-color-russian-violet: #241c4a;
+  --cr-color-periwinkle: #bcb5e3;
+  --cr-color-glaucous: #647baf;
+  --cr-color-sky-blue: #8ecae6;
+  --cr-color-blue-green: #219ebc;
+  --cr-color-cerulean: #126782;
+  --cr-color-prussian-blue: #023047;
+  --cr-color-selective-yellow: #ffb703;
+  --cr-color-ut-orange: #fb8500;
+  --cr-color-light-orange: #fee2c3;
+  --cr-color-cream: #fdfaf4;
+  --cr-color-gray-100: #ebebeb;
+  --cr-color-black: #000000;
+  --cr-color-white: #ffffff;
+
+  /* Surface extensions for dark mode */
+  --cr-color-night-surface: #0a0f24;
+  --cr-color-night-elevated: #0f1530;
+
+  /* ----------------------------------------------------------------------
+     Color — semantic roles (USE THESE in components)
+     Light mode defaults
+     ---------------------------------------------------------------------- */
+  --cr-surface: var(--cr-color-cream);
+  --cr-surface-soft: var(--cr-color-light-orange);
+  --cr-surface-elevated: var(--cr-color-white);
+
+  --cr-ink: var(--cr-color-russian-violet);
+  --cr-ink-muted: var(--cr-color-glaucous);
+  --cr-ink-inverse: var(--cr-color-cream);
+
+  --cr-primary: var(--cr-color-ut-orange);
+  --cr-primary-ink: var(--cr-color-white);
+  --cr-primary-hover: #e57800;
+
+  --cr-accent: var(--cr-color-blue-green);
+  --cr-accent-shape: var(--cr-color-sky-blue);
+  --cr-accent-soft: var(--cr-color-periwinkle);
+
+  --cr-border: rgba(36, 28, 74, 0.12);
+  --cr-border-strong: rgba(36, 28, 74, 0.25);
+
+  /* Post-type colors — used by stream cards and taxonomy chips */
+  --cr-type-blog: var(--cr-color-ut-orange);
+  --cr-type-link: var(--cr-color-blue-green);
+  --cr-type-video: var(--cr-color-cerulean);
+  --cr-type-audio: var(--cr-color-cerulean);
+  --cr-type-quote: var(--cr-color-russian-violet);
+  --cr-type-aside: var(--cr-color-glaucous);
+  --cr-type-status: var(--cr-color-glaucous);
+  --cr-type-speaking: var(--cr-color-selective-yellow);
+  --cr-type-book: var(--cr-color-russian-violet);
+
+  /* ----------------------------------------------------------------------
+     Typography
+     Mona Sans is already loaded by the Ollie theme. We use its width axis
+     (font-stretch) to build hierarchy instead of a second typeface.
+     ---------------------------------------------------------------------- */
+  --cr-font-family: "Mona Sans", system-ui, -apple-system, sans-serif;
+  --cr-font-family-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Width axis values (Mona Sans is variable) */
+  --cr-stretch-condensed: 75%;
+  --cr-stretch-normal: 100%;
+  --cr-stretch-wide: 115%;
+  --cr-stretch-expanded: 125%;
+
+  /* Weight scale */
+  --cr-weight-regular: 400;
+  --cr-weight-medium: 500;
+  --cr-weight-semibold: 600;
+  --cr-weight-bold: 700;
+  --cr-weight-extrabold: 800;
+  --cr-weight-black: 900;
+
+  /* Size scale (fluid where useful) */
+  --cr-size-display: clamp(2.25rem, 5vw + 1rem, 3.5rem); /* H1 hero */
+  --cr-size-h1: clamp(1.875rem, 3vw + 1rem, 2.5rem);
+  --cr-size-h2: clamp(1.5rem, 2vw + 0.75rem, 2.25rem);
+  --cr-size-h3: 1.5rem;
+  --cr-size-h4: 1.125rem;
+  --cr-size-lead: 1.25rem;
+  --cr-size-body: 1.0625rem;
+  --cr-size-small: 0.875rem;
+  --cr-size-meta: 0.75rem;
+
+  /* Line heights */
+  --cr-leading-tight: 1.1;
+  --cr-leading-snug: 1.25;
+  --cr-leading-normal: 1.55;
+  --cr-leading-relaxed: 1.7;
+
+  /* Letter spacing */
+  --cr-tracking-tight: -0.02em;
+  --cr-tracking-normal: -0.01em;
+  --cr-tracking-wide: 0.05em;
+  --cr-tracking-widest: 0.08em;
+
+  /* ----------------------------------------------------------------------
+     Spacing scale (4px base)
+     ---------------------------------------------------------------------- */
+  --cr-space-1: 0.25rem;
+  --cr-space-2: 0.5rem;
+  --cr-space-3: 0.75rem;
+  --cr-space-4: 1rem;
+  --cr-space-5: 1.25rem;
+  --cr-space-6: 1.5rem;
+  --cr-space-8: 2rem;
+  --cr-space-10: 2.5rem;
+  --cr-space-12: 3rem;
+  --cr-space-16: 4rem;
+  --cr-space-20: 5rem;
+  --cr-space-24: 6rem;
+
+  /* ----------------------------------------------------------------------
+     Radius scale — matches Ollie theme.json
+     ---------------------------------------------------------------------- */
+  --cr-radius-xs: 0.25rem;
+  --cr-radius-sm: 0.5rem;
+  --cr-radius-md: 0.75rem;
+  --cr-radius-lg: 1.25rem; /* standard for cards and image frames */
+  --cr-radius-xl: 2rem;
+  --cr-radius-2xl: 3rem;
+  --cr-radius-full: 9999px;
+
+  /* ----------------------------------------------------------------------
+     Elevation
+     ---------------------------------------------------------------------- */
+  --cr-shadow-sm: 0 1px 2px rgba(36, 28, 74, 0.06);
+  --cr-shadow-md: 0 4px 12px -2px rgba(36, 28, 74, 0.1);
+  --cr-shadow-lg: 0 10px 30px -10px rgba(36, 28, 74, 0.25),
+                  0 2px 8px rgba(36, 28, 74, 0.08);
+  --cr-shadow-float-badge: 0 10px 30px -10px rgba(36, 28, 74, 0.25),
+                           0 2px 8px rgba(36, 28, 74, 0.08);
+
+  /* ----------------------------------------------------------------------
+     Motion
+     ---------------------------------------------------------------------- */
+  --cr-motion-fast: 150ms;
+  --cr-motion-base: 250ms;
+  --cr-motion-slow: 400ms;
+  --cr-ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --cr-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   Dark mode — respects OS preference
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cr-surface: var(--cr-color-night-surface);
+    --cr-surface-soft: var(--cr-color-prussian-blue);
+    --cr-surface-elevated: var(--cr-color-night-elevated);
+
+    --cr-ink: var(--cr-color-periwinkle);
+    --cr-ink-muted: var(--cr-color-glaucous);
+    --cr-ink-inverse: var(--cr-color-russian-violet);
+
+    --cr-primary: var(--cr-color-selective-yellow);
+    --cr-primary-ink: var(--cr-color-russian-violet);
+    --cr-primary-hover: #ffc733;
+
+    --cr-accent: var(--cr-color-sky-blue);
+    --cr-accent-shape: var(--cr-color-cerulean);
+    --cr-accent-soft: var(--cr-color-glaucous);
+
+    --cr-border: rgba(188, 181, 227, 0.15);
+    --cr-border-strong: rgba(188, 181, 227, 0.3);
+  }
+}
+
+/* Optional: manual dark override via [data-theme="dark"] on <html> or <body> */
+[data-theme="dark"] {
+  --cr-surface: var(--cr-color-night-surface);
+  --cr-surface-soft: var(--cr-color-prussian-blue);
+  --cr-surface-elevated: var(--cr-color-night-elevated);
+  --cr-ink: var(--cr-color-periwinkle);
+  --cr-ink-inverse: var(--cr-color-russian-violet);
+  --cr-primary: var(--cr-color-selective-yellow);
+  --cr-primary-ink: var(--cr-color-russian-violet);
+  --cr-accent: var(--cr-color-sky-blue);
+  --cr-accent-shape: var(--cr-color-cerulean);
+  --cr-border: rgba(188, 181, 227, 0.15);
+}

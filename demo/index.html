@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>courtneyr.dev · Design System Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../tokens/tokens.css">
+  <link rel="stylesheet" href="../components/components.css">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--cr-font-family);
+      font-size: var(--cr-size-body);
+      line-height: var(--cr-leading-normal);
+      color: var(--cr-ink);
+      background: var(--cr-surface);
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 64rem; margin: 0 auto; padding: var(--cr-space-10) var(--cr-space-6); }
+    section { margin-bottom: var(--cr-space-16); }
+    h1 { font-size: var(--cr-size-display); font-weight: var(--cr-weight-black); font-stretch: var(--cr-stretch-expanded); letter-spacing: var(--cr-tracking-tight); line-height: 1.05; margin: 0 0 var(--cr-space-4); }
+    h2 { font-size: var(--cr-size-h2); font-weight: var(--cr-weight-extrabold); font-stretch: var(--cr-stretch-wide); letter-spacing: var(--cr-tracking-normal); margin: 0 0 var(--cr-space-4); }
+    h3 { font-size: var(--cr-size-h3); font-weight: var(--cr-weight-bold); font-stretch: 110%; margin: 0 0 var(--cr-space-3); }
+    p { margin: 0 0 var(--cr-space-4); }
+    a { color: var(--cr-primary); text-decoration: underline; text-underline-offset: 3px; }
+    .muted { color: var(--cr-ink-muted); }
+    .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); gap: var(--cr-space-3); }
+    .swatch { aspect-ratio: 1; border-radius: var(--cr-radius-lg); padding: var(--cr-space-4); display: flex; flex-direction: column; justify-content: space-between; font-size: var(--cr-size-meta); font-family: var(--cr-font-family-mono); }
+    .swatch strong { font-family: var(--cr-font-family); font-size: var(--cr-size-small); }
+    .row { display: flex; gap: var(--cr-space-3); flex-wrap: wrap; align-items: center; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--cr-space-5); }
+    @media (max-width: 40rem) { .grid-2 { grid-template-columns: 1fr; } }
+    .hero-demo { display: grid; grid-template-columns: 1fr auto; gap: var(--cr-space-8); align-items: center; }
+    @media (max-width: 48rem) { .hero-demo { grid-template-columns: 1fr; } }
+    .hero-portrait { position: relative; width: 16rem; height: 17rem; }
+    .hero-portrait .cr-shape-frame { display: block; }
+    .hero-portrait .fake-image { width: 12.5rem; height: 15rem; background: linear-gradient(135deg, #241c4a, #126782); border-radius: var(--cr-radius-lg); display: grid; place-items: center; font-size: 3rem; margin: 1.25rem 0 0 2rem; }
+    .hero-portrait .badge-bottom { position: absolute; bottom: 0; left: 0; }
+    .hero-portrait .badge-top { position: absolute; top: 0.5rem; right: -0.5rem; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+
+    <section>
+      <p class="muted" style="font-size: var(--cr-size-meta); font-stretch: 75%; text-transform: uppercase; letter-spacing: var(--cr-tracking-widest); font-weight: 600;">courtneyr.dev · Design System v1</p>
+      <h1>Warm, teacher-ish, shape-layered.</h1>
+      <p style="font-size: var(--cr-size-lead); max-width: 38rem;">A brand system for Courtney Robertson — Senior Open Source Developer Advocate, WordPress educator, IndieWeb contributor. This page is the canonical reference: tokens, components, and patterns rendered from the same CSS that powers the site.</p>
+    </section>
+
+    <!-- HERO -->
+    <section>
+      <h2>Hero</h2>
+      <div class="cr-hero">
+        <div class="cr-hero__shape cr-hero__shape--1 cr-drift"></div>
+        <div class="cr-hero__shape cr-hero__shape--2"></div>
+        <div class="hero-demo">
+          <div>
+            <span class="cr-chip cr-chip--solid" style="margin-bottom: var(--cr-space-4);">✦ Open source · WordPress · DevRel</span>
+            <h1 class="cr-hero__title" style="margin-top: var(--cr-space-4);">Teaching the open web, one post at a time.</h1>
+            <p class="cr-hero__lead">Courtney Robertson — Senior Developer Advocate at GoDaddy, WordPress contributor, co-founder of WP Community Collective.</p>
+            <div class="row">
+              <a class="cr-button cr-button--primary" href="#">Subscribe to newsletter →</a>
+              <a class="cr-button cr-button--outline" href="#">Read the stream</a>
+            </div>
+          </div>
+          <div class="hero-portrait">
+            <div class="cr-shape-frame cr-shape-frame--periwinkle">
+              <div class="fake-image">🏴‍☠️</div>
+            </div>
+            <div class="cr-float-badge badge-bottom">
+              <div class="cr-float-badge__icon">★</div>
+              <div>
+                <span class="cr-float-badge__label">Teaching WP since</span>
+                <span>2014 · Learn.wp</span>
+              </div>
+            </div>
+            <div class="cr-float-badge cr-float-badge--primary badge-top">2 plugins on .org</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOR -->
+    <section>
+      <h2>Color — core palette</h2>
+      <div class="swatches">
+        <div class="swatch" style="background: #241c4a; color: #fdfaf4;"><strong>Russian Violet</strong><span>#241c4a</span></div>
+        <div class="swatch" style="background: #fb8500; color: #fff;"><strong>Ut Orange</strong><span>#fb8500</span></div>
+        <div class="swatch" style="background: #8ecae6; color: #241c4a;"><strong>Sky Blue</strong><span>#8ecae6</span></div>
+        <div class="swatch" style="background: #fdfaf4; color: #241c4a; border: 1px solid var(--cr-border);"><strong>Cream</strong><span>#fdfaf4</span></div>
+      </div>
+      <h3 style="margin-top: var(--cr-space-8);">Support</h3>
+      <div class="swatches">
+        <div class="swatch" style="background: #bcb5e3; color: #241c4a;"><strong>Periwinkle</strong><span>#bcb5e3</span></div>
+        <div class="swatch" style="background: #647baf; color: #fff;"><strong>Glaucous</strong><span>#647baf</span></div>
+        <div class="swatch" style="background: #219ebc; color: #fff;"><strong>Blue-Green</strong><span>#219ebc</span></div>
+        <div class="swatch" style="background: #126782; color: #fff;"><strong>Cerulean</strong><span>#126782</span></div>
+        <div class="swatch" style="background: #023047; color: #bcb5e3;"><strong>Prussian Blue</strong><span>#023047</span></div>
+        <div class="swatch" style="background: #ffb703; color: #241c4a;"><strong>Selective Yellow</strong><span>#ffb703</span></div>
+        <div class="swatch" style="background: #fee2c3; color: #241c4a;"><strong>Light Orange</strong><span>#fee2c3</span></div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section>
+      <h2>Typography — Mona Sans, three moods</h2>
+      <div style="padding: var(--cr-space-4) 0; border-bottom: 1px solid var(--cr-border);">
+        <p class="muted" style="font-size: var(--cr-size-meta); text-transform: uppercase; letter-spacing: var(--cr-tracking-widest); font-weight: 600; margin-bottom: var(--cr-space-2);">Display · expanded 125%</p>
+        <p style="font-size: 2.5rem; font-weight: 900; font-stretch: 125%; letter-spacing: -0.02em; line-height: 1.05; margin: 0;">Open source, teaching, the web</p>
+      </div>
+      <div style="padding: var(--cr-space-4) 0; border-bottom: 1px solid var(--cr-border);">
+        <p class="muted" style="font-size: var(--cr-size-meta); text-transform: uppercase; letter-spacing: var(--cr-tracking-widest); font-weight: 600; margin-bottom: var(--cr-space-2);">Body · normal 100%</p>
+        <p style="font-size: 1.125rem; font-weight: 400; margin: 0;">A personal website is a promise to your future self. The web remembers who we are when we take the trouble to write things down.</p>
+      </div>
+      <div style="padding: var(--cr-space-4) 0;">
+        <p class="muted" style="font-size: var(--cr-size-meta); text-transform: uppercase; letter-spacing: var(--cr-tracking-widest); font-weight: 600; margin-bottom: var(--cr-space-2);">Meta · condensed 75%</p>
+        <p style="font-size: 0.75rem; font-weight: 600; font-stretch: 75%; text-transform: uppercase; letter-spacing: 0.08em; margin: 0;">Filed under · WordPress · IndieWeb · April 15</p>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section>
+      <h2>Buttons & chips</h2>
+      <div class="row" style="margin-bottom: var(--cr-space-5);">
+        <button class="cr-button cr-button--primary">Primary CTA</button>
+        <button class="cr-button cr-button--secondary">Secondary dark</button>
+        <button class="cr-button cr-button--outline">Outline</button>
+        <button class="cr-button cr-button--soft">Soft accent</button>
+      </div>
+      <div class="row">
+        <span class="cr-chip cr-chip--blog">Blog</span>
+        <span class="cr-chip cr-chip--link">Link</span>
+        <span class="cr-chip cr-chip--video">Video</span>
+        <span class="cr-chip cr-chip--quote">Quote</span>
+        <span class="cr-chip cr-chip--aside">Aside</span>
+        <span class="cr-chip cr-chip--speaking">Speaking</span>
+      </div>
+    </section>
+
+    <!-- STREAM -->
+    <section>
+      <h2>Stream — aggregate feed</h2>
+      <p class="muted">The hybrid homepage feature. Post Formats, IndieWeb Post Kinds, videos, podcast, and speaking all flow into one chronological river.</p>
+      <div class="cr-stream" style="margin-top: var(--cr-space-5);">
+
+        <article class="cr-stream-item cr-stream-item--blog">
+          <div class="cr-stream-item__avatar">📰</div>
+          <div class="cr-stream-item__body">
+            <div class="cr-stream-item__meta">
+              <span class="cr-chip cr-chip--blog">Blog</span>
+              <time>6 days ago</time>
+            </div>
+            <h3 class="cr-stream-item__title">LLM Wiki: From Brain Fog to AI-Organized Second Brain Clarity</h3>
+            <p class="cr-stream-item__tags">WordPress · AI tooling</p>
+          </div>
+        </article>
+
+        <article class="cr-stream-item cr-stream-item--link">
+          <div class="cr-stream-item__avatar">🔗</div>
+          <div class="cr-stream-item__body">
+            <div class="cr-stream-item__meta">
+              <span class="cr-chip cr-chip--link">Link</span>
+              <time>1 week ago</time>
+            </div>
+            <h3 class="cr-stream-item__title">Great read on XFN and the IndieWeb revival</h3>
+            <p class="cr-stream-item__tags">courtneyr.dev/link · via @jondaley</p>
+          </div>
+        </article>
+
+        <article class="cr-stream-item cr-stream-item--video">
+          <div class="cr-stream-item__avatar">📹</div>
+          <div class="cr-stream-item__body">
+            <div class="cr-stream-item__meta">
+              <span class="cr-chip cr-chip--video">Video</span>
+              <time>2 weeks ago</time>
+            </div>
+            <h3 class="cr-stream-item__title">This Week in WordPress 347: Evan</h3>
+            <p class="cr-stream-item__tags">YouTube · 52 min</p>
+          </div>
+        </article>
+
+        <article class="cr-stream-item cr-stream-item--quote">
+          <div class="cr-stream-item__avatar">🔖</div>
+          <div class="cr-stream-item__body">
+            <div class="cr-stream-item__meta">
+              <span class="cr-chip cr-chip--quote">Quote</span>
+              <time>3 weeks ago</time>
+            </div>
+            <h3 class="cr-stream-item__title">“A personal website is a promise to your future self.”</h3>
+            <p class="cr-stream-item__tags">Rae Morrey</p>
+          </div>
+        </article>
+
+        <article class="cr-stream-item cr-stream-item--aside">
+          <div class="cr-stream-item__avatar">🗯️</div>
+          <div class="cr-stream-item__body">
+            <div class="cr-stream-item__meta">
+              <span class="cr-chip cr-chip--aside">Aside</span>
+              <time>3 weeks ago</time>
+            </div>
+            <h3 class="cr-stream-item__title">Server-side cron on GoDaddy MWPv2 finally clicked for me today.</h3>
+            <p class="cr-stream-item__tags">tech note</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- LOGOS -->
+    <section>
+      <h2>Logo options</h2>
+      <p class="muted">Three directions — pick one for finalization.</p>
+      <div class="grid-2">
+        <div class="cr-card" style="text-align: center;">
+          <h3>A · Shape monogram</h3>
+          <img src="../brand/logo-a-monogram.svg" alt="cr. monogram on sky-blue circle" style="width: 140px; height: 140px;">
+        </div>
+        <div class="cr-card" style="text-align: center;">
+          <h3>B · Orange-dot wordmark</h3>
+          <img src="../brand/logo-b-wordmark.svg" alt="courtneyr.dev wordmark" style="width: 100%; max-width: 360px;">
+        </div>
+        <div class="cr-card" style="text-align: center; grid-column: 1 / -1;">
+          <h3>C · Open web glyph</h3>
+          <img src="../brand/logo-c-glyph.svg" alt="Open web glyph with courtneyr wordmark" style="width: 100%; max-width: 380px;">
+        </div>
+      </div>
+    </section>
+
+    <footer class="muted" style="padding-top: var(--cr-space-10); border-top: 1px solid var(--cr-border); font-size: var(--cr-size-small);">
+      <p>Built for Ollie block theme · WordPress · IndieWeb. All visuals rendered from tokens.css and components.css.</p>
+    </footer>
+
+  </main>
+</body>
+</html>

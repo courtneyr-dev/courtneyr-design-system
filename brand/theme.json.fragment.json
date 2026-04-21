@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "courtneyr.dev brand palette for Ollie child theme",
+  "description": "Drop the settings.color.palette array below into your Ollie child theme's theme.json. It replaces (or extends) the parent Ollie palette so WordPress's color picker shows your brand swatches by name.",
+  "settings": {
+    "color": {
+      "defaultPalette": false,
+      "palette": [
+        { "name": "Russian Violet",    "slug": "russian-violet",    "color": "#241c4a" },
+        { "name": "Periwinkle",        "slug": "periwinkle",        "color": "#bcb5e3" },
+        { "name": "Glaucous",          "slug": "glaucous",          "color": "#647baf" },
+        { "name": "Sky Blue",          "slug": "sky-blue",          "color": "#8ecae6" },
+        { "name": "Blue-Green",        "slug": "blue-green",        "color": "#219ebc" },
+        { "name": "Cerulean",          "slug": "cerulean",          "color": "#126782" },
+        { "name": "Prussian Blue",     "slug": "prussian-blue",     "color": "#023047" },
+        { "name": "Selective Yellow",  "slug": "selective-yellow",  "color": "#ffb703" },
+        { "name": "Ut Orange",         "slug": "ut-orange",         "color": "#fb8500" },
+        { "name": "Light Orange",      "slug": "light-orange",      "color": "#fee2c3" },
+        { "name": "Cream",             "slug": "cream",             "color": "#fdfaf4" },
+        { "name": "Night Surface",     "slug": "night-surface",     "color": "#0a0f24" },
+
+        { "name": "Ink",               "slug": "ink",               "color": "#241c4a" },
+        { "name": "Ink Muted",         "slug": "ink-muted",         "color": "#647baf" },
+        { "name": "Primary",           "slug": "primary",           "color": "#fb8500" },
+        { "name": "Accent",            "slug": "accent",            "color": "#219ebc" },
+        { "name": "Accent Shape",      "slug": "accent-shape",      "color": "#8ecae6" },
+        { "name": "Surface",           "slug": "surface",           "color": "#fdfaf4" },
+        { "name": "Surface Soft",      "slug": "surface-soft",      "color": "#fee2c3" }
+      ],
+      "duotone": [
+        { "name": "Brand Warm",  "slug": "brand-warm",  "colors": ["#241c4a", "#fee2c3"] },
+        { "name": "Brand Cool",  "slug": "brand-cool",  "colors": ["#023047", "#8ecae6"] },
+        { "name": "Orange Fire", "slug": "orange-fire", "colors": ["#241c4a", "#fb8500"] }
+      ]
+    }
+  }
+}
