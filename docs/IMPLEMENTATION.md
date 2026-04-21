@@ -105,7 +105,7 @@ After deploying:
 
 ## Things to keep in mind
 
-- The `font-stretch` property requires Mona Sans specifically (a variable font). It's already loaded by Ollie, so no extra work — but if you ever change themes, you'll need to load Mona Sans yourself.
+- The design system expects three fonts to be available: **Rock Salt**, **Barlow**, and **Roboto Slab**. On courtneyr.dev these are loaded via Ollie's font library. If you ever move off Ollie, load all three from Google Fonts — the demo/index.html shows the correct `<link>` tag with all three families combined into one request.
 - `color-mix()` in the stream card avatar background requires a modern browser — fine for 97%+ of visitors but if you need IE or very old browser support, replace with a solid hex.
 - The shape-layering `::before` uses `z-index: -1` on a container that has `isolation: isolate` — if you wrap it inside another stacking context with its own `z-index`, the circle might disappear. Fix: raise the stacking context of the parent, or remove `isolation: isolate` from `.cr-shape-frame`.
 

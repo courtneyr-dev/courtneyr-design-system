@@ -17,10 +17,8 @@ courtneyr-design-system/
 ├── brand/
 │   ├── brand.json                 ← Machine-readable brand spec (palette, voice, patterns)
 │   ├── theme.json.fragment.json   ← WordPress Ollie child-theme palette fragment
-│   ├── logo-a-monogram.svg        ← Option A — cr. monogram in sky-blue circle
-│   ├── logo-b-wordmark.svg        ← Option B — courtneyr.dev with orange .dev
-│   ├── logo-c-glyph.svg           ← Option C — open-web brackets + orange dot
-│   └── logo-c-glyph-only.svg      ← Option C glyph only (for favicons)
+│   ├── wordmark.svg               ← Primary wordmark — all Rock Salt, lowercase "courtneyr.dev"
+│   └── wordmark-preview.png       ← PNG preview of the wordmark
 ├── demo/
 │   ├── index.html                 ← Static HTML reference page (canonical examples)
 │   └── BrandSystem.jsx             ← Interactive React artifact (the design tour)
@@ -50,7 +48,7 @@ Paste the URL to this repository.
 Read docs/AI_CONTEXT.md first — it's the condensed brief.
 Core files: tokens/tokens.css, components/components.css, brand/brand.json.
 The shape-layering pattern (soft circle behind any image + floating badge on a corner) is a signature element and should appear on any image-forward composition.
-Fonts are fixed: Mona Sans variable font (already loaded by Ollie). Use its font-stretch axis for hierarchy, not a second typeface.
+Font system: Rock Salt (display/wordmark) + Barlow (body) + Roboto Slab (accent headings). All three are loaded via Ollie's font library. Do not swap.
 Dark mode uses prefers-color-scheme. See tokens.css for the full dual-theme palette.
 ```
 
@@ -72,7 +70,7 @@ For a complete step-by-step, see `docs/IMPLEMENTATION.md`.
 
 1. **Palette split.** Ut Orange (#fb8500) leads warmth and CTAs. Sky Blue (#8ecae6) carries the signature shapes and soft backgrounds. Russian Violet (#241c4a) is the ink. The remaining eight colors are support.
 2. **Shape-layering as signature.** Every feature image sits in front of one soft circle, with one floating badge card orbiting a corner. Borrowed from Airo's visual language, tuned to this palette.
-3. **One typeface, three moods.** Mona Sans variable font — expanded (125%) for display, normal for body, condensed (75%) for meta chips. No second family needed.
+3. **Three fonts, three jobs.** Rock Salt for the handwritten wordmark and select display moments. Barlow for body copy and UI. Roboto Slab for accent headings, stream card titles, and pull-quotes. All three loaded via Ollie's font library.
 
 ---
 

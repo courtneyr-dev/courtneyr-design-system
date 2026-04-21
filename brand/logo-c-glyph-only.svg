@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Open web glyph">
-  <path d="M 45 15 Q 10 15 10 60 Q 10 105 45 105"
-        stroke="#241c4a" stroke-width="10" fill="none" stroke-linecap="round"/>
-  <path d="M 75 15 Q 110 15 110 60 Q 110 105 75 105"
-        stroke="#241c4a" stroke-width="10" fill="none" stroke-linecap="round"/>
-  <circle cx="60" cy="60" r="14" fill="#fb8500"/>
-</svg>

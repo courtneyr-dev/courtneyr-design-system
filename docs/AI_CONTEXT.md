@@ -12,7 +12,7 @@ Courtney Robertson — Senior Open Source Developer Advocate at GoDaddy, WordPre
 
 - **Platform:** WordPress
 - **Theme:** Ollie block theme (with Ollie Pro)
-- **Font:** Mona Sans variable font (loaded by Ollie — do NOT swap it)
+- **Font system:** Rock Salt (display/handwritten) + Barlow (body) + Roboto Slab (accent). All three loaded via Ollie's font library — do NOT swap them.
 - **Hosting:** GoDaddy Managed WordPress
 - **Active IndieWeb plugins:** Post Formats for Block Themes, Link Extension for XFN, ActivityPub, IndieWeb, IndieWeb Post Kinds
 - **Accessibility target:** WCAG AA minimum, AAA where achievable (Equalize Digital Accessibility Checker Pro active)
@@ -37,13 +37,12 @@ Every feature image gets this treatment:
 
 Rules: one circle + one badge per image. Circle peeks ~30% from behind the image. Skip badges on thumbnails under 200px. See `docs/SHAPE_LAYERING.md`.
 
-### 3. One typeface, three moods
-**Mona Sans** variable font, using its width axis:
-- **Display** — font-stretch: 125%, weight 800–900 → hero H1, big titles
-- **Body** — font-stretch: 100%, weight 400–500 → paragraphs, post content
-- **Meta** — font-stretch: 75%, weight 600, uppercase, letter-spacing 0.08em → chips, labels, timestamps
+### 3. Three fonts, three jobs
+- **Rock Salt** (display, handwritten marker): the wordmark, hero display titles kept short. Never use for body or long paragraphs.
+- **Barlow** (body sans): paragraphs, UI labels, buttons, navigation, meta chips. Default to weight 400, bump to 500–600 for emphasis.
+- **Roboto Slab** (accent serif): section headings (h2/h3), stream card titles, numerals in stats, pull-quotes. Weight 700–900 for headings, 400 for quotes.
 
-Do not introduce a second font family. If you need more contrast, reach for italic or weight before a new family.
+Do not introduce additional font families. Rock Salt already carries display personality; adding a second script font would fight it.
 
 ## Layout principles
 
@@ -83,7 +82,7 @@ Subtle only. Gentle hover lifts on cards. A slow `cr-drift` animation on hero bl
 
 ## Constraints / things to NOT do
 
-- Do not add new fonts. Mona Sans only.
+- Do not add new fonts. Rock Salt + Barlow + Roboto Slab only.
 - Do not use Automattic or Awesome Motive products in suggestions (user preference).
 - Do not recommend replacing Yoast SEO with alternatives (it's chosen).
 - Do not auto-fix Permissions-Policy or CSP headers — those live in a custom plugin and at the WAF layer.

@@ -102,7 +102,7 @@
   opacity: 0.65;
   text-transform: uppercase;
   letter-spacing: var(--cr-tracking-wide);
-  font-stretch: var(--cr-stretch-condensed);
+  font-family: var(--cr-font-body);
 }
 
 /* ==========================================================================
@@ -116,7 +116,7 @@
   padding: var(--cr-space-3) var(--cr-space-5);
   border-radius: var(--cr-radius-full);
   border: 2px solid transparent;
-  font-family: var(--cr-font-family);
+  font-family: var(--cr-font-body);
   font-weight: var(--cr-weight-bold);
   font-size: var(--cr-size-small);
   line-height: 1;
@@ -168,10 +168,9 @@
   gap: var(--cr-space-1);
   padding: var(--cr-space-1) var(--cr-space-3);
   border-radius: var(--cr-radius-full);
-  font-family: var(--cr-font-family);
+  font-family: var(--cr-font-body);
   font-size: var(--cr-size-meta);
   font-weight: var(--cr-weight-semibold);
-  font-stretch: var(--cr-stretch-condensed);
   letter-spacing: var(--cr-tracking-widest);
   text-transform: uppercase;
   line-height: 1.4;
@@ -293,10 +292,9 @@
 }
 
 .cr-stream-item__title {
-  font-family: var(--cr-font-family);
+  font-family: var(--cr-font-accent);
   font-size: var(--cr-size-body);
   font-weight: var(--cr-weight-bold);
-  font-stretch: var(--cr-stretch-wide);
   line-height: var(--cr-leading-snug);
   color: var(--cr-ink);
   margin: 0 0 var(--cr-space-1);
@@ -313,7 +311,7 @@
 }
 
 .cr-stream-item__tags {
-  font-family: var(--cr-font-family-mono);
+  font-family: var(--cr-font-mono);
   font-size: var(--cr-size-meta);
   color: var(--cr-ink-muted);
   margin: 0;
@@ -357,15 +355,22 @@
 }
 
 .cr-hero__title {
-  font-family: var(--cr-font-family);
+  font-family: var(--cr-font-display);
   font-size: var(--cr-size-display);
-  font-weight: var(--cr-weight-black);
-  font-stretch: var(--cr-stretch-expanded);
-  letter-spacing: var(--cr-tracking-tight);
-  line-height: 1.05;
+  font-weight: var(--cr-weight-regular);
+  letter-spacing: var(--cr-tracking-normal);
+  line-height: 1.2;
   color: var(--cr-ink);
   margin: 0 0 var(--cr-space-4);
-  max-width: 22ch;
+  max-width: 20ch;
+}
+
+/* When hero title needs to be more restrained, use the accent font instead */
+.cr-hero__title--accent {
+  font-family: var(--cr-font-accent);
+  font-weight: var(--cr-weight-black);
+  line-height: 1.05;
+  letter-spacing: var(--cr-tracking-tight);
 }
 
 .cr-hero__lead {

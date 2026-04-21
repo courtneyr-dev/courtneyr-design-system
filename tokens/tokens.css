@@ -67,18 +67,20 @@
   --cr-type-book: var(--cr-color-russian-violet);
 
   /* ----------------------------------------------------------------------
-     Typography
-     Mona Sans is already loaded by the Ollie theme. We use its width axis
-     (font-stretch) to build hierarchy instead of a second typeface.
+     Typography — three-font system
+     Rock Salt     → display / hero titles / wordmark. Handwritten marker.
+     Barlow        → body copy, UI. Clean, friendly sans with great readability.
+     Roboto Slab   → accent headings, meta, pull-quotes, numerals. Warm slab serif.
+     All three are loaded via Ollie's font library on courtneyr.dev.
      ---------------------------------------------------------------------- */
-  --cr-font-family: "Mona Sans", system-ui, -apple-system, sans-serif;
-  --cr-font-family-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --cr-font-display: "Rock Salt", "Segoe Script", "Bradley Hand", cursive;
+  --cr-font-body: "Barlow", system-ui, -apple-system, sans-serif;
+  --cr-font-accent: "Roboto Slab", Georgia, "Times New Roman", serif;
+  --cr-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
-  /* Width axis values (Mona Sans is variable) */
-  --cr-stretch-condensed: 75%;
-  --cr-stretch-normal: 100%;
-  --cr-stretch-wide: 115%;
-  --cr-stretch-expanded: 125%;
+  /* Legacy alias — defaults to body */
+  --cr-font-family: var(--cr-font-body);
+  --cr-font-family-mono: var(--cr-font-mono);
 
   /* Weight scale */
   --cr-weight-regular: 400;
