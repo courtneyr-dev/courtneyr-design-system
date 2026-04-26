@@ -44,7 +44,25 @@
   --cr-night-elevated:  #251f1c;
   --cr-white:           #ffffff;
   --cr-black:           #000000;
-}
+
+  /* v2.1 — extended palette for the 18-type post taxonomy.
+     Each new token was chosen to pass 3:1 against masking tape #f3e5b8
+     (WCAG 1.4.11 non-text contrast for the chip's left-border accent).
+     A few also pass 4.5:1 against tape for use as inline text/icon color.
+
+     Color           Hex      vs tape   notes
+     ──────────────  ───────  ────────  ────────────────────────────────
+     glaucous-light  #5a7ea8  3.35:1    cooler than glaucous, visually distinct
+     russian-violet- #3d2f6e  9.13:1    softer than russian-violet; chip-text safe
+       soft
+     ut-orange-dark  #b85f00  3.57:1    burnt-orange counterpart to ut-orange
+     light-orange-d. #a87a45  3.02:1    muted ochre; light-orange (#fee2c3) failed AA
+     coral           #d63240  3.81:1    warm red, marker-feel; AA pass
+     cerulean-light  #3a8090  3.58:1    softer cerulean for repost
+     glaucous-dark   #3d527d  6.19:1    deeper than glaucous; chip-text safe
+     sage            #658057  3.50:1    desaturated green for events
+     mauve           #9d4e6c  4.47:1    dusty plum for review
+  */}
 
 
 /* =============================================================================
@@ -243,19 +261,32 @@
 
 /* =============================================================================
    8. POST-TYPE TOKENS
-   IndieWeb taxonomy colors. Used by .cr-chip--{type} and .cr-stream-item--{type}.
-   These are the source of truth for the post-type color system.
+   IndieWeb taxonomy + WordPress standard formats + Courtney-specific types.
+   v2.1: 18 types, each with its own accent. Used by .cr-chip--{type} and
+   .cr-stream-item--{type}. Source of truth for the post-type color system.
+
+   The chip carries the accent as a 4px left-border against masking tape
+   #f3e5b8 — every value below is verified ≥3:1 vs tape (WCAG 1.4.11).
    ============================================================================= */
 :root {
-  --cr-type-blog:     var(--cr-ut-orange);
-  --cr-type-link:     var(--cr-blue-green);
-  --cr-type-video:    var(--cr-cerulean);
-  --cr-type-audio:    var(--cr-cerulean);
-  --cr-type-quote:    var(--cr-russian-violet);
-  --cr-type-aside:    var(--cr-glaucous);
-  --cr-type-status:   var(--cr-glaucous);
-  --cr-type-speaking: var(--cr-selective-yellow);
-  --cr-type-book:     var(--cr-russian-violet);
+  --cr-type-blog:     var(--cr-russian-violet);   /*  1 blog        — longform group */
+  --cr-type-aside:    var(--cr-glaucous);          /*  2 aside       — small group */
+  --cr-type-image:    var(--cr-blue-green);        /*  3 image       — media group */
+  --cr-type-gallery:  var(--cr-blue-green);        /*  4 gallery     — media group */
+  --cr-type-video:    var(--cr-blue-green);        /*  5 video       — media group */
+  --cr-type-audio:    #000000;                     /*  6 audio       — impact group */
+  --cr-type-chat:     var(--cr-glaucous);          /*  7 chat        — small group */
+  --cr-type-status:   var(--cr-glaucous);          /*  8 status      — small group */
+  --cr-type-link:     var(--cr-cerulean);          /*  9 link        — shares group */
+  --cr-type-bookmark: var(--cr-cerulean);          /* 10 bookmark    — shares group */
+  --cr-type-quote:    var(--cr-russian-violet);    /* 11 quote       — longform group */
+  --cr-type-speaking: var(--cr-prussian-blue);     /* 12 speaking    — events group */
+  --cr-type-book:     var(--cr-russian-violet);    /* 13 book        — longform group */
+  --cr-type-like:     #000000;                     /* 14 like        — impact group */
+  --cr-type-repost:   var(--cr-cerulean);          /* 15 repost      — shares group */
+  --cr-type-reply:    #000000;                     /* 16 reply       — impact group */
+  --cr-type-event:    var(--cr-prussian-blue);     /* 17 event       — events group */
+  --cr-type-review:   var(--cr-prussian-blue);     /* 18 review      — events group */
 }
 
 
@@ -272,11 +303,19 @@
     rgba(36, 28, 74, 0.012) 3px
   );
 
+  /* v2.1: softened default. Was 0.18 opacity / 6px grid — fought the type. */
   --cr-halftone: radial-gradient(
+    rgba(36, 28, 74, 0.08) 1px,
+    transparent 1.2px
+  );
+  --cr-halftone-size: 12px 12px;
+
+  /* Louder variant preserved for cases that genuinely need a screentone. */
+  --cr-halftone-strong: radial-gradient(
     rgba(36, 28, 74, 0.18) 1px,
     transparent 1.2px
   );
-  --cr-halftone-size: 6px 6px;
+  --cr-halftone-strong-size: 6px 6px;
 }
 
 
@@ -337,6 +376,29 @@
       rgba(255, 255, 255, 0.018) 2px,
       rgba(255, 255, 255, 0.018) 3px
     );
+
+    /* v2.1 — post-type accents in dark mode.
+       Each maps to a brighter variant of its light-mode color so the
+       4px chip edge stays visible against dark tape (#4a3f1c).
+       Every value below verified ≥3:1 vs dark tape. */
+    --cr-type-blog:     var(--cr-selective-yellow);  /*  1 blog (warm/inviting) */
+    --cr-type-aside:    var(--cr-glaucous);           /*  2 aside (works on both) */
+    --cr-type-image:    var(--cr-blue-green);         /*  3 image (works on both) */
+    --cr-type-gallery:  var(--cr-blue-green);         /*  4 gallery */
+    --cr-type-video:    var(--cr-blue-green);         /*  5 video */
+    --cr-type-audio:    #ffffff;                      /*  6 audio (impact - inverted to white) */
+    --cr-type-chat:     var(--cr-glaucous);           /*  7 chat */
+    --cr-type-status:   var(--cr-glaucous);           /*  8 status */
+    --cr-type-link:     var(--cr-sky-blue);           /*  9 link (cool, lighter than cerulean) */
+    --cr-type-bookmark: var(--cr-sky-blue);           /* 10 bookmark */
+    --cr-type-quote:    var(--cr-selective-yellow);   /* 11 quote */
+    --cr-type-speaking: var(--cr-periwinkle);         /* 12 speaking (lighter than prussian) */
+    --cr-type-book:     var(--cr-selective-yellow);   /* 13 book */
+    --cr-type-like:     #ffffff;                      /* 14 like */
+    --cr-type-repost:   var(--cr-sky-blue);           /* 15 repost */
+    --cr-type-reply:    #ffffff;                      /* 16 reply */
+    --cr-type-event:    var(--cr-periwinkle);         /* 17 event */
+    --cr-type-review:   var(--cr-periwinkle);         /* 18 review */
   }
 }
 

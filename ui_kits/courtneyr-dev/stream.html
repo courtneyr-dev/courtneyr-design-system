@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stream — UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../components/components.css">
+<script src="../../components/icons-inject.js?v=24" defer></script>
+<link rel="stylesheet" href="kit.css">
+<style>
+  /* Avatar pattern: post-type fill background, AA-passing foreground.
+     v2.1: variants only exist for the 10 types whose accent passes AA against
+     a printable foreground. The other 8 (aside, image, gallery, status, chat,
+     repost, book, event) use the default-tape chip pattern with NO avatar —
+     just a tape chip + title row. */
+  .cr-icon-avatar {
+    width: 2.75rem; height: 2.75rem;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: var(--cr-border-thick);
+    background: var(--cr-surface-elevated);
+    color: var(--cr-ink);
+    box-shadow: 2px 2px 0 var(--cr-ink);
+    transform: rotate(var(--cr-rotate-neg));
+    flex-shrink: 0;
+  }
+  .cr-icon-avatar svg {
+    width: 1.5rem; height: 1.5rem;
+    fill: none; stroke: currentColor;
+    stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .cr-icon-avatar svg .cr-icon-fill { fill: currentColor; stroke: none; }
+
+  .cr-icon-avatar--blog     { background: var(--cr-type-blog);     color: var(--cr-printer-ivory); }
+  .cr-icon-avatar--video    { background: var(--cr-type-video);    color: var(--cr-prussian-blue); }
+  .cr-icon-avatar--audio    { background: var(--cr-type-audio);    color: var(--cr-prussian-blue); }
+  .cr-icon-avatar--link     { background: var(--cr-type-link);     color: var(--cr-printer-ivory); }
+  .cr-icon-avatar--bookmark { background: var(--cr-type-bookmark); color: var(--cr-printer-ivory); }
+  .cr-icon-avatar--quote    { background: var(--cr-type-quote);    color: var(--cr-printer-ivory); }
+  .cr-icon-avatar--speaking { background: var(--cr-type-speaking); color: var(--cr-printer-ivory); }
+  .cr-icon-avatar--like     { background: var(--cr-type-like);     color: var(--cr-printer-ivory); }
+  .cr-icon-avatar--reply    { background: var(--cr-type-reply);    color: var(--cr-printer-ivory); }
+  .cr-icon-avatar--review   { background: var(--cr-type-review);   color: var(--cr-printer-ivory); }
+
+  /* Outline-only avatar (for types whose accent fails AA as a fill).
+     Tape background, post-type accent as the border, ink stays default. */
+  .cr-icon-avatar--outline {
+    background: var(--cr-tape);
+    color: var(--cr-ink);
+    border-color: var(--type-color, var(--cr-ink));
+  }
+</style>
+</head>
+<body data-kit-page="stream">
+<div class="kit-shell">
+  <main class="kit-main">
+    <span class="kit-page-eyebrow">08 · Components</span>
+    <h1 class="kit-page-title">Stream</h1>
+    <p class="kit-page-lead">Mixed-post-type feed used for landing pages, archives, and "recent activity" sections. v2.1 supports all 18 post types — the 10 with AA-passing fills get full-color avatars, the other 8 use outline avatars (tape background + accent border) so the visual rhythm stays consistent.</p>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Mixed feed · all 18 types</h2><span class="kit-tag">.cr-stream</span></div>
+      <div class="kit-stage" style="padding: 0;">
+        <div class="cr-stream">
+
+          <article class="cr-stream-item cr-stream-item--blog">
+            <span class="cr-icon-avatar cr-icon-avatar--blog" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-blog"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>March 14</span><span class="cr-chip cr-chip--blog">Blog</span></div>
+              <h3 class="cr-stream-item__title"><a href="#">Why I left the framework treadmill</a></h3>
+              <p style="margin: 0; color: var(--cr-ink-muted);">A long way of saying: I'd rather ship a slow blog than wait six months for a fast one.</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--aside">
+            <span class="cr-icon-avatar cr-icon-avatar--outline" style="--type-color: var(--cr-type-aside);" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-aside"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>March 12</span><span class="cr-chip cr-chip--aside">Aside</span></div>
+              <p style="margin: 0;">Spent two hours debugging a missing trailing slash. The internet, ladies and gentlemen.</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--image">
+            <span class="cr-icon-avatar cr-icon-avatar--outline" style="--type-color: var(--cr-type-image);" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-image"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>March 10</span><span class="cr-chip cr-chip--image">Image</span></div>
+              <h3 class="cr-stream-item__title"><a href="#">Conference whiteboard, redrawn</a></h3>
+              <p style="margin: 0; color: var(--cr-ink-muted);">A hallway conversation about static-site auth, captured before someone wiped the board.</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--gallery">
+            <span class="cr-icon-avatar cr-icon-avatar--outline" style="--type-color: var(--cr-type-gallery);" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-gallery"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>March 8</span><span class="cr-chip cr-chip--gallery">Gallery</span><span>14 photos</span></div>
+              <h3 class="cr-stream-item__title"><a href="#">WordCamp Asia · backstage</a></h3>
+              <p style="margin: 0; color: var(--cr-ink-muted);">Speakers' lounge, AV checks, the moment right before doors opened. Mostly Polaroids.</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--video">
+            <span class="cr-icon-avatar cr-icon-avatar--video" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-video"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>March 5</span><span class="cr-chip cr-chip--video cr-chip--solid">Video</span><span>9 min</span></div>
+              <h3 class="cr-stream-item__title"><a href="#">Building blocks: a five-minute Gutenberg primer</a></h3>
+              <p style="margin: 0; color: var(--cr-ink-muted);">Screen-recorded walkthrough for the contributor onboarding handbook.</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--audio">
+            <span class="cr-icon-avatar cr-icon-avatar--audio" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-audio"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>February 28</span><span class="cr-chip cr-chip--audio cr-chip--solid">Audio</span><span>Syntax FM, ep. 681</span></div>
+              <h3 class="cr-stream-item__title"><a href="#">"the small-web episode"</a></h3>
+              <p style="margin: 0; color: var(--cr-ink-muted);">A 50-minute conversation about static sites, RSS, and why webmentions still matter.</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--chat">
+            <span class="cr-icon-avatar cr-icon-avatar--outline" style="--type-color: var(--cr-type-chat);" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-chat"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>February 24</span><span class="cr-chip cr-chip--chat">Chat</span></div>
+              <h3 class="cr-stream-item__title"><a href="#">Slack thread: "do we still need a footer?"</a></h3>
+              <p style="margin: 0; color: var(--cr-ink-muted);">17 messages, 4 opinions, one decision. Archived here so I stop relitigating it.</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--status">
+            <span class="cr-icon-avatar cr-icon-avatar--outline" style="--type-color: var(--cr-type-status);" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-status"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>February 22</span><span class="cr-chip cr-chip--status">Status</span></div>
+              <p style="margin: 0;">Coffee, second draft of the talk, and the cat is on the keyboard again. Send help.</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--link">
+            <span class="cr-icon-avatar cr-icon-avatar--link" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-link"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>February 20</span><span class="cr-chip cr-chip--link cr-chip--solid">Link</span></div>
+              <h3 class="cr-stream-item__title"><a href="#">"a brief history of the URL" — by Cloudflare</a></h3>
+              <p style="margin: 0; color: var(--cr-ink-muted);">Goes deep on the path-vs-fragment-vs-query history. Worth the 12 minutes.</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--bookmark">
+            <span class="cr-icon-avatar cr-icon-avatar--bookmark" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-bookmark"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>February 18</span><span class="cr-chip cr-chip--bookmark cr-chip--solid">Bookmark</span></div>
+              <h3 class="cr-stream-item__title"><a href="#">"how do you write a good RFC?" — Lyft eng blog</a></h3>
+              <p style="margin: 0; color: var(--cr-ink-muted);">Filing this one under /references/ for the next time someone asks.</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--quote">
+            <span class="cr-icon-avatar cr-icon-avatar--quote" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-quote"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>February 14</span><span class="cr-chip cr-chip--quote cr-chip--solid">Quote</span></div>
+              <h3 class="cr-stream-item__title"><a href="#">"the fastest blog is a static one you actually publish on"</a></h3>
+              <p style="margin: 0; color: var(--cr-ink-muted);">— mark, in a hallway conversation</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--speaking">
+            <span class="cr-icon-avatar cr-icon-avatar--speaking" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-speaking"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>February 10</span><span class="cr-chip cr-chip--speaking cr-chip--solid">Speaking</span><span>WordCamp Asia</span></div>
+              <h3 class="cr-stream-item__title"><a href="#">Slides: a brief history of personal websites</a></h3>
+              <p style="margin: 0; color: var(--cr-ink-muted);">45 minutes on Geocities, Movable Type, Twitter, and what we lost on the way to here.</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--book">
+            <span class="cr-icon-avatar cr-icon-avatar--outline" style="--type-color: var(--cr-type-book);" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-book"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>January 30</span><span class="cr-chip cr-chip--book">Book</span></div>
+              <h3 class="cr-stream-item__title"><a href="#">"a pattern language" — finished</a></h3>
+              <p style="margin: 0; color: var(--cr-ink-muted);">Took six months. Notes are filed under /books/pattern-language. Highly recommended; pace yourself.</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--like">
+            <span class="cr-icon-avatar cr-icon-avatar--like" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-like"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>January 28</span><span class="cr-chip cr-chip--like cr-chip--solid">Like</span></div>
+              <h3 class="cr-stream-item__title"><a href="#">Liked: "the case for slow software" by Robin Sloan</a></h3>
+              <p style="margin: 0; color: var(--cr-ink-muted);">Webmention sent. Boosting because it deserves a wider audience.</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--repost">
+            <span class="cr-icon-avatar cr-icon-avatar--outline" style="--type-color: var(--cr-type-repost);" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-repost"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>January 26</span><span class="cr-chip cr-chip--repost">Repost</span></div>
+              <h3 class="cr-stream-item__title"><a href="#">"the IndieWeb is just a normal blog with extra steps" — @v</a></h3>
+              <p style="margin: 0; color: var(--cr-ink-muted);">Fair. Also accurate. Boosted with full credit.</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--reply">
+            <span class="cr-icon-avatar cr-icon-avatar--reply" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-reply"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>January 22</span><span class="cr-chip cr-chip--reply cr-chip--solid">Reply</span><span>in reply to @ana</span></div>
+              <p style="margin: 0;">Your point about webmentions-as-comments is exactly the model I went with — and yes, the spam is manageable so far.</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--event">
+            <span class="cr-icon-avatar cr-icon-avatar--outline" style="--type-color: var(--cr-type-event);" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-event"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>January 18</span><span class="cr-chip cr-chip--event">Event</span><span>April 12 · Online</span></div>
+              <h3 class="cr-stream-item__title"><a href="#">Hosting: "personal websites in 2026" — IndieWeb chat</a></h3>
+              <p style="margin: 0; color: var(--cr-ink-muted);">Two-hour open mic on what's still working. RSVP via webmention.</p>
+            </div>
+          </article>
+
+          <article class="cr-stream-item cr-stream-item--review">
+            <span class="cr-icon-avatar cr-icon-avatar--review" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-review"></use></svg>
+            </span>
+            <div class="cr-stream-item__body">
+              <div class="cr-stream-item__meta"><span>January 14</span><span class="cr-chip cr-chip--review cr-chip--solid">Review</span><span>★★★★☆</span></div>
+              <h3 class="cr-stream-item__title"><a href="#">Review: Eleventy as a teaching tool</a></h3>
+              <p style="margin: 0; color: var(--cr-ink-muted);">Great for self-learners; tricky to onboard a junior into the build pipeline. Verdict: still recommend.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+      <p class="kit-spec">Visual rhythm: 10 types use full-color avatars (post-type fill), 8 use outline avatars (tape + accent border). Both maintain the same dimensions and rotation so the left rail stays a steady column.</p>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Anatomy</h2><span class="kit-tag">grid: 3rem avatar + 1fr body</span></div>
+      <div class="kit-stage">
+        <table style="margin: 0; font-family: var(--cr-font-mono); font-size: var(--cr-text-sm);">
+          <thead><tr><th>Element</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>.cr-stream</td><td>Wrapper · 60rem max-width</td></tr>
+            <tr><td>.cr-stream-item</td><td>Single feed entry · 4px marker-bar bottom border</td></tr>
+            <tr><td>.cr-stream-item--{type}</td><td>Optional accent on .cr-stream-item__avatar (any of 18 types)</td></tr>
+            <tr><td>.cr-icon-avatar--{type}</td><td>Filled avatar — only for the 10 AA-safe types</td></tr>
+            <tr><td>.cr-icon-avatar--outline</td><td>Tape-bg avatar with accent border — for the other 8 types. Set <code>--type-color</code> to the post-type token.</td></tr>
+            <tr><td>.cr-stream-item__meta</td><td>Date · chip · venue / extras</td></tr>
+            <tr><td>.cr-stream-item__title</td><td>Roboto Slab 700, 1.25rem · marker-bar underline on hover</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="kit-spec">Hover lifts the row 2px in the negative direction (translate(-2px, -2px)) — small but readable. No scale, no fade.</p>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Markup · filled avatar</h2><span class="kit-tag">10 AA-safe types</span></div>
+      <pre class="kit-code">&lt;article class="cr-stream-item cr-stream-item--blog"&gt;
+  &lt;span class="cr-icon-avatar cr-icon-avatar--blog" aria-hidden="true"&gt;
+    &lt;svg viewBox="0 0 24 24"&gt;&lt;use href="components/icons.svg#post-icon-blog"&gt;&lt;/use&gt;&lt;/svg&gt;
+  &lt;/span&gt;
+  &lt;div class="cr-stream-item__body"&gt; … &lt;/div&gt;
+&lt;/article&gt;</pre>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Markup · outline avatar</h2><span class="kit-tag">8 outline-only types</span></div>
+      <pre class="kit-code">&lt;article class="cr-stream-item cr-stream-item--aside"&gt;
+  &lt;span class="cr-icon-avatar cr-icon-avatar--outline"
+        style="--type-color: var(--cr-type-aside);" aria-hidden="true"&gt;
+    &lt;svg viewBox="0 0 24 24"&gt;&lt;use href="components/icons.svg#post-icon-aside"&gt;&lt;/use&gt;&lt;/svg&gt;
+  &lt;/span&gt;
+  &lt;div class="cr-stream-item__body"&gt; … &lt;/div&gt;
+&lt;/article&gt;</pre>
+    </section>
+  </main>
+</div>
+<script src="kit-shell.js"></script>
+</body>
+</html>

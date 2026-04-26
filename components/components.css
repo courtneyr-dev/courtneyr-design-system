@@ -82,6 +82,8 @@
 
 /* ============ Pull quote ============
    Big block quote for marketing/landing. Distinct from a regular <blockquote>.
+   v2.1: full 4-side UT-orange frame with generous matching horizontal padding
+   so text breathes off both rails (was top+bottom only, which read as half-open).
 */
 .cr-pull-quote {
   font-family: var(--cr-font-accent);
@@ -89,12 +91,14 @@
   line-height: var(--cr-leading-snug);
   font-style: italic;
   color: var(--cr-ink);
-  border-top:    4px solid var(--cr-marker);
-  border-bottom: 4px solid var(--cr-marker);
-  padding: var(--cr-space-lg) 0;
+  border: 4px solid var(--cr-marker);
+  padding: var(--cr-space-lg) var(--cr-space-xl);
   margin: var(--cr-space-2xl) 0;
   max-width: var(--cr-measure-wide);
+  background: var(--cr-surface);
 }
+.cr-pull-quote > :first-child { margin-top: 0; }
+.cr-pull-quote > :last-child  { margin-bottom: 0; }
 .cr-pull-quote cite {
   display: block;
   margin-top: var(--cr-space-sm);
@@ -238,9 +242,15 @@
   background-image: var(--cr-halftone);
   background-size: var(--cr-halftone-size);
 }
+/* --soft: legacy alias, now matches the default token (kept for back-compat). */
 .cr-halftone--soft {
-  background-image: radial-gradient(rgba(36, 28, 74, 0.10) 1px, transparent 1.2px);
-  background-size: 8px 8px;
+  background-image: var(--cr-halftone);
+  background-size: var(--cr-halftone-size);
+}
+/* --strong: louder screentone for cases that genuinely need it. */
+.cr-halftone--strong {
+  background-image: var(--cr-halftone-strong);
+  background-size: var(--cr-halftone-strong-size);
 }
 
 
@@ -343,14 +353,17 @@
    Masking-tape style: yellow-cream base, slight rotation, soft shadow.
    Post-type color is carried as a 4px left border accent (NOT as text color),
    so text stays russian-violet on tape — 12.47:1, passes AAA at small sizes.
-   The IndieWeb taxonomy is preserved.
+
+   v2.1: 18 post-type variants (was 9). Every accent verified ≥3:1 against
+   tape (WCAG 1.4.11). Where two types share a color family — blog (russian-
+   violet) vs quote (russian-violet-soft), aside (glaucous) vs chat (glaucous-
+   light) vs reply (glaucous-dark) — the icon does the disambiguation.
 
    Variants:
      .cr-chip                  default — tape bg + russian-violet text + transparent border
      .cr-chip--{type}          adds a 4px left border in the post-type color
      .cr-chip--solid           post-type color fills the chip; text adapts for AA
-                                (aside/status do NOT support --solid — glaucous
-                                fails AA against both light and dark text)
+                                (a few types do NOT support --solid — see below)
 
    Removed in v2.0.1: .cr-chip--outline (failed AA for warm/light post-types).
 */
@@ -361,8 +374,8 @@
   font-weight: var(--cr-weight-bold);
   text-transform: uppercase;
   letter-spacing: var(--cr-tracking-eyebrow);
-  background: var(--cr-tape);
-  color: var(--cr-tape-ink);                       /* always russian-violet — 12.47:1 on tape */
+  background: var(--cr-surface);
+  color: var(--cr-tape-ink);                       /* russian-violet on ivory — 15:1 (was on cream tape; moved to ivory for AA accent variety) */
   padding: var(--cr-space-3xs) var(--cr-space-sm);
   border-left: 4px solid transparent;              /* reserve the 4px; --type modifiers fill it */
   transform: rotate(var(--cr-rotate-neg));
@@ -372,35 +385,55 @@
 }
 .cr-chip + .cr-chip { margin-left: var(--cr-space-2xs); transform: rotate(var(--cr-rotate-neg2)); }
 
-/* Post-type modifiers — accent carried via the 4px left border, not text color */
+/* ── Post-type modifiers — accent carried via the 4px left border ─────────── */
+/* WordPress standard formats + IndieWeb extensions, in taxonomy order */
 .cr-chip--blog     { border-left-color: var(--cr-type-blog); }
-.cr-chip--link     { border-left-color: var(--cr-type-link); }
+.cr-chip--aside    { border-left-color: var(--cr-type-aside); }
+.cr-chip--image    { border-left-color: var(--cr-type-image); }
+.cr-chip--gallery  { border-left-color: var(--cr-type-gallery); }
 .cr-chip--video    { border-left-color: var(--cr-type-video); }
 .cr-chip--audio    { border-left-color: var(--cr-type-audio); }
-.cr-chip--quote    { border-left-color: var(--cr-type-quote); }
-.cr-chip--aside    { border-left-color: var(--cr-type-aside); }
+.cr-chip--chat     { border-left-color: var(--cr-type-chat); }
 .cr-chip--status   { border-left-color: var(--cr-type-status); }
+.cr-chip--link     { border-left-color: var(--cr-type-link); }
+.cr-chip--bookmark { border-left-color: var(--cr-type-bookmark); }
+.cr-chip--quote    { border-left-color: var(--cr-type-quote); }
 .cr-chip--speaking { border-left-color: var(--cr-type-speaking); }
 .cr-chip--book     { border-left-color: var(--cr-type-book); }
+.cr-chip--like     { border-left-color: var(--cr-type-like); }
+.cr-chip--repost   { border-left-color: var(--cr-type-repost); }
+.cr-chip--reply    { border-left-color: var(--cr-type-reply); }
+.cr-chip--event    { border-left-color: var(--cr-type-event); }
+.cr-chip--review   { border-left-color: var(--cr-type-review); }
 
 /* Solid: post-type color fills the chip; text color adapts for AA contrast.
-   Note: aside and status do NOT support .cr-chip--solid — glaucous (#647baf)
-   fails AA against both ivory text (4.02:1) and russian-violet text (3.73:1).
-   Use the default chip variant (tape + glaucous left border + russian-violet
-   text, 12.47:1 AAA) for those post-types. */
+
+   Types that do NOT support --solid (their accent fails AA against both
+   ivory text and russian-violet text — the default tape variant covers them):
+     • aside     — glaucous           (4.02:1 ivory, 3.73:1 violet)
+     • image     — sky-blue           (1.62:1 violet — far too low)
+     • gallery   — periwinkle         (2.78:1 violet)
+     • status    — blue-green         (3.36:1 violet)
+     • chat      — glaucous-light     (3.72:1 violet)
+     • repost    — cerulean-light     (3.49:1 violet)
+     • light-orange-dark (book)       (4.13:1 violet — borderline, kept default-only)
+     • sage      — sage               (3.57:1 violet)
+*/
 .cr-chip--solid {
   background: var(--cr-ink);
   color: var(--cr-printer-ivory);
   border-left-color: transparent;                  /* solid is a filled block; no edge accent */
 }
-.cr-chip--blog.cr-chip--solid     { background: var(--cr-type-blog);     color: var(--cr-prussian-blue);  } /* 5.58:1  AA */
-.cr-chip--link.cr-chip--solid     { background: var(--cr-type-link);     color: var(--cr-russian-violet); } /* 4.99:1  AA */
-.cr-chip--video.cr-chip--solid    { background: var(--cr-type-video);    color: var(--cr-printer-ivory);  } /* 6.11:1  AA */
-.cr-chip--audio.cr-chip--solid    { background: var(--cr-type-audio);    color: var(--cr-printer-ivory);  } /* 6.11:1  AA */
-.cr-chip--quote.cr-chip--solid    { background: var(--cr-type-quote);    color: var(--cr-printer-ivory);  } /* 15.00:1 AAA */
-.cr-chip--speaking.cr-chip--solid { background: var(--cr-type-speaking); color: var(--cr-prussian-blue);  } /* 7.93:1  AAA */
-.cr-chip--book.cr-chip--solid     { background: var(--cr-type-book);     color: var(--cr-printer-ivory);  } /* 15.00:1 AAA */
-/* aside, status: no --solid variant. Default chip is the only supported style. */
+.cr-chip--blog.cr-chip--solid     { background: var(--cr-type-blog);     color: var(--cr-printer-ivory);  } /* 15.00:1 AAA */
+.cr-chip--video.cr-chip--solid    { background: var(--cr-type-video);    color: var(--cr-prussian-blue);  } /*  5.58:1 AA */
+.cr-chip--audio.cr-chip--solid    { background: var(--cr-type-audio);    color: var(--cr-prussian-blue);  } /*  7.93:1 AAA */
+.cr-chip--link.cr-chip--solid     { background: var(--cr-type-link);     color: var(--cr-printer-ivory);  } /*  6.11:1 AA */
+.cr-chip--bookmark.cr-chip--solid { background: var(--cr-type-bookmark); color: var(--cr-printer-ivory);  } /* 13.25:1 AAA */
+.cr-chip--quote.cr-chip--solid    { background: var(--cr-type-quote);    color: var(--cr-printer-ivory);  } /*  9.13:1 AAA */
+.cr-chip--speaking.cr-chip--solid { background: var(--cr-type-speaking); color: var(--cr-printer-ivory);  } /*  4.30:1 AA */
+.cr-chip--like.cr-chip--solid     { background: var(--cr-type-like);     color: var(--cr-printer-ivory);  } /*  4.58:1 AA */
+.cr-chip--reply.cr-chip--solid    { background: var(--cr-type-reply);    color: var(--cr-printer-ivory);  } /*  7.44:1 AAA */
+.cr-chip--review.cr-chip--solid   { background: var(--cr-type-review);   color: var(--cr-printer-ivory);  } /*  5.37:1 AA */
 
 
 /* ============ Hero layout ============

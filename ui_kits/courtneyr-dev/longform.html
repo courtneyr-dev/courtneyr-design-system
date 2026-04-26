@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Long-form — UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../components/components.css">
+<link rel="stylesheet" href="kit.css">
+</head>
+<body data-kit-page="long-form">
+<div class="kit-shell">
+  <main class="kit-main">
+    <span class="kit-page-eyebrow">12 · Components</span>
+    <h1 class="kit-page-title">Long-form</h1>
+    <p class="kit-page-lead">A reading layout for blog posts, documentation, and longer essays. <code>.cr-reading</code> sets a 32rem measure and applies the element defaults from <code>tokens.css</code> — no extra classes needed for prose.</p>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Reading layout</h2><span class="kit-tag">.cr-reading</span></div>
+      <div class="kit-stage" style="padding: 0;">
+        <article class="cr-reading">
+          <span class="cr-eyebrow">Field notes · march 14</span>
+          <h2 style="margin: 0 0 var(--cr-space-md); font-family: var(--cr-font-accent); font-weight: 800; font-size: var(--cr-text-3xl);">Why I left the framework treadmill</h2>
+          <p>I used to ship a new portfolio every year. Some years it was Gatsby, some years it was Eleventy, one year it was a custom Astro thing I'd built on a flight. The pattern was always the same: a month of rebuilding, a month of being proud of it, and ten months of dreading it.</p>
+          <p>The thing I never built, in any of those rebuilds, was <span class="cr-highlight">writing</span>. It turns out a fast site nobody publishes on is a slow blog.</p>
+
+          <h3 style="font-family: var(--cr-font-accent); font-weight: 800; font-size: var(--cr-text-xl); margin-top: var(--cr-space-xl);">What changed</h3>
+          <p>I picked the most boring stack I could find — flat HTML, a Makefile, a server that doesn't restart — and I haven't touched the toolchain in 14 months. In that time I've published 27 posts.</p>
+
+          <ul>
+            <li>One post a fortnight, instead of one rebuild a year</li>
+            <li>RSS works because I never broke it</li>
+            <li>Webmentions arrive without me thinking about them</li>
+          </ul>
+
+          <blockquote>
+            <p>The fastest way to make a slow blog is to spend a year picking a stack.</p>
+          </blockquote>
+
+          <p>I still build new sites for clients on whatever the project requires. But for personal writing — for the place I want to come back to in five years — boring is the answer. Boring outlives novelty.</p>
+
+          <h3 style="font-family: var(--cr-font-accent); font-weight: 800; font-size: var(--cr-text-xl); margin-top: var(--cr-space-xl);">Code, when needed</h3>
+          <p>For inline code: I run <code>make publish</code> and that's the entire deploy step. The <kbd>Cmd</kbd> + <kbd>S</kbd> save in my editor triggers it via a file watcher. Block code looks like this:</p>
+<pre><code>publish:
+    rsync -avz --delete \
+      build/ deploy@server:/var/www/site/</code></pre>
+
+          <h3 style="font-family: var(--cr-font-accent); font-weight: 800; font-size: var(--cr-text-xl); margin-top: var(--cr-space-xl);">A small table</h3>
+          <table>
+            <thead><tr><th>Year</th><th>Stack</th><th>Posts written</th></tr></thead>
+            <tbody>
+              <tr><td>2021</td><td>Gatsby</td><td>4</td></tr>
+              <tr><td>2022</td><td>Eleventy</td><td>6</td></tr>
+              <tr><td>2023</td><td>Astro</td><td>3</td></tr>
+              <tr><td>2024</td><td>flat HTML</td><td>27</td></tr>
+            </tbody>
+          </table>
+
+          <hr>
+
+          <p>If you've been on the same treadmill — start a new file called <code>index.html</code> tonight. Don't import a thing. Write a paragraph. Push it.</p>
+        </article>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Element coverage</h2><span class="kit-tag">tokens.css element defaults</span></div>
+      <div class="kit-stage">
+        <table style="margin: 0; font-family: var(--cr-font-mono); font-size: var(--cr-text-sm);">
+          <thead><tr><th>Element</th><th>Default treatment</th></tr></thead>
+          <tbody>
+            <tr><td>p</td><td>Barlow 400, 1rem, 1.55 line-height</td></tr>
+            <tr><td>h1 / h2 / h3</td><td>Roboto Slab, weight ramps 900 → 800 → 700</td></tr>
+            <tr><td>ul · li::before</td><td>Custom marker bullet in UT Orange</td></tr>
+            <tr><td>ol · ::marker</td><td>Roboto Slab, marker color</td></tr>
+            <tr><td>blockquote</td><td>Left border-marker, italic Roboto Slab</td></tr>
+            <tr><td>code · pre</td><td>JetBrains Mono on cream code-bg</td></tr>
+            <tr><td>kbd</td><td>Boxed Mono with 1px ink border</td></tr>
+            <tr><td>table · thead</td><td>Sky-blue thead, ink rows, thick bottom rule</td></tr>
+            <tr><td>hr</td><td>4px marker bar at 60% width, slight rotation</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="kit-spec">All of the above are styled in <code>tokens.css</code> at the element level, so a Markdown post compiles to the same rendering as the demo above without adding any classes.</p>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Markup</h2><span class="kit-tag">copy-paste</span></div>
+      <pre class="kit-code">&lt;article class="cr-reading"&gt;
+  &lt;span class="cr-eyebrow"&gt;Field notes · march 14&lt;/span&gt;
+  &lt;h2&gt;Title&lt;/h2&gt;
+  &lt;p&gt;…&lt;/p&gt;
+  &lt;blockquote&gt;&lt;p&gt;…&lt;/p&gt;&lt;/blockquote&gt;
+  &lt;ul&gt;&lt;li&gt;…&lt;/li&gt;&lt;/ul&gt;
+  &lt;table&gt;…&lt;/table&gt;
+&lt;/article&gt;</pre>
+    </section>
+  </main>
+</div>
+<script src="kit-shell.js"></script>
+</body>
+</html>

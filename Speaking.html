@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Speaking — courtneyr.dev</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="tokens/tokens.css">
+<link rel="stylesheet" href="components/components.css">
+<script src="components/icons-inject.js?v=24" defer></script>
+<style>
+  /* Page-only layout — does not bleed into the system. */
+  .page-wrap { max-width: 72rem; margin: 0 auto; padding: 0 var(--cr-space-xl); }
+
+  .site-nav {
+    max-width: 72rem; margin: 0 auto;
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: var(--cr-space-lg) var(--cr-space-xl);
+    font-family: var(--cr-font-accent);
+  }
+  .site-nav__brand {
+    font-family: var(--cr-font-display);
+    font-size: var(--cr-text-lg);
+    color: var(--cr-ink);
+    text-decoration: none;
+  }
+  .site-nav__links { display: flex; gap: var(--cr-space-lg); list-style: none; padding: 0; margin: 0; }
+  .site-nav__links li::before { content: none; }
+  .site-nav__links li { padding: 0; }
+  .site-nav__links a {
+    font-family: var(--cr-font-accent); font-weight: 700;
+    text-transform: uppercase; letter-spacing: var(--cr-tracking-eyebrow);
+    font-size: var(--cr-text-sm); color: var(--cr-ink);
+    text-decoration: none;
+  }
+  .site-nav__links a[aria-current="page"] {
+    background: linear-gradient(180deg, transparent 0 55%, var(--cr-highlight) 55% 92%, transparent 92%);
+    padding: 0 0.2em;
+  }
+  .site-nav__links a:focus-visible {
+    outline: 3px solid var(--cr-focus-ring);
+    outline-offset: 4px;
+  }
+  .site-nav__links a:hover {
+    color: var(--cr-marker);
+  }
+
+  /* Hero sparkles — placed in a row ABOVE the eyebrow.
+     v2.1: moved out of the gutter into the flow. They never overlap
+     the title at any viewport because they sit on their own line
+     before the eyebrow chip. No media queries, no clipping.
+  */
+  .cr-hero { overflow: visible; }
+  .hero-sparkles {
+    display: flex;
+    gap: var(--cr-space-md);
+    margin-bottom: var(--cr-space-sm);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  .hero-sparkles span {
+    font-size: var(--cr-text-2xl);
+    color: var(--cr-marker);
+    line-height: 1;
+  }
+  .hero-sparkles span:nth-child(1) { color: var(--cr-selective-yellow); transform: rotate(-15deg); }
+  .hero-sparkles span:nth-child(2) { transform: rotate(20deg); }
+  .hero-sparkles span:nth-child(3) { color: var(--cr-blue-green); transform: rotate(-8deg); }
+
+  /* Talk-stream icon avatar — uses the .cr-icon-avatar pattern */
+  .cr-icon-avatar {
+    width: 2.75rem; height: 2.75rem;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: var(--cr-border-thick);
+    background: var(--cr-surface-elevated);
+    color: var(--cr-ink);
+    box-shadow: 2px 2px 0 var(--cr-ink);
+    transform: rotate(var(--cr-rotate-neg));
+  }
+  .cr-icon-avatar svg {
+    width: 1.5rem; height: 1.5rem;
+    fill: none; stroke: currentColor;
+    stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .cr-icon-avatar svg .cr-icon-fill { fill: currentColor; stroke: none; }
+  .cr-icon-avatar--speaking { background: var(--cr-selective-yellow); color: var(--cr-prussian-blue); }
+  .cr-icon-avatar--audio    { background: var(--cr-cerulean);         color: var(--cr-printer-ivory); }
+
+  /* Section header */
+  .section-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    flex-wrap: wrap; gap: var(--cr-space-md);
+    margin-bottom: var(--cr-space-lg);
+  }
+  .section-head h2 { margin: 0; }
+  .section-head__count {
+    font-family: var(--cr-font-accent); font-weight: 700;
+    font-size: var(--cr-text-sm); color: var(--cr-ink-muted);
+    text-transform: uppercase; letter-spacing: var(--cr-tracking-eyebrow);
+  }
+
+  /* Speaking entries reuse the .cr-stream / .cr-stream-item structure. */
+  .talk-stream { padding: 0; max-width: 100%; }
+
+  /* Booking strip — two-column accent block, calm zine treatment. */
+  .booking {
+    display: grid;
+    gap: var(--cr-space-xl);
+    grid-template-columns: 1fr;
+    align-items: start;
+    margin: var(--cr-space-3xl) 0;
+  }
+  @media (min-width: 880px) {
+    .booking { grid-template-columns: 1.4fr 1fr; }
+  }
+  .booking__copy h2 { margin-top: 0; }
+  .booking__panel {
+    position: relative;
+    background: var(--cr-accent-1-bg);
+    color: var(--cr-accent-1-ink);
+    border: var(--cr-border-thick);
+    box-shadow: var(--cr-shadow-hard-2);
+    padding: var(--cr-space-xl);
+    transform: rotate(var(--cr-rotate-1));
+  }
+  .booking__panel h3 { margin-top: 0; }
+  .booking__panel ul { margin: 0 0 var(--cr-space-lg); padding-left: var(--cr-space-md); }
+  .booking__tape {
+    position: absolute; top: -0.9rem; left: var(--cr-space-lg);
+    transform: rotate(var(--cr-rotate-neg));
+  }
+
+  /* Topics — three short tape labels in a row */
+  .topics {
+    display: flex; gap: var(--cr-space-md); flex-wrap: wrap;
+    margin: var(--cr-space-md) 0 var(--cr-space-xl);
+  }
+
+  /* Footer */
+  .site-footer {
+    text-align: center;
+    padding: var(--cr-space-2xl) var(--cr-space-xl);
+    font-size: var(--cr-text-sm);
+    color: var(--cr-ink-muted);
+    font-family: var(--cr-font-accent);
+  }
+
+  /* Inside the speaking stream, give meta a clean row layout */
+  .talk-meta-row {
+    display: flex; gap: var(--cr-space-md); flex-wrap: wrap; align-items: center;
+  }
+  .talk-where {
+    font-family: var(--cr-font-accent);
+    font-style: italic;
+    color: var(--cr-ink-muted);
+    font-size: var(--cr-text-sm);
+  }
+  .talk-where::before { content: "·"; margin-right: var(--cr-space-sm); }
+
+  .talk-excerpt { margin-top: var(--cr-space-xs); }
+
+  .talk-actions {
+    margin-top: var(--cr-space-md);
+    display: flex; gap: var(--cr-space-sm); flex-wrap: wrap;
+  }
+  .talk-actions a {
+    font-family: var(--cr-font-accent); font-weight: 700;
+    font-size: var(--cr-text-sm);
+    text-transform: uppercase; letter-spacing: var(--cr-tracking-eyebrow);
+  }
+</style>
+</head>
+<body>
+<template id="__bundler_thumbnail" data-bg-color="#fbfaf5">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect x="80" y="80" width="1040" height="640" fill="#ffffff" stroke="#241c4a" stroke-width="8"/>
+    <rect x="80" y="80" width="1040" height="640" fill="none" stroke="#241c4a" stroke-width="8" transform="translate(24 24)"/>
+    <text x="600" y="380" font-family="Georgia, serif" font-weight="900" font-size="160" fill="#241c4a" text-anchor="middle">🗣️</text>
+    <text x="600" y="520" font-family="Georgia, serif" font-weight="800" font-size="72" fill="#241c4a" text-anchor="middle">Speaking</text>
+    <rect x="420" y="580" width="360" height="14" fill="#fb8500" transform="rotate(1.5 600 587)"/>
+    <text x="120" y="180" font-family="Georgia, serif" font-size="80" fill="#ffb703">✦</text>
+    <text x="1040" y="700" font-family="Georgia, serif" font-size="80" fill="#fb8500">✦</text>
+  </svg>
+</template>
+<a href="#main" class="cr-skip-link">Skip to content</a>
+
+<nav class="site-nav" aria-label="Primary">
+  <a href="/" class="site-nav__brand">courtneyr.dev</a>
+  <ul class="site-nav__links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/speaking/" aria-current="page">Speaking</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="cr-hero">
+    <div class="cr-hero__inner">
+      <div class="hero-sparkles" aria-hidden="true"><span>✦</span><span>✺</span><span>✦</span></div>
+
+      <span class="cr-eyebrow">Speaking · workshops · panels</span>
+      <h1 class="cr-hero__title">
+        Talks on WordPress, open source community, and the
+        <span class="cr-hero__title--accent">teaching part</span> of DevRel.
+      </h1>
+      <p class="cr-hero__lead">
+        I speak at WordCamps, podcasts, and community events about how open source
+        actually works <span class="cr-highlight">when you're the one teaching it</span>.
+        Practical, contributor-focused, allergic to brochure language.
+      </p>
+
+      <p style="margin-top: var(--cr-space-xl);">
+        <a href="#book" class="cr-cta">Book me to speak</a>
+        <a href="#talks" class="cr-button cr-button--outline" style="margin-left: var(--cr-space-sm);">See recent talks ↓</a>
+      </p>
+    </div>
+  </section>
+
+  <hr class="cr-marker-bar" aria-hidden="true">
+
+  <!-- ============ TALKS STREAM ============ -->
+  <section id="talks" class="page-wrap">
+    <div class="section-head">
+      <div>
+        <span class="cr-eyebrow">Recent &amp; upcoming</span>
+        <h2>On the calendar</h2>
+      </div>
+      <span class="section-head__count">Showing 3 of 27</span>
+    </div>
+
+    <div class="cr-stream talk-stream">
+
+      <!-- Recent talk -->
+      <article class="cr-stream-item cr-stream-item--speaking">
+        <div class="cr-stream-item__avatar" aria-hidden="true">
+          <span class="cr-icon-avatar cr-icon-avatar--speaking"><svg><use href="components/icons.svg#post-icon-speaking"></use></svg></span>
+        </div>
+        <div class="cr-stream-item__body">
+          <div class="cr-stream-item__meta talk-meta-row">
+            <span class="cr-chip cr-chip--speaking cr-chip--solid">Talk · recent</span>
+            <time datetime="2026-04-04">April 4, 2026</time>
+            <span class="talk-where">WordCamp Asia · Manila</span>
+          </div>
+          <h3 class="cr-stream-item__title">
+            <a href="/speaking/teaching-wordpress-2026/">Teaching WordPress in 2026: what new contributors actually need</a>
+          </h3>
+          <p class="talk-excerpt">
+            45-minute talk on the gap between &ldquo;getting started&rdquo; docs and the
+            real onboarding experience for new WordPress contributors. Walks through
+            three patterns I keep seeing on Learn.WordPress.org and what's working.
+          </p>
+          <div class="cr-stream-item__tags">
+            <span class="cr-chip">WordPress</span>
+            <span class="cr-chip">Education</span>
+            <span class="cr-chip">Community</span>
+          </div>
+          <div class="talk-actions">
+            <a href="#">Watch recording →</a>
+            <a href="#">Slides (PDF)</a>
+            <a href="#">Transcript</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Upcoming talk -->
+      <article class="cr-stream-item cr-stream-item--speaking">
+        <div class="cr-stream-item__avatar" aria-hidden="true">
+          <span class="cr-icon-avatar cr-icon-avatar--speaking"><svg><use href="components/icons.svg#post-icon-speaking"></use></svg></span>
+        </div>
+        <div class="cr-stream-item__body">
+          <div class="cr-stream-item__meta talk-meta-row">
+            <span class="cr-chip cr-chip--speaking">Talk · upcoming</span>
+            <time datetime="2026-09-12">September 12, 2026</time>
+            <span class="talk-where">WordCamp US · Portland, OR</span>
+          </div>
+          <h3 class="cr-stream-item__title">
+            <a href="/speaking/indieweb-for-wordpressers/">IndieWeb for WordPressers: post types, webmentions, and owning your stream</a>
+          </h3>
+          <p class="talk-excerpt">
+            How to wire IndieWeb post types into a block theme without fighting
+            Gutenberg. Live demo of the same homepage stream you're looking at,
+            built from Query Loop and a handful of taxonomy decisions.
+          </p>
+          <div class="cr-stream-item__tags">
+            <span class="cr-chip">IndieWeb</span>
+            <span class="cr-chip">Block themes</span>
+            <span class="cr-chip">Webmentions</span>
+          </div>
+          <div class="talk-actions">
+            <a href="#">Add to calendar</a>
+            <a href="#">Conference page →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Podcast appearance — uses --audio variant -->
+      <article class="cr-stream-item cr-stream-item--audio">
+        <div class="cr-stream-item__avatar" aria-hidden="true">
+          <span class="cr-icon-avatar cr-icon-avatar--audio"><svg><use href="components/icons.svg#post-icon-audio"></use></svg></span>
+        </div>
+        <div class="cr-stream-item__body">
+          <div class="cr-stream-item__meta talk-meta-row">
+            <span class="cr-chip cr-chip--audio cr-chip--solid">Podcast</span>
+            <time datetime="2026-03-21">March 21, 2026</time>
+            <span class="talk-where">Episode 142 · The Repository</span>
+          </div>
+          <h3 class="cr-stream-item__title">
+            <a href="/speaking/repository-ep-142/">On Sustaining the WordPress Contributor Ecosystem</a>
+          </h3>
+          <p class="talk-excerpt">
+            58-minute conversation with Rae Morey about the WP Community Collective,
+            why volunteer burnout is structural rather than personal, and what
+            funded contribution can and can't fix.
+          </p>
+          <div class="cr-stream-item__tags">
+            <span class="cr-chip">Open source</span>
+            <span class="cr-chip">Sustainability</span>
+            <span class="cr-chip">WPCC</span>
+          </div>
+          <div class="talk-actions">
+            <a href="#">Listen →</a>
+            <a href="#">Show notes</a>
+            <a href="#">Apple Podcasts</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <hr class="cr-marker-bar cr-marker-bar--short" aria-hidden="true">
+
+  <!-- ============ BOOK ME ============ -->
+  <section id="book" class="page-wrap">
+    <div class="booking">
+
+      <div class="booking__copy">
+        <span class="cr-eyebrow">Booking</span>
+        <h2>Want me at your event?</h2>
+        <p>
+          I love speaking at WordCamps, meetups, podcasts, and contributor events,
+          especially the ones <span class="cr-highlight">smaller than they think they are</span>.
+          I'm based in Pennsylvania and travel for events.
+        </p>
+        <p>
+          The topics I'm currently saying yes to:
+        </p>
+        <div class="topics">
+          <span class="cr-tape">Teaching WordPress</span>
+          <span class="cr-tape">IndieWeb</span>
+          <span class="cr-tape">Open source community health</span>
+          <span class="cr-tape">DevRel for educators</span>
+          <span class="cr-tape">Accessibility in practice</span>
+        </div>
+        <p style="margin-top: var(--cr-space-xl);">
+          <a href="mailto:hello@courtneyr.dev?subject=Speaking%20request" class="cr-cta">Email a speaking request</a>
+          <a href="/speaker-kit.pdf" class="cr-button cr-button--soft" style="margin-left: var(--cr-space-sm);">Speaker kit (PDF)</a>
+        </p>
+      </div>
+
+      <aside class="booking__panel" aria-label="What you'll get">
+        <span class="cr-tape booking__tape">what you get</span>
+        <h3>Practical, prepped, on time</h3>
+        <ul>
+          <li>A 30, 45, or 60-minute talk shaped to your audience</li>
+          <li>Slide deck delivered a week ahead for review</li>
+          <li>Live captions and a written transcript</li>
+          <li>Office-hours slot on conference day, if useful</li>
+          <li>Follow-up post on courtneyr.dev linking to the talk</li>
+        </ul>
+        <p style="margin: 0; font-family: var(--cr-font-accent); font-size: var(--cr-text-sm); font-style: italic;">
+          Honoraria appreciated. I waive them for community events that don't have a budget — just ask.
+        </p>
+      </aside>
+
+    </div>
+  </section>
+
+  <hr class="cr-marker-bar cr-marker-bar--short" aria-hidden="true">
+
+  <footer class="site-footer">
+    <p>
+      Filed under <span class="cr-tape">Speaking</span>
+      ·
+      <a href="/speaking/archive/">View the full archive (27 talks since 2018)</a>
+      ·
+      <a href="/feed/speaking/">RSS</a>
+    </p>
+  </footer>
+
+</main>
+</body>
+</html>

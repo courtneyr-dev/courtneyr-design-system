@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Forms — UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../components/components.css">
+<link rel="stylesheet" href="kit.css">
+<style>
+  .form-row { display: grid; gap: var(--cr-space-md); margin-bottom: var(--cr-space-md); }
+  .form-row label { font-family: var(--cr-font-accent); font-weight: 700; font-size: var(--cr-text-sm); display: block; margin-bottom: var(--cr-space-2xs); }
+</style>
+</head>
+<body data-kit-page="forms">
+<div class="kit-shell">
+  <main class="kit-main">
+    <span class="kit-page-eyebrow">11 · Components</span>
+    <h1 class="kit-page-title">Forms</h1>
+    <p class="kit-page-lead">Element defaults from <code>tokens.css</code> — no <code>.cr-input</code> class needed. Sharp corners, thick borders, ink focus ring at the selective-yellow color.</p>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Text inputs</h2><span class="kit-tag">input · textarea</span></div>
+      <div class="kit-stage">
+        <div class="form-row">
+          <div><label for="f-name">Your name</label><input id="f-name" type="text" value="Courtney" style="width: 100%;"></div>
+          <div><label for="f-email">Email</label><input id="f-email" type="email" placeholder="you@example.com" style="width: 100%;"></div>
+          <div><label for="f-search">Search</label><input id="f-search" type="search" placeholder="Search the archive…" style="width: 100%;"></div>
+          <div><label for="f-msg">Message</label><textarea id="f-msg" rows="4" style="width: 100%;" placeholder="What's on your mind?"></textarea></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Selects &amp; numerics</h2><span class="kit-tag">select · number · date</span></div>
+      <div class="kit-stage">
+        <div class="form-row">
+          <div><label for="f-topic">Topic</label>
+            <select id="f-topic" style="width: 100%;">
+              <option>Workshop / residency</option>
+              <option>Audit</option>
+              <option>Speaking inquiry</option>
+              <option>Just to say hi</option>
+            </select>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--cr-space-md);">
+            <div><label for="f-num">Attendees</label><input id="f-num" type="number" value="40" min="1" max="500"></div>
+            <div><label for="f-date">When</label><input id="f-date" type="date"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Choice controls</h2><span class="kit-tag">checkbox · radio</span></div>
+      <div class="kit-stage">
+        <fieldset style="border: var(--cr-border-thin); padding: var(--cr-space-md); margin-bottom: var(--cr-space-md);">
+          <legend style="font-family: var(--cr-font-accent); font-weight: 700; padding: 0 var(--cr-space-sm);">Topics I'd cover</legend>
+          <label style="display: block; margin-bottom: var(--cr-space-xs);"><input type="checkbox" checked> Static-site architecture</label>
+          <label style="display: block; margin-bottom: var(--cr-space-xs);"><input type="checkbox" checked> WordPress block themes</label>
+          <label style="display: block; margin-bottom: var(--cr-space-xs);"><input type="checkbox"> Webmention &amp; IndieWeb</label>
+          <label style="display: block;"><input type="checkbox"> Personal site critiques</label>
+        </fieldset>
+        <fieldset style="border: var(--cr-border-thin); padding: var(--cr-space-md);">
+          <legend style="font-family: var(--cr-font-accent); font-weight: 700; padding: 0 var(--cr-space-sm);">Talk format</legend>
+          <label style="display: block; margin-bottom: var(--cr-space-xs);"><input type="radio" name="fmt" checked> 30 min keynote</label>
+          <label style="display: block; margin-bottom: var(--cr-space-xs);"><input type="radio" name="fmt"> 45 min talk + Q&amp;A</label>
+          <label style="display: block;"><input type="radio" name="fmt"> Half-day workshop</label>
+        </fieldset>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Range &amp; progress</h2><span class="kit-tag">range · progress · meter</span></div>
+      <div class="kit-stage">
+        <div class="form-row">
+          <div><label for="f-range">Halftone strength</label><input id="f-range" type="range" min="0" max="100" value="35" style="width: 100%;"></div>
+          <div>
+            <label>Drafts published this year</label>
+            <progress value="14" max="20" style="width: 100%;"></progress>
+            <p class="kit-spec" style="margin-top: var(--cr-space-2xs);">14 / 20</p>
+          </div>
+          <div>
+            <label>Coffee remaining</label>
+            <meter value="0.4" min="0" max="1" style="width: 100%;"></meter>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Submit</h2><span class="kit-tag">in context</span></div>
+      <div class="kit-stage">
+        <form>
+          <div class="form-row">
+            <div><label for="ff-email">Email</label><input id="ff-email" type="email" placeholder="you@example.com" style="width: 100%;"></div>
+            <div><label for="ff-msg">Message</label><textarea id="ff-msg" rows="3" style="width: 100%;"></textarea></div>
+          </div>
+          <div class="kit-row">
+            <button type="submit" class="cr-button cr-button--primary">Send →</button>
+            <button type="reset" class="cr-button cr-button--outline">Clear</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="kit-shell.js"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Icon set — UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../components/components.css">
+<script src="../../components/icons-inject.js?v=24" defer></script>
+<link rel="stylesheet" href="kit.css">
+<style>
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    gap: var(--cr-space-lg);
+  }
+  .icon-card {
+    background: var(--cr-surface-elevated);
+    border: var(--cr-border-thick);
+    box-shadow: var(--cr-shadow-hard);
+    padding: var(--cr-space-md);
+    text-align: center;
+    position: relative;
+  }
+  .icon-card__demo {
+    width: 4rem; height: 4rem;
+    margin: 0 auto var(--cr-space-sm);
+    color: var(--cr-ink);
+  }
+  .icon-card__demo svg {
+    width: 100%; height: 100%;
+    fill: none; stroke: currentColor;
+    stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .icon-card__demo svg .cr-icon-fill { fill: currentColor; stroke: none; }
+  .icon-card__name {
+    font-family: var(--cr-font-accent);
+    font-weight: 700;
+    font-size: var(--cr-text-sm);
+    margin: 0;
+  }
+  .icon-card__id {
+    font-family: var(--cr-font-mono);
+    font-size: var(--cr-text-xs);
+    color: var(--cr-ink-muted);
+    margin: 0;
+  }
+  .icon-card__num {
+    position: absolute;
+    top: var(--cr-space-2xs); left: var(--cr-space-2xs);
+    font-family: var(--cr-font-mono);
+    font-size: var(--cr-text-xs);
+    color: var(--cr-ink-faint);
+  }
+  .icon-card__type {
+    margin-top: var(--cr-space-2xs);
+  }
+  .icon-card__type::before {
+    content: ""; display: inline-block;
+    width: 0.6rem; height: 0.6rem;
+    border-radius: 50%;
+    background: var(--type-color, var(--cr-ink-muted));
+    vertical-align: middle;
+    margin-right: 0.4em;
+  }
+  .swatch-icon {
+    width: 2.5rem; height: 2.5rem;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: var(--cr-border-thick);
+    box-shadow: 2px 2px 0 var(--cr-ink);
+  }
+  .swatch-icon svg {
+    width: 1.25rem; height: 1.25rem;
+    fill: none; stroke: currentColor;
+    stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .swatch-icon svg .cr-icon-fill { fill: currentColor; stroke: none; }
+</style>
+</head>
+<body data-kit-page="icons">
+<div class="kit-shell">
+  <main class="kit-main">
+    <span class="kit-page-eyebrow">10 · Components</span>
+    <h1 class="kit-page-title">Icon set</h1>
+    <p class="kit-page-lead">Eighteen post-type icons — one for each entry in the v2.1 taxonomy. Clean geometric paths in a 24×24 viewBox, <code>currentColor</code> stroke, 1.75 stroke-width. Loaded as a single SVG sprite from <code>components/icons.svg</code>. The <code>.cr-icon-fill</code> class on a child path opts out of stroke for filled details (e.g. the play triangle on Video).</p>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>The set</h2><span class="kit-tag">18 symbols</span></div>
+      <p class="kit-spec" style="margin-top:0;">Order matches the post-type taxonomy in <code>tokens.css</code>. The dot under each name is the post-type accent — the same color the chip's left border carries.</p>
+      <div class="kit-stage">
+        <div class="icon-grid">
+          <div class="icon-card"><span class="icon-card__num">01</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-blog"></use></svg></div><p class="icon-card__name">Blog</p><p class="icon-card__id">#post-icon-blog</p><p class="icon-card__type" style="--type-color: var(--cr-type-blog);">blog</p></div>
+          <div class="icon-card"><span class="icon-card__num">02</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-aside"></use></svg></div><p class="icon-card__name">Aside</p><p class="icon-card__id">#post-icon-aside</p><p class="icon-card__type" style="--type-color: var(--cr-type-aside);">aside</p></div>
+          <div class="icon-card"><span class="icon-card__num">03</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-image"></use></svg></div><p class="icon-card__name">Image</p><p class="icon-card__id">#post-icon-image</p><p class="icon-card__type" style="--type-color: var(--cr-type-image);">image</p></div>
+          <div class="icon-card"><span class="icon-card__num">04</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-gallery"></use></svg></div><p class="icon-card__name">Gallery</p><p class="icon-card__id">#post-icon-gallery</p><p class="icon-card__type" style="--type-color: var(--cr-type-gallery);">gallery</p></div>
+          <div class="icon-card"><span class="icon-card__num">05</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-video"></use></svg></div><p class="icon-card__name">Video</p><p class="icon-card__id">#post-icon-video</p><p class="icon-card__type" style="--type-color: var(--cr-type-video);">video</p></div>
+          <div class="icon-card"><span class="icon-card__num">06</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-audio"></use></svg></div><p class="icon-card__name">Audio</p><p class="icon-card__id">#post-icon-audio</p><p class="icon-card__type" style="--type-color: var(--cr-type-audio);">audio</p></div>
+          <div class="icon-card"><span class="icon-card__num">07</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-chat"></use></svg></div><p class="icon-card__name">Chat</p><p class="icon-card__id">#post-icon-chat</p><p class="icon-card__type" style="--type-color: var(--cr-type-chat);">chat</p></div>
+          <div class="icon-card"><span class="icon-card__num">08</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-status"></use></svg></div><p class="icon-card__name">Status</p><p class="icon-card__id">#post-icon-status</p><p class="icon-card__type" style="--type-color: var(--cr-type-status);">status</p></div>
+          <div class="icon-card"><span class="icon-card__num">09</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-link"></use></svg></div><p class="icon-card__name">Link</p><p class="icon-card__id">#post-icon-link</p><p class="icon-card__type" style="--type-color: var(--cr-type-link);">link</p></div>
+          <div class="icon-card"><span class="icon-card__num">10</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-bookmark"></use></svg></div><p class="icon-card__name">Bookmark</p><p class="icon-card__id">#post-icon-bookmark</p><p class="icon-card__type" style="--type-color: var(--cr-type-bookmark);">bookmark</p></div>
+          <div class="icon-card"><span class="icon-card__num">11</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-quote"></use></svg></div><p class="icon-card__name">Quote</p><p class="icon-card__id">#post-icon-quote</p><p class="icon-card__type" style="--type-color: var(--cr-type-quote);">quote</p></div>
+          <div class="icon-card"><span class="icon-card__num">12</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-speaking"></use></svg></div><p class="icon-card__name">Speaking</p><p class="icon-card__id">#post-icon-speaking</p><p class="icon-card__type" style="--type-color: var(--cr-type-speaking);">speaking</p></div>
+          <div class="icon-card"><span class="icon-card__num">13</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-book"></use></svg></div><p class="icon-card__name">Book</p><p class="icon-card__id">#post-icon-book</p><p class="icon-card__type" style="--type-color: var(--cr-type-book);">book</p></div>
+          <div class="icon-card"><span class="icon-card__num">14</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-like"></use></svg></div><p class="icon-card__name">Like</p><p class="icon-card__id">#post-icon-like</p><p class="icon-card__type" style="--type-color: var(--cr-type-like);">like</p></div>
+          <div class="icon-card"><span class="icon-card__num">15</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-repost"></use></svg></div><p class="icon-card__name">Repost</p><p class="icon-card__id">#post-icon-repost</p><p class="icon-card__type" style="--type-color: var(--cr-type-repost);">repost</p></div>
+          <div class="icon-card"><span class="icon-card__num">16</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-reply"></use></svg></div><p class="icon-card__name">Reply</p><p class="icon-card__id">#post-icon-reply</p><p class="icon-card__type" style="--type-color: var(--cr-type-reply);">reply</p></div>
+          <div class="icon-card"><span class="icon-card__num">17</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-event"></use></svg></div><p class="icon-card__name">Event</p><p class="icon-card__id">#post-icon-event</p><p class="icon-card__type" style="--type-color: var(--cr-type-event);">event</p></div>
+          <div class="icon-card"><span class="icon-card__num">18</span><div class="icon-card__demo"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-review"></use></svg></div><p class="icon-card__name">Review</p><p class="icon-card__id">#post-icon-review</p><p class="icon-card__type" style="--type-color: var(--cr-type-review);">review</p></div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>v2.1 — what changed</h2><span class="kit-tag">redraw + 9 new</span></div>
+      <div class="cr-callout">
+        <span class="cr-callout__label">v2.1 redraw</span>
+        <p style="margin: 0;">The previous hand-drawn set was replaced with clean geometric icons in a Lucide/Feather idiom — same 24×24 viewBox, same 1.75 stroke, same <code>currentColor</code> contract, but with sharper, more legible silhouettes that hold up at 16px and stay recognizable as small avatars in <a href="stream.html">Stream</a>.</p>
+      </div>
+      <div class="cr-callout" style="margin-top: var(--cr-space-md);">
+        <span class="cr-callout__label">Metaphors</span>
+        <p style="margin: 0;"><strong>blog</strong> document · <strong>aside</strong> dog-eared note · <strong>image</strong> landscape · <strong>gallery</strong> stacked frames · <strong>video</strong> monitor + play · <strong>audio</strong> headphones · <strong>chat</strong> two bubbles · <strong>status</strong> bubble + dots · <strong>link</strong> chain · <strong>bookmark</strong> ribbon · <strong>quote</strong> curly marks · <strong>speaking</strong> microphone · <strong>book</strong> open book · <strong>like</strong> heart · <strong>repost</strong> loop arrows · <strong>reply</strong> back arrow · <strong>event</strong> calendar · <strong>review</strong> star.</p>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Sizes</h2><span class="kit-tag">in context</span></div>
+      <div class="kit-stage">
+        <div class="kit-row" style="gap: var(--cr-space-xl); align-items: baseline;">
+          <div style="text-align: center;">
+            <div style="width: 1rem; height: 1rem; color: var(--cr-ink); margin: 0 auto;"><svg viewBox="0 0 24 24" style="width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;"><use href="../../components/icons.svg#post-icon-blog"></use></svg></div>
+            <p class="kit-spec" style="margin-top:var(--cr-space-2xs);">16px · inline</p>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 1.5rem; height: 1.5rem; color: var(--cr-ink); margin: 0 auto;"><svg viewBox="0 0 24 24" style="width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;"><use href="../../components/icons.svg#post-icon-blog"></use></svg></div>
+            <p class="kit-spec" style="margin-top:var(--cr-space-2xs);">24px · default</p>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 2rem; height: 2rem; color: var(--cr-ink); margin: 0 auto;"><svg viewBox="0 0 24 24" style="width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;"><use href="../../components/icons.svg#post-icon-blog"></use></svg></div>
+            <p class="kit-spec" style="margin-top:var(--cr-space-2xs);">32px · stream avatar</p>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 3rem; height: 3rem; color: var(--cr-ink); margin: 0 auto;"><svg viewBox="0 0 24 24" style="width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;"><use href="../../components/icons.svg#post-icon-blog"></use></svg></div>
+            <p class="kit-spec" style="margin-top:var(--cr-space-2xs);">48px · feature</p>
+          </div>
+        </div>
+      </div>
+      <p class="kit-spec">Stroke-width is fixed at 1.75 — don't override per size. Icons are tested down to 16px; below that, drop the icon and use a text-only chip.</p>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Avatar pattern</h2><span class="kit-tag">post-type fill</span></div>
+      <div class="kit-stage">
+        <div class="kit-row" style="gap: var(--cr-space-md); flex-wrap: wrap;">
+          <span class="swatch-icon" style="background: var(--cr-type-blog); color: var(--cr-printer-ivory);"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-blog"></use></svg></span>
+          <span class="swatch-icon" style="background: var(--cr-type-video); color: var(--cr-prussian-blue);"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-video"></use></svg></span>
+          <span class="swatch-icon" style="background: var(--cr-type-audio); color: var(--cr-prussian-blue);"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-audio"></use></svg></span>
+          <span class="swatch-icon" style="background: var(--cr-type-link); color: var(--cr-printer-ivory);"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-link"></use></svg></span>
+          <span class="swatch-icon" style="background: var(--cr-type-bookmark); color: var(--cr-printer-ivory);"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-bookmark"></use></svg></span>
+          <span class="swatch-icon" style="background: var(--cr-type-quote); color: var(--cr-printer-ivory);"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-quote"></use></svg></span>
+          <span class="swatch-icon" style="background: var(--cr-type-speaking); color: var(--cr-printer-ivory);"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-speaking"></use></svg></span>
+          <span class="swatch-icon" style="background: var(--cr-type-like); color: var(--cr-printer-ivory);"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-like"></use></svg></span>
+          <span class="swatch-icon" style="background: var(--cr-type-reply); color: var(--cr-printer-ivory);"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-reply"></use></svg></span>
+          <span class="swatch-icon" style="background: var(--cr-type-review); color: var(--cr-printer-ivory);"><svg viewBox="0 0 24 24"><use href="../../components/icons.svg#post-icon-review"></use></svg></span>
+        </div>
+      </div>
+      <p class="kit-spec">The pattern used in <a href="stream.html">Stream</a>. Background = post-type fill color, foreground = AA-passing ink. Border-thick + 2×2 ink shadow + −2.5° rotation. Avatar variants only exist for the 10 post-types whose accent passes AA against a printable foreground; the other 8 (aside, image, gallery, status, chat, repost, book, event) use the default tape chip without an avatar.</p>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Markup</h2><span class="kit-tag">copy-paste</span></div>
+      <pre class="kit-code">&lt;svg viewBox="0 0 24 24" aria-hidden="true"
+     style="fill:none;stroke:currentColor;stroke-width:1.75;
+            stroke-linecap:round;stroke-linejoin:round;"&gt;
+  &lt;use href="components/icons.svg#post-icon-blog"&gt;&lt;/use&gt;
+&lt;/svg&gt;</pre>
+    </section>
+  </main>
+</div>
+<script src="kit-shell.js"></script>
+</body>
+</html>

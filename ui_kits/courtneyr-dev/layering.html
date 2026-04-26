@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Layering — UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../components/components.css">
+<link rel="stylesheet" href="kit.css">
+<style>
+  .layer-stack { display: grid; grid-template-columns: 1fr 1fr; gap: var(--cr-space-xl); align-items: start; }
+  @media (max-width: 48rem) { .layer-stack { grid-template-columns: 1fr; } }
+  .layer-demo { min-height: 14rem; padding: var(--cr-space-xl); position: relative; overflow: hidden; }
+  .layer-label {
+    font-family: var(--cr-font-mono); font-size: var(--cr-text-xs);
+    background: var(--cr-russian-violet); color: var(--cr-printer-ivory);
+    padding: 4px 8px; display: inline-block; margin-bottom: var(--cr-space-sm);
+  }
+  .ledger {
+    border: var(--cr-border-thick);
+    background: var(--cr-surface-elevated);
+  }
+  .ledger__row {
+    display: grid; grid-template-columns: 1.5rem 1fr 8rem;
+    gap: var(--cr-space-sm); padding: var(--cr-space-xs) var(--cr-space-md);
+    border-bottom: 1px dashed var(--cr-border-strong);
+    font-family: var(--cr-font-mono); font-size: var(--cr-text-xs);
+  }
+  .ledger__row:last-child { border-bottom: 0; }
+  .ledger__yes { color: var(--cr-blue-green); font-weight: 700; }
+  .ledger__no  { color: var(--cr-ut-orange); font-weight: 700; }
+</style>
+</head>
+<body data-kit-page="layering">
+<div class="kit-shell">
+  <main class="kit-main">
+    <span class="kit-page-eyebrow">03 · Brand</span>
+    <h1 class="kit-page-title">Layering</h1>
+    <p class="kit-page-lead">v1.x had floating shapes — soft circles behind portraits, badge orbits, a vocabulary called <em>shape-layering</em>. v2.0 deleted all of it. Depth now comes from four humble tools, every one of which already exists on a real photocopied zine.</p>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>The four tools</h2><span class="kit-tag">that's the entire toolbox</span></div>
+
+      <div class="layer-stack">
+        <div>
+          <div class="kit-stage layer-demo">
+            <span class="layer-label">01 · hard offset shadow</span>
+            <div class="cr-card" style="margin: var(--cr-space-md) 0;">
+              <p style="margin:0;font-family:var(--cr-font-accent);font-weight:700;">Cards lift off the page through a flat 4×4&nbsp;px shadow in --cr-ink. No blur, no opacity ramp.</p>
+            </div>
+          </div>
+          <p class="kit-spec"><strong>--cr-shadow-hard</strong> &nbsp;·&nbsp; 4px 4px 0 var(--cr-ink). The 6×6 variant exists for cards that need more lift.</p>
+        </div>
+
+        <div>
+          <div class="kit-stage layer-demo">
+            <span class="layer-label">02 · rotation</span>
+            <div style="display: flex; gap: var(--cr-space-md); flex-wrap: wrap; margin-top: var(--cr-space-md);">
+              <span class="cr-tape">field notes</span>
+              <span class="cr-tape" style="transform: rotate(2.8deg);">draft</span>
+              <span class="cr-tape" style="transform: rotate(-2.5deg);">2024</span>
+            </div>
+          </div>
+          <p class="kit-spec"><strong>Four rotations only.</strong> -1.2°, 1.5°, -2.5°, 2.8°. Body type, tables, figures, forms stay upright.</p>
+        </div>
+
+        <div>
+          <div class="kit-stage layer-demo cr-halftone">
+            <span class="layer-label">03 · halftone</span>
+            <p style="margin: var(--cr-space-md) 0 0; max-width: 18rem; color: var(--cr-ink); line-height: 1.5;">Dotted screentone behind hero/landing surfaces. Adds tactile texture without competing with type.</p>
+          </div>
+          <p class="kit-spec"><strong>--cr-halftone</strong> · 12&nbsp;px grid, 0.08 ink. <strong>--cr-halftone-strong</strong> · 6&nbsp;px grid, 0.18 ink — for genuine screentone moments only.</p>
+        </div>
+
+        <div>
+          <div class="kit-stage layer-demo" style="background-image: var(--cr-fiber);">
+            <span class="layer-label">04 · paper fiber</span>
+            <p style="margin: var(--cr-space-md) 0 0; max-width: 18rem; color: var(--cr-ink); line-height: 1.5;">A 1px horizontal fiber at very low alpha, applied at the body level. You only see it when you look — but it's why the page feels like paper.</p>
+          </div>
+          <p class="kit-spec"><strong>--cr-fiber</strong> · repeating-linear-gradient on body. Always-on. Don't disable it.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Stacking order</h2><span class="kit-tag">a sample composition</span></div>
+      <div class="kit-stage" style="padding: var(--cr-space-2xl);">
+        <div class="cr-halftone" style="padding: var(--cr-space-xl); background-color: var(--cr-printer-ivory);">
+          <span class="cr-eyebrow">Hero spread</span>
+          <h3 class="cr-display" style="font-size: var(--cr-text-3xl);">layered, not stacked</h3>
+          <p style="max-width: 28rem;">Halftone underneath. Sparkle in the margin. Card with hard shadow on top. Tape pinning the corner. Every layer is a real zine technique.</p>
+          <div class="cr-card" style="max-width: 22rem; margin-top: var(--cr-space-lg); position: relative;">
+            <span class="cr-tape" style="position: absolute; top: -1rem; left: 1rem; transform: rotate(-6deg);">pinned</span>
+            <p style="margin: 0; font-weight: 700;">Card content sits above the halftone, the shadow lands on the ivory, the tape overlaps the card edge.</p>
+          </div>
+          <span class="cr-sparkle--margin" style="position: absolute; top: 1rem; right: 1.5rem;">✺</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>What's gone in v2.0</h2><span class="kit-tag">use this, not that</span></div>
+      <div class="ledger">
+        <div class="ledger__row"><span class="ledger__no">✗</span><span><code>.cr-shape-frame</code> — soft circle behind a portrait</span><span>removed</span></div>
+        <div class="ledger__row"><span class="ledger__no">✗</span><span><code>.cr-float-badge</code> — floating badge orbiting hero</span><span>removed</span></div>
+        <div class="ledger__row"><span class="ledger__no">✗</span><span><code>.cr-drift</code> — animated bobbing decoration</span><span>removed</span></div>
+        <div class="ledger__row"><span class="ledger__no">✗</span><span><code>.cr-hero__shape</code>, <code>--1</code>, <code>--2</code></span><span>removed</span></div>
+        <div class="ledger__row"><span class="ledger__no">✗</span><span><code>.cr-card--elevated</code>, <code>.cr-card--inverse</code></span><span>removed</span></div>
+        <div class="ledger__row"><span class="ledger__no">✗</span><span><code>.cr-chip--outline</code> — failed AA</span><span>removed v2.0.1</span></div>
+        <div class="ledger__row"><span class="ledger__yes">✓</span><span><code>.cr-card</code> · the only zine card</span><span>use this</span></div>
+        <div class="ledger__row"><span class="ledger__yes">✓</span><span><code>.cr-tape</code> · masking-tape labels</span><span>use this</span></div>
+        <div class="ledger__row"><span class="ledger__yes">✓</span><span><code>.cr-sparkle</code>, <code>.cr-sparkle--margin</code></span><span>use this</span></div>
+        <div class="ledger__row"><span class="ledger__yes">✓</span><span><code>.cr-halftone</code>, <code>--strong</code></span><span>use this</span></div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="kit-shell.js"></script>
+</body>
+</html>

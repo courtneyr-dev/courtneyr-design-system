@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tokens — UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../components/components.css">
+<link rel="stylesheet" href="kit.css">
+<style>
+  .kit-swatch--dark .kit-swatch__body { background: var(--cr-photocopier-blk); color: var(--cr-printer-ivory); }
+  .scale-row {
+    display: grid; grid-template-columns: 6rem 1fr 6rem;
+    gap: var(--cr-space-md); align-items: center;
+    padding: var(--cr-space-xs) 0;
+    border-bottom: 1px dashed var(--cr-border-strong);
+    font-family: var(--cr-font-mono); font-size: var(--cr-text-sm);
+  }
+  .scale-row:last-child { border-bottom: 0; }
+  .scale-row__bar { height: 1.25rem; background: var(--cr-marker); }
+  .scale-row__name { color: var(--cr-ink); font-weight: 700; }
+  .scale-row__value { color: var(--cr-ink-muted); text-align: right; }
+  .shadow-tile {
+    width: 8rem; height: 6rem;
+    background: var(--cr-surface-elevated);
+    border: var(--cr-border-thick);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--cr-font-mono); font-size: var(--cr-text-xs);
+    color: var(--cr-ink);
+  }
+</style>
+</head>
+<body data-kit-page="tokens">
+<div class="kit-shell">
+  <main class="kit-main">
+    <span class="kit-page-eyebrow">01 · Brand</span>
+    <h1 class="kit-page-title">Tokens</h1>
+    <p class="kit-page-lead">Twenty palette colors (11 originals + 9 v2.1 extensions), semantic role assignments, an 18-entry post-type taxonomy, and spacing/shadow scales. Every component on every other page resolves to these tokens — never a raw hex.</p>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Core palette</h2><span class="kit-tag">11 originals</span></div>
+      <div class="kit-swatch-grid">
+        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#241c4a"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Russian Violet</span>--cr-russian-violet<br>#241c4a</div></div>
+        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#bcb5e3"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Periwinkle</span>--cr-periwinkle<br>#bcb5e3</div></div>
+        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#647baf"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Glaucous</span>--cr-glaucous<br>#647baf · bg only</div></div>
+        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#8ecae6"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Sky Blue</span>--cr-sky-blue<br>#8ecae6</div></div>
+        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#219ebc"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Blue-Green</span>--cr-blue-green<br>#219ebc</div></div>
+        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#126782"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Cerulean</span>--cr-cerulean<br>#126782</div></div>
+        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#023047"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Prussian Blue</span>--cr-prussian-blue<br>#023047</div></div>
+        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#ffb703"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Selective Yellow</span>--cr-selective-yellow<br>#ffb703</div></div>
+        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#fb8500"></div><div class="kit-swatch__body"><span class="kit-swatch__name">UT Orange</span>--cr-ut-orange<br>#fb8500</div></div>
+        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#fee2c3"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Light Orange</span>--cr-light-orange<br>#fee2c3</div></div>
+        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#fbfaf5;border-bottom:var(--cr-border-thick)"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Printer Ivory</span>--cr-printer-ivory<br>#fbfaf5</div></div>
+      </div>
+      <p class="kit-spec"><strong>Glaucous warning:</strong> Background-only. As text on cream it scores 4.02:1 — fails AA at body sizes. Use russian-violet for text instead.</p>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>v2.1 accent set — 6 colors, palette-strict, WCAG 2.2 AA</h2><span class="kit-tag">no palette expansion</span></div>
+      <p class="kit-spec" style="margin-top:0;">v2.1 keeps the 11-color brand palette intact. Only the 6 darkest/most-saturated palette colors pass WCAG 1.4.11's 3:1 non-text contrast threshold against the ivory chip surface (#fbfaf5). 18 post types map to these 6 accents in 6 thematic groups; the icon shape disambiguates within a group.</p>
+      <table class="kit-table">
+        <thead><tr><th>Accent</th><th>Token</th><th>Ratio vs ivory</th><th>Group</th><th>Post types</th></tr></thead>
+        <tbody>
+          <tr><td>Russian Violet</td><td><code>--cr-russian-violet</code></td><td>15:1</td><td>longform / written</td><td>blog · book · quote</td></tr>
+          <tr><td>Cerulean</td><td><code>--cr-cerulean</code></td><td>6.11:1</td><td>shares / outbound</td><td>link · bookmark · repost</td></tr>
+          <tr><td>Prussian Blue</td><td><code>--cr-prussian-blue</code></td><td>13.25:1</td><td>events / judgment</td><td>speaking · event · review</td></tr>
+          <tr><td>Blue-Green</td><td><code>--cr-blue-green</code></td><td>3.01:1</td><td>visual media</td><td>image · gallery · video</td></tr>
+          <tr><td>Glaucous</td><td><code>--cr-glaucous</code></td><td>4.02:1</td><td>small / interstitial</td><td>aside · chat · status</td></tr>
+          <tr><td>Black</td><td><code>#000000</code></td><td>20:1</td><td>impact / expression</td><td>audio · reply · like</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Post-type taxonomy · 18 entries</h2><span class="kit-tag">--cr-type-*</span></div>
+      <p class="kit-spec" style="margin-top:0;">The taxonomy <em>is</em> the system. Each entry maps to a palette color used by chip left-border, stream avatar fill, and any other surface that disambiguates a post type.</p>
+      <div class="kit-stage">
+        <table style="margin:0">
+          <thead><tr><th>#</th><th>Type</th><th>Token</th><th>Resolves to</th><th>Source</th></tr></thead>
+          <tbody>
+            <tr><td>01</td><td>blog</td><td><code>--cr-type-blog</code></td><td>Russian Violet</td><td>WP default</td></tr>
+            <tr><td>02</td><td>aside</td><td><code>--cr-type-aside</code></td><td>Glaucous</td><td>WP standard</td></tr>
+            <tr><td>03</td><td>image</td><td><code>--cr-type-image</code></td><td>Blue-Green</td><td>WP standard</td></tr>
+            <tr><td>04</td><td>gallery</td><td><code>--cr-type-gallery</code></td><td>Blue-Green</td><td>WP standard</td></tr>
+            <tr><td>05</td><td>video</td><td><code>--cr-type-video</code></td><td>Blue-Green</td><td>WP standard</td></tr>
+            <tr><td>06</td><td>audio</td><td><code>--cr-type-audio</code></td><td>Black</td><td>WP standard</td></tr>
+            <tr><td>07</td><td>chat</td><td><code>--cr-type-chat</code></td><td>Glaucous</td><td>WP standard</td></tr>
+            <tr><td>08</td><td>status</td><td><code>--cr-type-status</code></td><td>Glaucous</td><td>WP standard</td></tr>
+            <tr><td>09</td><td>link</td><td><code>--cr-type-link</code></td><td>Cerulean</td><td>WP standard</td></tr>
+            <tr><td>10</td><td>bookmark</td><td><code>--cr-type-bookmark</code></td><td>Cerulean</td><td>IndieWeb</td></tr>
+            <tr><td>11</td><td>quote</td><td><code>--cr-type-quote</code></td><td>Russian Violet</td><td>WP standard</td></tr>
+            <tr><td>12</td><td>speaking</td><td><code>--cr-type-speaking</code></td><td>Prussian Blue</td><td>Courtney</td></tr>
+            <tr><td>13</td><td>book</td><td><code>--cr-type-book</code></td><td>Russian Violet</td><td>Courtney</td></tr>
+            <tr><td>14</td><td>like</td><td><code>--cr-type-like</code></td><td>Black</td><td>IndieWeb</td></tr>
+            <tr><td>15</td><td>repost</td><td><code>--cr-type-repost</code></td><td>Cerulean</td><td>IndieWeb</td></tr>
+            <tr><td>16</td><td>reply</td><td><code>--cr-type-reply</code></td><td>Black</td><td>IndieWeb</td></tr>
+            <tr><td>17</td><td>event</td><td><code>--cr-type-event</code></td><td>Prussian Blue</td><td>IndieWeb</td></tr>
+            <tr><td>18</td><td>review</td><td><code>--cr-type-review</code></td><td>Prussian Blue</td><td>IndieWeb</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Semantic roles</h2><span class="kit-tag">role → palette</span></div>
+      <div class="kit-stage">
+        <table style="margin:0">
+          <thead><tr><th>Role</th><th>Token</th><th>Resolves to</th></tr></thead>
+          <tbody>
+            <tr><td>Default ink</td><td><code>--cr-ink</code></td><td>Russian Violet</td></tr>
+            <tr><td>Muted ink</td><td><code>--cr-ink-muted</code></td><td>Cerulean</td></tr>
+            <tr><td>Marker accent</td><td><code>--cr-marker</code></td><td>UT Orange</td></tr>
+            <tr><td>Highlighter</td><td><code>--cr-highlight</code></td><td>Selective Yellow</td></tr>
+            <tr><td>Surface</td><td><code>--cr-surface</code></td><td>Printer Ivory</td></tr>
+            <tr><td>Tape bg</td><td><code>--cr-tape</code></td><td>#f3e5b8 (cream tape)</td></tr>
+            <tr><td>Focus ring</td><td><code>--cr-focus-ring</code></td><td>Selective Yellow</td></tr>
+            <tr><td>CTA bg / hover</td><td><code>--cr-cta-bg</code> / <code>--cr-cta-bg-hover</code></td><td>UT Orange → Russian Violet</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Spacing scale</h2><span class="kit-tag">--cr-space-*</span></div>
+      <div class="kit-stage">
+        <div class="scale-row"><span class="scale-row__name">3xs</span><span class="scale-row__bar" style="width:0.25rem"></span><span class="scale-row__value">0.25rem</span></div>
+        <div class="scale-row"><span class="scale-row__name">2xs</span><span class="scale-row__bar" style="width:0.5rem"></span><span class="scale-row__value">0.5rem</span></div>
+        <div class="scale-row"><span class="scale-row__name">xs</span><span class="scale-row__bar" style="width:0.75rem"></span><span class="scale-row__value">0.75rem</span></div>
+        <div class="scale-row"><span class="scale-row__name">sm</span><span class="scale-row__bar" style="width:1rem"></span><span class="scale-row__value">1rem</span></div>
+        <div class="scale-row"><span class="scale-row__name">md</span><span class="scale-row__bar" style="width:1.5rem"></span><span class="scale-row__value">1.5rem</span></div>
+        <div class="scale-row"><span class="scale-row__name">lg</span><span class="scale-row__bar" style="width:2rem"></span><span class="scale-row__value">2rem</span></div>
+        <div class="scale-row"><span class="scale-row__name">xl</span><span class="scale-row__bar" style="width:3rem"></span><span class="scale-row__value">3rem</span></div>
+        <div class="scale-row"><span class="scale-row__name">2xl</span><span class="scale-row__bar" style="width:4rem"></span><span class="scale-row__value">4rem</span></div>
+        <div class="scale-row"><span class="scale-row__name">3xl</span><span class="scale-row__bar" style="width:6rem"></span><span class="scale-row__value">6rem</span></div>
+      </div>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Shadows</h2><span class="kit-tag">--cr-shadow-hard*</span></div>
+      <div class="kit-stage">
+        <div class="kit-row">
+          <div class="shadow-tile" style="box-shadow: var(--cr-shadow-hard)">hard</div>
+          <div class="shadow-tile" style="box-shadow: var(--cr-shadow-hard-2)">hard-2</div>
+          <div class="shadow-tile" style="box-shadow: 1px 1px 0 rgba(36,28,74,0.2)">tape</div>
+        </div>
+        <p class="kit-spec">Hard offset shadows in <strong>--cr-ink</strong> at 4×4 / 6×6 px. Dark mode flips them to selective-yellow so they stay visible against the photocopier-black surface.</p>
+      </div>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Rotation budget</h2><span class="kit-tag">four values, no more</span></div>
+      <div class="kit-stage">
+        <div class="kit-row" style="gap:var(--cr-space-xl)">
+          <div class="cr-tape">--cr-rotate-1 · -1.2°</div>
+          <div class="cr-tape" style="transform: rotate(1.5deg)">--cr-rotate-2 · 1.5°</div>
+          <div class="cr-tape" style="transform: rotate(-2.5deg)">--cr-rotate-neg · -2.5°</div>
+          <div class="cr-tape" style="transform: rotate(2.8deg)">--cr-rotate-neg2 · 2.8°</div>
+        </div>
+        <p class="kit-spec"><strong>Rule:</strong> never invent a fifth rotation. Body text, tables, figures, and forms stay upright — rotation is reserved for accents (tape, sparkles, marker bars, sole-card).</p>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="kit-shell.js"></script>
+</body>
+</html>

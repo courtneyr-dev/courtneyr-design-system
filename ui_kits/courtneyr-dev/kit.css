@@ -1,0 +1,313 @@
+/* =============================================================================
+   courtneyr.dev UI Kit — page chrome only.
+   The kit demonstrates the v2.0 system. It does NOT redefine tokens or
+   components — it just provides the gallery layout (sidebar, page grid,
+   spec annotations). Every demo on the page uses the real .cr-* classes.
+
+   Loaded after tokens/tokens.css and components/components.css.
+   ============================================================================= */
+
+/* -------------------- Layout shell -------------------- */
+.kit-shell {
+  display: grid;
+  grid-template-columns: 16rem 1fr;
+  min-height: 100vh;
+}
+@media (max-width: 60rem) {
+  .kit-shell { grid-template-columns: 1fr; }
+}
+
+/* -------------------- Sidebar -------------------- */
+.kit-sidebar {
+  background: var(--cr-russian-violet);
+  color: var(--cr-printer-ivory);
+  padding: var(--cr-space-xl) var(--cr-space-lg);
+  position: sticky; top: 0;
+  align-self: start;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: var(--cr-border-thick);
+}
+@media (max-width: 60rem) {
+  .kit-sidebar { position: static; height: auto; }
+}
+.kit-sidebar__brand {
+  display: block;
+  font-family: var(--cr-font-display);
+  font-size: var(--cr-text-lg);
+  color: var(--cr-printer-ivory);
+  text-decoration: none;
+  margin-bottom: var(--cr-space-2xs);
+  transform: rotate(var(--cr-rotate-neg));
+  line-height: 1;
+}
+.kit-sidebar__tagline {
+  font-family: var(--cr-font-accent);
+  font-size: var(--cr-text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--cr-tracking-eyebrow);
+  color: var(--cr-sky-blue);
+  margin-bottom: var(--cr-space-xl);
+}
+.kit-sidebar__group {
+  font-family: var(--cr-font-accent);
+  font-size: var(--cr-text-xs);
+  font-weight: var(--cr-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--cr-tracking-eyebrow);
+  color: var(--cr-selective-yellow);
+  margin: var(--cr-space-lg) 0 var(--cr-space-xs);
+}
+.kit-sidebar__nav { list-style: none; padding: 0; margin: 0; }
+.kit-sidebar__nav li { margin: 0; padding: 0; }
+.kit-sidebar__nav li::before { content: none; }
+.kit-sidebar__nav a {
+  display: block;
+  padding: var(--cr-space-2xs) var(--cr-space-sm);
+  color: var(--cr-printer-ivory);
+  font-family: var(--cr-font-body);
+  font-size: var(--cr-text-sm);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: background 80ms var(--cr-ease-out), border-color 80ms var(--cr-ease-out);
+}
+.kit-sidebar__nav a:hover {
+  background: rgba(253,250,245,0.06);
+  border-left-color: var(--cr-sky-blue);
+  color: var(--cr-printer-ivory);
+}
+.kit-sidebar__nav a[aria-current="page"] {
+  background: rgba(255,183,3,0.15);
+  border-left-color: var(--cr-selective-yellow);
+  color: var(--cr-selective-yellow);
+  font-weight: var(--cr-weight-bold);
+}
+
+/* -------------------- Main content area -------------------- */
+.kit-main {
+  padding: var(--cr-space-2xl) var(--cr-space-2xl);
+  max-width: 64rem;
+  width: 100%;
+}
+@media (max-width: 48rem) {
+  .kit-main { padding: var(--cr-space-xl) var(--cr-space-md); }
+}
+
+.kit-page-eyebrow {
+  font-family: var(--cr-font-accent);
+  font-size: var(--cr-text-sm);
+  font-weight: var(--cr-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--cr-tracking-eyebrow);
+  color: var(--cr-marker);
+  display: block;
+  margin-bottom: var(--cr-space-2xs);
+}
+.kit-page-title {
+  font-family: var(--cr-font-accent);
+  font-size: var(--cr-text-4xl);
+  font-weight: var(--cr-weight-black);
+  line-height: var(--cr-leading-tight);
+  letter-spacing: var(--cr-tracking-tight);
+  margin: 0 0 var(--cr-space-md);
+  color: var(--cr-ink);
+}
+.kit-page-lead {
+  font-family: var(--cr-font-accent);
+  font-size: var(--cr-text-lg);
+  color: var(--cr-ink-muted);
+  max-width: 50rem;
+  margin: 0 0 var(--cr-space-2xl);
+  line-height: var(--cr-leading-snug);
+}
+
+/* -------------------- Specimen blocks -------------------- */
+.kit-section { margin: var(--cr-space-2xl) 0; }
+.kit-section__head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  flex-wrap: wrap; gap: var(--cr-space-sm);
+  border-bottom: var(--cr-border-thick);
+  padding-bottom: var(--cr-space-xs);
+  margin-bottom: var(--cr-space-lg);
+}
+.kit-section__head h2 {
+  margin: 0;
+  font-family: var(--cr-font-accent);
+  font-size: var(--cr-text-2xl);
+  font-weight: var(--cr-weight-black);
+  color: var(--cr-ink);
+  /* zine HRs in tokens.css rotate; kit headers stay calm */
+}
+.kit-section__head .kit-tag {
+  font-family: var(--cr-font-mono);
+  font-size: var(--cr-text-xs);
+  color: var(--cr-ink-muted);
+  background: var(--cr-code-bg);
+  padding: 2px 6px;
+  border-radius: var(--cr-radius-xs);
+}
+
+.kit-spec {
+  font-family: var(--cr-font-mono);
+  font-size: var(--cr-text-xs);
+  color: var(--cr-ink-muted);
+  margin-top: var(--cr-space-sm);
+  line-height: var(--cr-leading-snug);
+}
+.kit-spec strong {
+  color: var(--cr-ink);
+  font-weight: var(--cr-weight-bold);
+}
+
+/* The "stage" — a printer-ivory frame around a live demo. Crosshatch gives
+   transformed/rotated elements something to read against. */
+.kit-stage {
+  background: var(--cr-surface);
+  background-image:
+    repeating-linear-gradient(45deg, transparent 0 12px, rgba(36,28,74,0.025) 12px 13px);
+  border: var(--cr-border-thin);
+  padding: var(--cr-space-xl);
+  margin: 0 0 var(--cr-space-sm);
+  position: relative;
+  overflow: hidden;
+}
+.kit-stage--snug { padding: var(--cr-space-md) var(--cr-space-lg); }
+.kit-stage--dark {
+  background: var(--cr-photocopier-blk);
+  background-image:
+    repeating-linear-gradient(45deg, transparent 0 12px, rgba(255,255,255,0.025) 12px 13px);
+  color: var(--cr-printer-ivory);
+}
+.kit-stage--dark .kit-spec { color: var(--cr-periwinkle); }
+
+/* Inline grid for showing several variants side by side */
+.kit-row {
+  display: flex; gap: var(--cr-space-lg); flex-wrap: wrap; align-items: flex-start;
+}
+.kit-grid-2 {
+  display: grid; gap: var(--cr-space-lg);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 40rem) {
+  .kit-grid-2 { grid-template-columns: 1fr 1fr; }
+}
+
+/* Caption under each demo */
+.kit-caption {
+  font-family: var(--cr-font-accent);
+  font-style: italic;
+  font-size: var(--cr-text-sm);
+  color: var(--cr-cerulean);
+  margin: 0 0 var(--cr-space-xl);
+}
+
+/* Code pre — keep inside the stage tight */
+.kit-code {
+  font-family: var(--cr-font-mono);
+  font-size: var(--cr-text-xs);
+  background: var(--cr-code-bg);
+  color: var(--cr-code-ink);
+  padding: var(--cr-space-sm) var(--cr-space-md);
+  border: var(--cr-border-thin);
+  border-radius: var(--cr-radius-xs);
+  overflow-x: auto;
+  margin: var(--cr-space-sm) 0 var(--cr-space-xl);
+  line-height: var(--cr-leading-snug);
+  white-space: pre;
+}
+
+/* Token swatch (color tiles) */
+.kit-swatch-grid {
+  display: grid; gap: var(--cr-space-md);
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  margin: 0 0 var(--cr-space-lg);
+}
+.kit-swatch {
+  border: var(--cr-border-thick);
+  background: var(--cr-surface-elevated);
+  box-shadow: var(--cr-shadow-hard);
+}
+.kit-swatch__chip {
+  height: 4.5rem;
+  border-bottom: var(--cr-border-thick);
+}
+.kit-swatch__body {
+  padding: var(--cr-space-xs) var(--cr-space-sm);
+  font-family: var(--cr-font-mono);
+  font-size: var(--cr-text-xs);
+  line-height: 1.4;
+  color: var(--cr-ink);
+}
+.kit-swatch__name {
+  font-family: var(--cr-font-accent);
+  font-weight: var(--cr-weight-bold);
+  font-size: var(--cr-text-sm);
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* Page section divider — a marker bar without rotation, so kit pages
+   read cleanly when they have multiple sections in a row */
+.kit-divider {
+  border: 0;
+  height: 4px;
+  background: var(--cr-marker);
+  width: 100%;
+  margin: var(--cr-space-2xl) 0;
+  transform: none;
+  border-radius: 0;
+}
+
+/* "what's in here" cover-page card grid */
+.kit-cover-grid {
+  display: grid;
+  gap: var(--cr-space-lg);
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  margin: var(--cr-space-xl) 0;
+}
+.kit-cover-card {
+  background: var(--cr-surface-elevated);
+  border: var(--cr-border-thick);
+  padding: var(--cr-space-md) var(--cr-space-lg);
+  box-shadow: var(--cr-shadow-hard);
+  text-decoration: none;
+  color: var(--cr-ink);
+  display: block;
+  transition: transform 100ms var(--cr-ease-out), box-shadow 100ms var(--cr-ease-out);
+}
+.kit-cover-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--cr-shadow-hard-2);
+  color: var(--cr-ink);
+}
+.kit-cover-card__num {
+  font-family: var(--cr-font-mono);
+  font-size: var(--cr-text-xs);
+  color: var(--cr-marker);
+  font-weight: var(--cr-weight-bold);
+  letter-spacing: var(--cr-tracking-wide);
+}
+.kit-cover-card__title {
+  font-family: var(--cr-font-accent);
+  font-weight: var(--cr-weight-bold);
+  font-size: var(--cr-text-lg);
+  margin: var(--cr-space-2xs) 0;
+  color: var(--cr-ink);
+}
+.kit-cover-card__desc {
+  font-family: var(--cr-font-body);
+  font-size: var(--cr-text-sm);
+  color: var(--cr-ink-muted);
+  line-height: var(--cr-leading-snug);
+  margin: 0;
+}
+
+/* Reset list bullets inside kit content — tokens.css adds zine bullets globally
+   and they look out of place in the spec sidebars. */
+.kit-spec ul, .kit-cover-card ul {
+  list-style: none;
+  padding-left: 0;
+}
+.kit-spec ul > li::before, .kit-cover-card ul > li::before {
+  content: none;
+}
