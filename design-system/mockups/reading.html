@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reading mockup — courtneyr.dev design system v2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700&family=Barlow:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../components/components.css">
+<style>
+  .demo-tag {
+    position: fixed; top: 1rem; right: 1rem;
+    font-family: var(--cr-font-accent); font-size: var(--cr-text-sm);
+    background: var(--cr-tape); color: var(--cr-tape-ink);
+    padding: 0.25rem 0.75rem; transform: rotate(-2deg); z-index: 100;
+  }
+  .post-meta {
+    display: flex; gap: var(--cr-space-md); flex-wrap: wrap;
+    font-family: var(--cr-font-accent); font-size: var(--cr-text-sm);
+    color: var(--cr-ink-muted); margin-bottom: var(--cr-space-lg);
+  }
+  .post-meta time { font-weight: 600; }
+  .post-meta .tag {
+    background: var(--cr-tape); color: var(--cr-tape-ink);
+    padding: 0 var(--cr-space-xs); font-weight: 700;
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="cr-skip-link">Skip to content</a>
+<span class="demo-tag">v2.0 reading mockup</span>
+
+<main id="main" class="cr-reading">
+
+  <!-- header — restrained, no display font here -->
+  <header>
+    <span class="cr-eyebrow">Blog · WordPress</span>
+    <h1>What I learned moving CSP into a custom plugin on managed hosting</h1>
+
+    <div class="post-meta">
+      <time datetime="2026-04-15">April 15, 2026</time>
+      <span>·</span>
+      <span>9 min read</span>
+      <span class="tag">WordPress</span>
+      <span class="tag">Security</span>
+      <span class="tag">CSP</span>
+    </div>
+  </header>
+
+  <!-- TOC, the one zine accent visible from the top -->
+  <nav class="cr-toc" aria-label="Table of contents">
+    <p class="cr-toc__heading">In this post</p>
+    <ol>
+      <li><a href="#why">Why CSP got messy</a></li>
+      <li><a href="#three">Three competing sources</a></li>
+      <li><a href="#fix">The fix: one source of truth</a></li>
+      <li><a href="#takeaways">Takeaways</a></li>
+    </ol>
+  </nav>
+
+  <p>If you're running WordPress on <abbr title="Managed WordPress hosting">managed hosting</abbr> with a bundled <abbr title="Web Application Firewall">WAF</abbr>, you've probably hit the same wall I did: three different layers all trying to set your <code>Content-Security-Policy</code> header, none of them aware of the others. Here's what I found, and how I made it stop.</p>
+
+  <h2 id="why">Why CSP got messy</h2>
+
+  <p>I run <a href="https://courtneyr.dev">courtneyr.dev</a> on GoDaddy Managed WordPress, which bundles Sucuri WAF at the edge. I also use the HTTP Headers plugin, plus a small custom plugin for <dfn>font-display swap</dfn> and a few other performance tweaks. None of these layers know about each other.</p>
+
+  <p>The result: my CSP was being set <em>three</em> times. Whichever layer was last to write the response header won, and which one that was depended on caching state, time of day, and what I'd had for breakfast.</p>
+
+  <div class="cr-callout cr-callout--note">
+    <span class="cr-callout__label">Note</span>
+    <p>If you're seeing inconsistent <code>Content-Security-Policy</code> values across page loads, this is a classic sign of competing header sources. Don't assume one plugin is &ldquo;wrong&rdquo; — they may all be right, and the problem is that there's more than one of them.</p>
+  </div>
+
+  <h2 id="three">Three competing sources</h2>
+
+  <p>Auditing live headers with <code>curl -I</code> made the picture clear:</p>
+
+  <pre><code>$ curl -sI https://courtneyr.dev/ | grep -i csp
+content-security-policy: default-src 'self'; ...   # source 1
+content-security-policy: default-src *; ...        # source 2 (??)
+</code></pre>
+
+  <p>The three sources, in priority order from the edge inward:</p>
+
+  <ol>
+    <li><strong>Sucuri WAF</strong> — adds &ldquo;Additional Security Headers&rdquo; at the edge, overrides anything below.</li>
+    <li><strong>Sucuri WordPress plugin</strong> — adds headers at the application layer.</li>
+    <li><strong>HTTP Headers plugin</strong> — adds more headers at the application layer.</li>
+  </ol>
+
+  <p>Plus my custom <code>font-display-swap-site-performance-security</code> plugin, which I wanted to take over CSP entirely.</p>
+
+  <h2 id="fix">The fix: one source of truth</h2>
+
+  <p>The plan was simple, the execution less so. I wanted CSP to live <span class="cr-highlight">in exactly one place</span>: my custom plugin's <code>send_headers</code> hook. Everything else needed to stop trying.</p>
+
+  <h3>Step 1: clear the WAF</h3>
+
+  <p>This required Sucuri support. Their team (shoutout to Dobromir) disabled the WAF-level &ldquo;Additional Security Headers&rdquo; feature for my account. I cannot stress enough that this is something you have to ask for &mdash; you can't toggle it from the plugin GUI.</p>
+
+  <h3>Step 2: disable plugin-level CSP</h3>
+
+  <p>In the Sucuri plugin's Headers Management page (<code>admin.php?page=sucuriscan_headers_management</code>), I unchecked CSP. Same in HTTP Headers plugin settings.</p>
+
+  <h3>Step 3: add CSP to the custom plugin</h3>
+
+  <pre><code>add_action( 'send_headers', function() {
+    if ( is_admin() ) return;
+    $csp = "default-src 'self'; "
+         . "script-src 'self' 'unsafe-inline' s.ytimg.com www.googletagmanager.com; "
+         . "style-src 'self' 'unsafe-inline' fonts.googleapis.com; "
+         . "font-src 'self' fonts.gstatic.com; "
+         . "img-src 'self' data: https:; "
+         . "connect-src 'self' region1.google-analytics.com analytics.google.com; "
+         . "frame-src https:; ";
+    header( 'Content-Security-Policy-Report-Only: ' . $csp );
+}, 100 );
+</code></pre>
+
+  <p>Note the <code>Report-Only</code> directive. I'm not enforcing yet — I want to see what breaks before I do.</p>
+
+  <h2 id="takeaways">Takeaways</h2>
+
+  <ul>
+    <li>On managed hosting, <em>always</em> audit live headers with <code>curl</code> before assuming plugin settings are taking effect.</li>
+    <li>Verify cache freshness with <code>x-sucuri-cache: MISS</code> and <code>x-gateway-cache-status: MISS</code> before drawing conclusions.</li>
+    <li>The WAF will silently override application-layer plugin settings. Plugin CSP only works reliably when the WAF is cleared.</li>
+    <li>One source of truth, in code I control, version-tracked in Git. Everything else is a future debugging nightmare.</li>
+  </ul>
+
+  <hr class="cr-marker-bar cr-marker-bar--short">
+
+  <footer>
+    <p style="font-size: var(--cr-text-sm); color: var(--cr-ink-muted);">
+      Filed under <span class="cr-tape">WordPress</span> ·
+      <a href="#">Reply via webmention</a> ·
+      <a href="#">View source on GitHub</a>
+    </p>
+  </footer>
+
+</main>
+</body>
+</html>

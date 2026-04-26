@@ -1,49 +1,84 @@
 {
   "$schema": "https://design-tokens.github.io/community-group/format/",
   "name": "courtneyr.dev",
-  "description": "Brand design system for Courtney Robertson — Open Source Developer Advocate, WordPress educator, IndieWeb contributor. Warm, teacher-ish, shape-layered.",
-  "version": "1.0.0",
-  "tone": "warm, approachable, teacher-ish, conversational",
+  "description": "Brand design system for Courtney Robertson — Senior Open Source Developer Advocate at GoDaddy, WordPress educator, IndieWeb contributor. Personal site with the voice of a patient teacher and the visual confidence of a hand-pasted zine. WordPress + IndieWeb + AA contrast.",
+  "version": "2.0.0",
+  "aesthetic": "zine",
+  "tone": "warm, conversational, direct, teacher-ish",
+  "principles": [
+    "Decoration in margins, calm in measure.",
+    "Zine treatment for landing pages, marketing, hero sections.",
+    "Calm-with-zine-accents for blog posts, stream/feed, long-form reading.",
+    "Tables stay un-rotated for scan readability.",
+    "Wordmark is all-paths SVG — no font dependency."
+  ],
+  "surface": {
+    "light": "#fbfaf5",
+    "dark": "#1a1714",
+    "elevatedLight": "#ffffff",
+    "elevatedDark": "#251f1c",
+    "texture": "subtle horizontal fiber, ~1.2% opacity at 2-3px stripes; halftone overlay on hero surfaces"
+  },
   "color": {
     "palette": {
-      "russian-violet": { "value": "#241c4a", "description": "Primary ink, headings, nav" },
-      "periwinkle":     { "value": "#bcb5e3", "description": "Dark-mode ink, soft violet accents" },
-      "glaucous":       { "value": "#647baf", "description": "Secondary text, borders" },
-      "sky-blue":       { "value": "#8ecae6", "description": "Signature shape color, soft backgrounds" },
-      "blue-green":     { "value": "#219ebc", "description": "Second accent, link hover" },
-      "cerulean":       { "value": "#126782", "description": "Deeper blue, video post-type" },
-      "prussian-blue":  { "value": "#023047", "description": "Dark-mode soft surface" },
-      "selective-yellow": { "value": "#ffb703", "description": "Dark-mode primary, highlights" },
-      "ut-orange":      { "value": "#fb8500", "description": "Primary CTA, links, brand warmth" },
-      "light-orange":   { "value": "#fee2c3", "description": "Soft background shapes" },
-      "cream":          { "value": "#fdfaf4", "description": "Page surface (light mode)" }
+      "russian-violet":   { "value": "#241c4a", "description": "Primary ink, headings, nav" },
+      "periwinkle":       { "value": "#bcb5e3", "description": "Dark-mode ink, soft violet accents" },
+      "glaucous":         { "value": "#647baf", "description": "Background only — fails AA on cream as text" },
+      "sky-blue":         { "value": "#8ecae6", "description": "Soft signature, accent block 1, table thead" },
+      "blue-green":       { "value": "#219ebc", "description": "Secondary teal, link hover, nested bullets" },
+      "cerulean":         { "value": "#126782", "description": "Muted text, links, callout bg, figcaption" },
+      "prussian-blue":    { "value": "#023047", "description": "Reserved deep ink, dark-mode soft surface" },
+      "selective-yellow": { "value": "#ffb703", "description": "Highlighter, dark-mode primary, focus ring" },
+      "ut-orange":        { "value": "#fb8500", "description": "Primary CTA, marker bar, sparkles" },
+      "light-orange":     { "value": "#fee2c3", "description": "TOC card, accent block 3" },
+      "printer-ivory":    { "value": "#fbfaf5", "description": "Page surface (light mode)" },
+      "photocopier-blk":  { "value": "#1a1714", "description": "Page surface (dark mode)" },
+      "night-elevated":   { "value": "#251f1c", "description": "Dark-mode card surface" }
     },
     "semantic": {
       "light": {
-        "surface":        "#fdfaf4",
-        "surface-soft":   "#fee2c3",
+        "surface":          "#fbfaf5",
+        "surface-soft":     "#fee2c3",
         "surface-elevated": "#ffffff",
-        "ink":            "#241c4a",
-        "ink-muted":      "#647baf",
-        "ink-inverse":    "#fdfaf4",
-        "primary":        "#fb8500",
-        "primary-ink":    "#ffffff",
-        "accent":         "#219ebc",
-        "accent-shape":   "#8ecae6",
-        "border":         "rgba(36,28,74,0.12)"
+        "ink":              "#241c4a",
+        "ink-muted":        "#126782",
+        "ink-soft":         "#4a4566",
+        "ink-inverse":      "#fbfaf5",
+        "link":             "#126782",
+        "link-hover":       "#241c4a",
+        "marker":           "#fb8500",
+        "highlight":        "#ffb703",
+        "callout-bg":       "#126782",
+        "callout-ink":      "#ffffff",
+        "tape":             "#f3e5b8",
+        "tape-ink":         "#241c4a",
+        "cta-bg":           "#fb8500",
+        "cta-ink":          "#023047",
+        "focus-ring":       "#ffb703",
+        "border":           "rgba(36,28,74,0.12)",
+        "border-strong":    "rgba(36,28,74,0.24)"
       },
       "dark": {
-        "surface":        "#0a0f24",
-        "surface-soft":   "#023047",
-        "surface-elevated": "#0f1530",
-        "ink":            "#bcb5e3",
-        "ink-muted":      "#647baf",
-        "ink-inverse":    "#241c4a",
-        "primary":        "#ffb703",
-        "primary-ink":    "#241c4a",
-        "accent":         "#8ecae6",
-        "accent-shape":   "#126782",
-        "border":         "rgba(188,181,227,0.15)"
+        "surface":          "#1a1714",
+        "surface-soft":     "#023047",
+        "surface-elevated": "#251f1c",
+        "ink":              "#fbfaf5",
+        "ink-muted":        "#bcb5e3",
+        "ink-soft":         "#c8c2d8",
+        "ink-inverse":      "#241c4a",
+        "link":             "#8ecae6",
+        "link-hover":       "#ffb703",
+        "marker":           "#fb8500",
+        "highlight":        "#ffb703",
+        "callout-bg":       "#023047",
+        "callout-ink":      "#8ecae6",
+        "tape":             "#4a3f1c",
+        "tape-ink":         "#ffb703",
+        "cta-bg":           "#ffb703",
+        "cta-ink":          "#241c4a",
+        "focus-ring":       "#ffb703",
+        "border":           "rgba(188,181,227,0.15)",
+        "border-strong":    "rgba(188,181,227,0.30)"
       }
     },
     "post-types": {
@@ -60,38 +95,77 @@
   },
   "typography": {
     "family": {
-      "display": "\"Rock Salt\", \"Segoe Script\", \"Bradley Hand\", cursive",
+      "display": "\"Rock Salt\", \"Bradley Hand\", cursive",
       "body":    "\"Barlow\", system-ui, -apple-system, sans-serif",
-      "accent":  "\"Roboto Slab\", Georgia, \"Times New Roman\", serif",
+      "accent":  "\"Roboto Slab\", Georgia, serif",
       "mono":    "ui-monospace, \"SF Mono\", Menlo, Consolas, monospace"
     },
-    "notes": "Three-font system. Rock Salt is the handwritten display font (used in the wordmark and for hero titles); Barlow is the clean sans for body copy and UI; Roboto Slab is the warm slab serif for accent headings and stream card titles. All three are loaded via Ollie's font library on courtneyr.dev. Rock Salt is intentionally dense and marker-like — use it sparingly and never for long paragraphs.",
+    "notes": "Four-font system. Rock Salt is the handwritten display font (used in the wordmark and for hero displays); Barlow is the body sans for paragraphs and UI; Roboto Slab is the warm slab serif for headings, eyebrows, blockquote; system mono for code. Rock Salt is intentionally dense and marker-like — display only, never used for body or long paragraphs.",
     "role-guidance": {
-      "wordmark":       "Rock Salt, lowercase. Entire 'courtneyr.dev' renders in Rock Salt including the period (see brand/wordmark.svg).",
-      "hero-title":     "Rock Salt, regular weight, kept short (under 6 words). For longer hero titles, use the 'accent' (Roboto Slab) treatment instead.",
-      "section-h2":     "Roboto Slab, weight 800, tight leading. Warm and assertive without competing with Rock Salt.",
-      "subsection-h3":  "Roboto Slab, weight 700.",
-      "stream-title":   "Roboto Slab, weight 700. The slab serif makes post titles feel substantial next to the chip and metadata.",
-      "body":           "Barlow, weight 400–500. Excellent at body sizes. Use weight 500 for UI labels.",
-      "meta":           "Barlow, weight 600, uppercase, letter-spacing 0.08em. Used on chips, timestamps, taxonomy labels.",
-      "quote":          "Barlow italic, weight 500. Quote post-kind only.",
-      "mono":           "ui-monospace system stack. Code samples, tag rows, technical metadata."
+      "wordmark":      "Rock Salt, lowercase. Entire 'courtneyr.dev' renders in Rock Salt including the period. All-paths SVG, no font dependency at runtime (see brand/wordmark.svg).",
+      "hero-display":  "Rock Salt, regular weight, kept short (under 6 words). For longer hero titles, use the .cr-hero__title (Roboto Slab) treatment instead.",
+      "hero-title":    "Roboto Slab, weight 800–900, tight leading. The accent voice for hero sections that don't use Rock Salt.",
+      "section-h2":    "Roboto Slab, weight 800. Warm and assertive without competing with Rock Salt.",
+      "subsection-h3": "Roboto Slab, weight 700.",
+      "stream-title":  "Roboto Slab, weight 700. The slab serif makes post titles feel substantial next to the chip and metadata.",
+      "eyebrow":       "Roboto Slab, weight 700, uppercase, letter-spacing 0.12em, ut-orange. Block-level (not inline-block).",
+      "body":          "Barlow, weight 400–500. Excellent at body sizes. Use weight 500 for UI labels.",
+      "meta":          "Barlow, weight 600, uppercase, letter-spacing 0.08em. Used on chips, timestamps, taxonomy labels.",
+      "quote":         "Roboto Slab italic, weight 400. Default <blockquote> and .cr-pull-quote.",
+      "mono":          "system mono. Code samples, kbd, samp, var."
     },
     "scale": {
-      "display": { "size": "clamp(2.25rem, 5vw + 1rem, 3.5rem)", "weight": 400, "family": "display", "leading": 1.2,  "tracking": "-0.01em", "use": "Hero H1 (Rock Salt — keep short)" },
-      "h1":      { "size": "clamp(1.875rem, 3vw + 1rem, 2.5rem)", "weight": 900, "family": "accent",  "leading": 1.1,  "tracking": "-0.02em", "use": "Page titles (Roboto Slab Black)" },
-      "h2":      { "size": "clamp(1.5rem, 2vw + 0.75rem, 2.25rem)", "weight": 800, "family": "accent", "leading": 1.15, "tracking": "-0.01em", "use": "Section titles" },
-      "h3":      { "size": "1.5rem",     "weight": 700, "family": "accent", "leading": 1.2,  "use": "Subsection titles" },
-      "h4":      { "size": "1.125rem",   "weight": 700, "family": "accent", "leading": 1.3,  "use": "Stream card title (blog/video)" },
-      "lead":    { "size": "1.25rem",    "weight": 400, "family": "body",   "leading": 1.55, "use": "Intro paragraph" },
-      "body":    { "size": "1.0625rem",  "weight": 400, "family": "body",   "leading": 1.55, "use": "Paragraphs, post content" },
-      "small":   { "size": "0.875rem",   "weight": 500, "family": "body",   "use": "Captions" },
-      "meta":    { "size": "0.75rem",    "weight": 600, "family": "body",   "tracking": "0.08em", "uppercase": true, "use": "Chips, labels, timestamps" }
+      "xs":   "0.75rem",
+      "sm":   "0.875rem",
+      "base": "1rem",
+      "md":   "1.125rem",
+      "lg":   "1.25rem",
+      "xl":   "1.5rem",
+      "2xl":  "1.875rem",
+      "3xl":  "2.25rem",
+      "4xl":  "3rem",
+      "5xl":  "3.75rem"
+    },
+    "weight": {
+      "regular":   400,
+      "medium":    500,
+      "semibold":  600,
+      "bold":      700,
+      "extrabold": 800,
+      "black":     900
+    },
+    "leading": {
+      "tight":   1.15,
+      "snug":    1.35,
+      "normal":  1.55,
+      "relaxed": 1.7
+    },
+    "tracking": {
+      "tight":   "-0.01em",
+      "normal":  "0",
+      "wide":    "0.05em",
+      "eyebrow": "0.12em",
+      "widest":  "0.2em"
     }
   },
   "spacing": {
-    "base": "0.25rem",
-    "scale": ["0.25rem","0.5rem","0.75rem","1rem","1.25rem","1.5rem","2rem","2.5rem","3rem","4rem","5rem","6rem"]
+    "scale": {
+      "3xs": "0.125rem",
+      "2xs": "0.25rem",
+      "xs":  "0.5rem",
+      "sm":  "0.75rem",
+      "md":  "1rem",
+      "lg":  "1.5rem",
+      "xl":  "2rem",
+      "2xl": "3rem",
+      "3xl": "4.5rem",
+      "4xl": "6rem"
+    },
+    "measure": {
+      "narrow": "50ch",
+      "default": "65ch",
+      "wide": "80ch"
+    }
   },
   "radius": {
     "xs":   "0.25rem",
@@ -100,55 +174,100 @@
     "lg":   "1.25rem",
     "xl":   "2rem",
     "2xl":  "3rem",
-    "full": "9999px",
-    "default-image": "1.25rem",
-    "default-card":  "1.25rem",
-    "default-pill":  "9999px"
+    "full": "9999px"
   },
   "shadow": {
     "sm": "0 1px 2px rgba(36,28,74,0.06)",
-    "md": "0 4px 12px -2px rgba(36,28,74,0.1)",
+    "md": "0 4px 12px -2px rgba(36,28,74,0.10)",
     "lg": "0 10px 30px -10px rgba(36,28,74,0.25), 0 2px 8px rgba(36,28,74,0.08)",
-    "float-badge": "0 10px 30px -10px rgba(36,28,74,0.25), 0 2px 8px rgba(36,28,74,0.08)"
+    "hard":   "4px 4px 0 var(--cr-ink)",
+    "hard-2": "6px 6px 0 var(--cr-ink)",
+    "marker": "0 -0.4em 0 inset var(--cr-marker)"
+  },
+  "shapes": {
+    "rotation": {
+      "subtle":     "-1.2deg",
+      "subtleAlt":   "1.5deg",
+      "strong":     "-2.5deg",
+      "strongAlt":   "2.8deg"
+    },
+    "borderThick": "2px solid var(--cr-ink)",
+    "borderThin":  "1px solid var(--cr-rule)"
   },
   "motion": {
     "fast": "150ms",
     "base": "250ms",
     "slow": "400ms",
-    "ease-out":   "cubic-bezier(0.2, 0.8, 0.2, 1)",
+    "ease-out":    "cubic-bezier(0.2, 0.8, 0.2, 1)",
     "ease-in-out": "cubic-bezier(0.4, 0, 0.2, 1)",
-    "notes": "All non-essential motion must be gated behind @media (prefers-reduced-motion: no-preference). See components.css for the cr-drift animation pattern."
+    "notes": "All non-essential motion gated behind @media (prefers-reduced-motion: no-preference). The reduced-motion block in tokens.css zeroes out all transitions and animations."
   },
-  "signature-patterns": {
-    "shape-layering": {
-      "description": "Every feature image sits in front of a soft circle. Use .cr-shape-frame. Add a .cr-float-badge nearby for the Airo-style overlap effect.",
-      "rules": [
-        "One big circle + one small badge per image. That is the rhythm.",
-        "Circle fill must be sky-blue, light-orange, or periwinkle. Never orange or violet.",
-        "Image corner-radius: 1.25rem (20px).",
-        "Offset the circle so ~30% peeks out from behind the image.",
-        "Never combine with heavy drop shadows — the shape IS the depth.",
-        "Don't badge-overlap on thumbnails under 200px."
-      ]
-    },
-    "aggregate-stream": {
-      "description": "Hybrid homepage: keep hero + newsletter, then below them a chronological feed that mixes all post types (Post Formats, IndieWeb Post Kinds, videos, podcasts, speaking).",
-      "modeled-after": "https://nerdy.dev — Adam Argyle's single-stream aggregate",
-      "card-pattern": "emoji avatar (44px circle) + body with type chip + timestamp + title + tag row"
-    }
+  "texture": {
+    "fiber":    "subtle horizontal lines, ~1.2% opacity at 2-3px stripes, applied to body background",
+    "halftone": "radial-gradient dot overlay, ~18% opacity, 6px grid; used on hero surfaces only"
   },
-  "voice": {
-    "tone": "Warm, conversational, teacher-ish. Jen Hatmaker meets Morten Rand-Hendriksen.",
-    "avoid": ["generic AI-sounding phrasing", "corporate buzzwords", "'delve', 'navigate', 'leverage', 'robust solution'"],
-    "do": ["speak plainly", "use second person (you) when explaining", "cite sources", "show your work"]
+  "components": {
+    "cr-display":      "Rock Salt display heading",
+    "cr-eyebrow":      "Block-level kicker above a heading (display:block, NOT inline-block)",
+    "cr-highlight":    "Inline yellow-highlighter swipe",
+    "cr-pull-quote":   "Big Roboto Slab quote block, marker bar above and below",
+    "cr-callout":      "Cerulean info box (with --note, --warn modifiers)",
+    "cr-card":         "Hard-shadowed, slightly rotated card (single variant)",
+    "cr-toc":          "Light-orange table of contents",
+    "cr-tape":         "Inline masking-tape label",
+    "cr-marker-bar":   "UT Orange marker stripe section divider (--short modifier)",
+    "cr-sparkle":      "Decorative asterisk (--margin modifier)",
+    "cr-halftone":     "Halftone dot overlay (--soft modifier)",
+    "cr-accent-block": "Generic accent block (--1 sky-blue, --2 periwinkle, --3 light-orange)",
+    "cr-button":       "Full button family (--primary, --secondary, --outline, --soft) — zine restyled",
+    "cr-cta":          "Alias for .cr-button--primary",
+    "cr-chip":         "Post-type taxonomy chip — masking-tape style with per-type color",
+    "cr-hero":         "Hero layout (__inner, __display, __title, __title--accent, __lead)",
+    "cr-stream":       "Feed layout container",
+    "cr-stream-item":  "Stream feed item (__avatar, __body, __meta, __title, __tags) + per-type variants",
+    "cr-reading":      "Long-form reading container (max-width: 65ch)",
+    "cr-skip-link":    "Accessibility skip link",
+    "cr-rotate-1":     "Rotation utility -1.2deg",
+    "cr-rotate-2":     "Rotation utility 1.5deg",
+    "cr-rotate-neg":   "Rotation utility -2.5deg",
+    "cr-rotate-neg2":  "Rotation utility 2.8deg"
   },
-  "technical-context": {
-    "platform": "WordPress",
-    "theme": "Ollie block theme (with Ollie Pro)",
-    "css-application": "Ollie Manage CSS Classes panel OR child theme stylesheet",
-    "fonts-loaded-by": "Ollie theme.json — no additional font loading required",
-    "accessibility-target": "WCAG AA for body text, AAA where achievable",
-    "motion-policy": "prefers-reduced-motion respected site-wide",
-    "indieweb-plugins-active": ["Post Formats for Block Themes", "Link Extension for XFN", "ActivityPub", "IndieWeb", "IndieWeb Post Kinds"]
+  "nonNegotiables": [
+    "<dfn> has no underline (looks like a link otherwise)",
+    "figcaption color is cerulean, NOT glaucous (3.5:1 fails AA on cream)",
+    "tables stay un-rotated (built for scanning)",
+    "eyebrow is display:block, NOT inline-block",
+    "surface is printer ivory (#fbfaf5), NOT warm cream",
+    "wordmark renders as all-paths SVG with no font dependency",
+    "Rock Salt is display-only, never used for body text",
+    "AA contrast is the floor for all token combinations",
+    "tables stay un-rotated for scan readability"
+  ],
+  "wordmark": {
+    "file":    "brand/wordmark.svg",
+    "preview": "brand/wordmark-preview.png",
+    "format":  "all-paths SVG",
+    "fontDependency": false,
+    "notes": "All glyphs of 'courtneyr.dev' rendered as SVG paths from Rock Salt. Works even if Rock Salt fails to load."
+  },
+  "deprecated": {
+    "shape-layering": "Removed in v2.0. The signature soft-circle-behind-image + floating-badge pattern from v1.x is gone. Zine vocabulary (hard shadows, slight rotation, halftone, masking-tape labels) handles all depth in v2.0."
+  },
+  "files": {
+    "tokens":     "tokens/tokens.css",
+    "components": "components/components.css",
+    "wordmark":   "brand/wordmark.svg",
+    "themeJson":  "brand/theme.json.fragment.json",
+    "mockups": [
+      "design-system/mockups/hero.html",
+      "design-system/mockups/reading.html",
+      "design-system/mockups/styleguide.html"
+    ],
+    "docs": [
+      "docs/AI_CONTEXT.md",
+      "docs/COMPONENTS.md",
+      "docs/IMPLEMENTATION.md",
+      "docs/LAYERING.md"
+    ]
   }
 }

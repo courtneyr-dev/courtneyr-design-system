@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Style guide — courtneyr.dev design system v2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700&family=Barlow:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../components/components.css">
+<style>
+  body { padding: var(--cr-space-xl); }
+  .demo-tag {
+    position: fixed; top: 1rem; right: 1rem;
+    font-family: var(--cr-font-accent); font-size: var(--cr-text-sm);
+    background: var(--cr-tape); color: var(--cr-tape-ink);
+    padding: 0.25rem 0.75rem; transform: rotate(-2deg); z-index: 100;
+  }
+  .sg-section {
+    max-width: 60rem;
+    margin: 0 auto var(--cr-space-3xl);
+    padding-bottom: var(--cr-space-2xl);
+    border-bottom: var(--cr-border-thin);
+  }
+  .sg-section:last-child { border-bottom: 0; }
+  .sg-section > .sg-label {
+    font-family: var(--cr-font-mono);
+    font-size: var(--cr-text-xs);
+    color: var(--cr-ink-muted);
+    text-transform: uppercase;
+    letter-spacing: var(--cr-tracking-eyebrow);
+    display: block;
+    margin: var(--cr-space-2xl) 0 var(--cr-space-sm);
+  }
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--cr-space-sm);
+    margin: var(--cr-space-md) 0;
+  }
+  .swatch {
+    border: var(--cr-border-thick);
+    padding: var(--cr-space-sm);
+    font-family: var(--cr-font-mono);
+    font-size: var(--cr-text-xs);
+    color: var(--cr-russian-violet);
+    background: var(--cr-printer-ivory);
+  }
+  .swatch__chip {
+    display: block; width: 100%; height: 60px;
+    margin-bottom: var(--cr-space-xs);
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="cr-skip-link">Skip to content</a>
+<span class="demo-tag">v2.0 styleguide</span>
+
+<main id="main">
+
+  <header style="max-width: 60rem; margin: 0 auto;">
+    <span class="cr-eyebrow">Kitchen sink</span>
+    <h1 class="cr-display">Style guide</h1>
+    <p style="font-family: var(--cr-font-accent); font-size: var(--cr-text-md); max-width: var(--cr-measure);">
+      Every common element on one page, so dark-mode flips and accessibility regressions are obvious. Toggle your OS dark mode while scrolling — every block should flip cleanly.
+    </p>
+  </header>
+
+  <!-- ==================== PALETTE ==================== -->
+  <section class="sg-section" id="palette">
+    <span class="sg-label">// palette</span>
+    <h2>Palette</h2>
+    <div class="swatch-grid">
+      <div class="swatch"><span class="swatch__chip" style="background:#241c4a"></span>russian-violet<br>#241c4a</div>
+      <div class="swatch"><span class="swatch__chip" style="background:#bcb5e3"></span>periwinkle<br>#bcb5e3</div>
+      <div class="swatch"><span class="swatch__chip" style="background:#647baf"></span>glaucous<br>#647baf<br><em>bg only</em></div>
+      <div class="swatch"><span class="swatch__chip" style="background:#8ecae6"></span>sky-blue<br>#8ecae6</div>
+      <div class="swatch"><span class="swatch__chip" style="background:#219ebc"></span>blue-green<br>#219ebc</div>
+      <div class="swatch"><span class="swatch__chip" style="background:#126782"></span>cerulean<br>#126782</div>
+      <div class="swatch"><span class="swatch__chip" style="background:#023047"></span>prussian-blue<br>#023047</div>
+      <div class="swatch"><span class="swatch__chip" style="background:#ffb703"></span>selective-yellow<br>#ffb703</div>
+      <div class="swatch"><span class="swatch__chip" style="background:#fb8500"></span>ut-orange<br>#fb8500</div>
+      <div class="swatch"><span class="swatch__chip" style="background:#fee2c3"></span>light-orange<br>#fee2c3</div>
+      <div class="swatch"><span class="swatch__chip" style="background:#fbfaf5"></span>printer-ivory<br>#fbfaf5</div>
+      <div class="swatch"><span class="swatch__chip" style="background:#1a1714"></span>photocopier-blk<br>#1a1714</div>
+    </div>
+  </section>
+
+  <!-- ==================== HEADINGS ==================== -->
+  <section class="sg-section" id="headings">
+    <span class="sg-label">// headings</span>
+    <h2>Headings</h2>
+    <h1>H1 — Roboto Slab, the page topic</h1>
+    <h2>H2 — section heading</h2>
+    <h3>H3 — subsection</h3>
+    <h4>H4 — small subsection</h4>
+    <h5>H5 — smaller still</h5>
+    <h6>H6 — uppercase tracking</h6>
+    <p class="cr-display" style="font-size: var(--cr-text-3xl);">.cr-display — Rock Salt, opt-in</p>
+  </section>
+
+  <!-- ==================== BODY ==================== -->
+  <section class="sg-section" id="body">
+    <span class="sg-label">// body</span>
+    <h2>Body text</h2>
+    <p>This is a paragraph in <strong>Barlow</strong>, set at <code>1rem</code> with a <em>relaxed</em> line-height. <a href="#">Inline links</a> use cerulean and underline. <a href="#" style="color: var(--cr-link-hover);">Hover state</a> shifts to russian-violet.</p>
+    <p>Inline elements: <strong>strong</strong>, <em>em</em>, <small>small</small>, <mark>mark for highlights</mark>, <del>deleted</del>, <ins>inserted</ins>, <sub>subscript</sub>, <sup>superscript</sup>, <abbr title="HyperText Markup Language">abbr</abbr>, <dfn>definition</dfn> (no underline), <q>quoted text</q>, <cite>citation</cite>, <kbd>Cmd</kbd>+<kbd>K</kbd>, <samp>sample output</samp>, <var>variable</var>, <code>inline code</code>.</p>
+    <p>And the <span class="cr-highlight">highlighted span</span> — using <code>.cr-highlight</code> for opt-in marker treatment.</p>
+  </section>
+
+  <!-- ==================== LISTS ==================== -->
+  <section class="sg-section" id="lists">
+    <span class="sg-label">// lists</span>
+    <h2>Lists</h2>
+
+    <h3>Unordered</h3>
+    <ul>
+      <li>First item with the orange sparkle bullet</li>
+      <li>Second item
+        <ul>
+          <li>Nested gets a smaller blue-green bullet</li>
+          <li>Second nested</li>
+        </ul>
+      </li>
+      <li>Third item</li>
+    </ul>
+
+    <h3>Ordered</h3>
+    <ol>
+      <li>First step</li>
+      <li>Second step</li>
+      <li>Third step</li>
+    </ol>
+
+    <h3>Definition</h3>
+    <dl>
+      <dt>Webmention</dt>
+      <dd>An open standard for cross-site conversation, built on simple HTTP requests.</dd>
+      <dt>Microformats</dt>
+      <dd>Open standards for marking up data in HTML using class attributes.</dd>
+    </dl>
+  </section>
+
+  <!-- ==================== QUOTES ==================== -->
+  <section class="sg-section" id="quotes">
+    <span class="sg-label">// quotes</span>
+    <h2>Quotes</h2>
+
+    <h3>Default blockquote</h3>
+    <blockquote>
+      A regular blockquote uses Roboto Slab italic with a marker-bar left border. Used inline in posts.
+      <cite>Courtney Robertson</cite>
+    </blockquote>
+
+    <h3>Pull quote (.cr-pull-quote)</h3>
+    <blockquote class="cr-pull-quote">
+      The pull quote is for landing pages and marketing — large Roboto Slab with a top + bottom marker bar.
+      <cite>Design system spec</cite>
+    </blockquote>
+  </section>
+
+  <!-- ==================== CALLOUTS ==================== -->
+  <section class="sg-section" id="callouts">
+    <span class="sg-label">// callouts</span>
+    <h2>Callouts</h2>
+
+    <div class="cr-callout">
+      <span class="cr-callout__label">Default</span>
+      <p>The default callout uses cerulean background with light text. Optional masking-tape label.</p>
+    </div>
+
+    <div class="cr-callout cr-callout--note">
+      <span class="cr-callout__label">Note</span>
+      <p>The note variant uses prussian-blue background with light-orange text.</p>
+    </div>
+
+    <div class="cr-callout cr-callout--warn">
+      <span class="cr-callout__label">Warning</span>
+      <p>The warning variant uses selective-yellow background with prussian-blue text. High contrast, deliberately loud.</p>
+    </div>
+  </section>
+
+  <!-- ==================== CARDS / ACCENT BLOCKS ==================== -->
+  <section class="sg-section" id="cards">
+    <span class="sg-label">// cards & accent blocks</span>
+    <h2>Cards & accent blocks</h2>
+
+    <div class="cr-card">
+      <h3>A .cr-card</h3>
+      <p>Hard offset shadow, slight rotation, ivory surface. The photocopied flier feel.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--cr-space-md); margin-top: var(--cr-space-lg);">
+      <div class="cr-accent-block cr-accent-block--1"><h4>Accent 1</h4><p>Sky blue.</p></div>
+      <div class="cr-accent-block cr-accent-block--2"><h4>Accent 2</h4><p>Periwinkle.</p></div>
+      <div class="cr-accent-block cr-accent-block--3"><h4>Accent 3</h4><p>Light orange.</p></div>
+    </div>
+  </section>
+
+  <!-- ==================== TOC ==================== -->
+  <section class="sg-section" id="toc">
+    <span class="sg-label">// table of contents</span>
+    <h2>Table of contents</h2>
+    <nav class="cr-toc" aria-label="Example TOC">
+      <p class="cr-toc__heading">In this post</p>
+      <ol>
+        <li><a href="#a">First section</a></li>
+        <li><a href="#b">Second section</a></li>
+        <li><a href="#c">Third section</a></li>
+      </ol>
+    </nav>
+  </section>
+
+  <!-- ==================== TAPE / SPARKLE / MARKER ==================== -->
+  <section class="sg-section" id="accents">
+    <span class="sg-label">// accents</span>
+    <h2>Accents</h2>
+    <p><span class="cr-tape">Masking tape</span> for inline labels.</p>
+    <p>Sparkles in margins: <span class="cr-sparkle" aria-hidden="true">✦</span></p>
+    <hr class="cr-marker-bar">
+    <p>Above is the full <code>.cr-marker-bar</code>.</p>
+    <hr class="cr-marker-bar cr-marker-bar--short">
+    <p>And the short variant.</p>
+  </section>
+
+  <!-- ==================== TABLES ==================== -->
+  <section class="sg-section" id="tables">
+    <span class="sg-label">// tables (un-rotated by design)</span>
+    <h2>Tables</h2>
+    <table>
+      <caption>Locked palette — tables stay un-rotated for scan readability.</caption>
+      <thead>
+        <tr><th>Hex</th><th>Name</th><th>Role</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>#241c4a</code></td><td>Russian Violet</td><td>Primary ink</td></tr>
+        <tr><td><code>#bcb5e3</code></td><td>Periwinkle</td><td>Soft accent</td></tr>
+        <tr><td><code>#647baf</code></td><td>Glaucous</td><td>Background only</td></tr>
+        <tr><td><code>#fb8500</code></td><td>UT Orange</td><td>Primary CTA, marker</td></tr>
+        <tr><td><code>#ffb703</code></td><td>Selective Yellow</td><td>Highlighter</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== CODE ==================== -->
+  <section class="sg-section" id="code">
+    <span class="sg-label">// code</span>
+    <h2>Code</h2>
+    <p>Inline <code>&lt;code&gt;</code> sits in a tinted background.</p>
+    <pre><code>// fenced code block
+function helloWorld() {
+  return "courtneyr.dev v2.0";
+}</code></pre>
+  </section>
+
+  <!-- ==================== FORMS ==================== -->
+  <section class="sg-section" id="forms">
+    <span class="sg-label">// forms</span>
+    <h2>Forms</h2>
+    <fieldset>
+      <legend>Subscribe to the newsletter</legend>
+      <p>
+        <label for="sg-name">Your name</label>
+        <input type="text" id="sg-name" placeholder="Courtney">
+      </p>
+      <p>
+        <label for="sg-email">Email address</label>
+        <input type="email" id="sg-email" placeholder="you@example.com">
+      </p>
+      <p>
+        <label for="sg-msg">Anything to say?</label>
+        <textarea id="sg-msg" rows="3"></textarea>
+      </p>
+      <p><button type="submit">Subscribe</button></p>
+    </fieldset>
+  </section>
+
+  <!-- ==================== DETAILS ==================== -->
+  <section class="sg-section" id="details">
+    <span class="sg-label">// details / summary</span>
+    <h2>Details &amp; summary</h2>
+    <details>
+      <summary>Click to reveal — used for IndieWeb webmentions and accessible disclosures</summary>
+      <p>Hidden content appears here. The <code>&lt;details&gt;</code> element is the foundation for the YouTube-transcript disclosure pattern on courtneyr.dev.</p>
+    </details>
+  </section>
+
+  <!-- ==================== FIGURE ==================== -->
+  <section class="sg-section" id="figure">
+    <span class="sg-label">// figure</span>
+    <h2>Figure</h2>
+    <figure>
+      <div style="background: var(--cr-sky-blue); height: 200px; border: var(--cr-border-thick); display: flex; align-items: center; justify-content: center; font-family: var(--cr-font-accent); color: var(--cr-russian-violet);">
+        [example image placeholder]
+      </div>
+      <figcaption>Caption is cerulean italic — never glaucous (3.5:1 fails AA on cream).</figcaption>
+    </figure>
+  </section>
+
+  <!-- ==================== CTA ==================== -->
+  <section class="sg-section" id="cta">
+    <span class="sg-label">// CTA</span>
+    <h2>CTAs</h2>
+    <p>
+      <a href="#" class="cr-cta">Primary CTA</a>
+      <button>Default button</button>
+    </p>
+  </section>
+
+</main>
+</body>
+</html>
