@@ -424,16 +424,34 @@
   color: var(--cr-printer-ivory);
   border-left-color: transparent;                  /* solid is a filled block; no edge accent */
 }
-.cr-chip--blog.cr-chip--solid     { background: var(--cr-type-blog);     color: var(--cr-printer-ivory);  } /* 15.00:1 AAA */
-.cr-chip--video.cr-chip--solid    { background: var(--cr-type-video);    color: var(--cr-prussian-blue);  } /*  5.58:1 AA */
-.cr-chip--audio.cr-chip--solid    { background: var(--cr-type-audio);    color: var(--cr-prussian-blue);  } /*  7.93:1 AAA */
-.cr-chip--link.cr-chip--solid     { background: var(--cr-type-link);     color: var(--cr-printer-ivory);  } /*  6.11:1 AA */
-.cr-chip--bookmark.cr-chip--solid { background: var(--cr-type-bookmark); color: var(--cr-printer-ivory);  } /* 13.25:1 AAA */
-.cr-chip--quote.cr-chip--solid    { background: var(--cr-type-quote);    color: var(--cr-printer-ivory);  } /*  9.13:1 AAA */
-.cr-chip--speaking.cr-chip--solid { background: var(--cr-type-speaking); color: var(--cr-printer-ivory);  } /*  4.30:1 AA */
-.cr-chip--like.cr-chip--solid     { background: var(--cr-type-like);     color: var(--cr-printer-ivory);  } /*  4.58:1 AA */
-.cr-chip--reply.cr-chip--solid    { background: var(--cr-type-reply);    color: var(--cr-printer-ivory);  } /*  7.44:1 AAA */
-.cr-chip--review.cr-chip--solid   { background: var(--cr-type-review);   color: var(--cr-printer-ivory);  } /*  5.37:1 AA */
+/* Solid variants — grouped by post-type accent (v2.1).
+   Three small-group types (aside, chat, status — all glaucous) intentionally
+   have NO solid variant: glaucous fails AA against both light and dark text. */
+
+/* longform group → russian-violet bg */
+.cr-chip--blog.cr-chip--solid,
+.cr-chip--book.cr-chip--solid,
+.cr-chip--quote.cr-chip--solid    { background: var(--cr-russian-violet); color: var(--cr-printer-ivory); } /* 15:1 AAA */
+
+/* shares group → cerulean bg */
+.cr-chip--link.cr-chip--solid,
+.cr-chip--bookmark.cr-chip--solid,
+.cr-chip--repost.cr-chip--solid   { background: var(--cr-cerulean);       color: var(--cr-printer-ivory); } /* 6.11:1 AA */
+
+/* events group → prussian-blue bg */
+.cr-chip--speaking.cr-chip--solid,
+.cr-chip--event.cr-chip--solid,
+.cr-chip--review.cr-chip--solid   { background: var(--cr-prussian-blue);  color: var(--cr-printer-ivory); } /* 13.25:1 AAA */
+
+/* media group → blue-green bg, prussian-blue text (ivory fails on this lighter accent) */
+.cr-chip--image.cr-chip--solid,
+.cr-chip--gallery.cr-chip--solid,
+.cr-chip--video.cr-chip--solid    { background: var(--cr-blue-green);     color: var(--cr-prussian-blue);  } /* 4.57:1 AA */
+
+/* impact group → black bg */
+.cr-chip--audio.cr-chip--solid,
+.cr-chip--reply.cr-chip--solid,
+.cr-chip--like.cr-chip--solid     { background: #000000;                  color: var(--cr-printer-ivory); } /* 20:1 AAA — fixed v2.1: was prussian-blue text on black, 1.5:1 unreadable */
 
 
 /* ============ Hero layout ============
