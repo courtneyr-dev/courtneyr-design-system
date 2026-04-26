@@ -118,7 +118,7 @@
 }
 .cr-callout > :first-child { margin-top: 0; }
 .cr-callout > :last-child  { margin-bottom: 0; }
-.cr-callout a { color: var(--cr-sky-blue); }
+.cr-callout a { color: var(--cr-light-orange); }   /* 5.13:1 on cerulean, passes AA */
 
 .cr-callout__label {
   display: inline-block;
@@ -340,8 +340,19 @@
 
 
 /* ============ Chips (post-type taxonomy) ============
-   Restyled as masking-tape: yellow-cream base, hand-applied feel,
-   post-type color used as text color. The IndieWeb taxonomy is preserved.
+   Masking-tape style: yellow-cream base, slight rotation, soft shadow.
+   Post-type color is carried as a 4px left border accent (NOT as text color),
+   so text stays russian-violet on tape — 12.47:1, passes AAA at small sizes.
+   The IndieWeb taxonomy is preserved.
+
+   Variants:
+     .cr-chip                  default — tape bg + russian-violet text + transparent border
+     .cr-chip--{type}          adds a 4px left border in the post-type color
+     .cr-chip--solid           post-type color fills the chip; text adapts for AA
+                                (aside/status do NOT support --solid — glaucous
+                                fails AA against both light and dark text)
+
+   Removed in v2.0.1: .cr-chip--outline (failed AA for warm/light post-types).
 */
 .cr-chip {
   display: inline-block;
@@ -351,8 +362,9 @@
   text-transform: uppercase;
   letter-spacing: var(--cr-tracking-eyebrow);
   background: var(--cr-tape);
-  color: var(--cr-tape-ink);
+  color: var(--cr-tape-ink);                       /* always russian-violet — 12.47:1 on tape */
   padding: var(--cr-space-3xs) var(--cr-space-sm);
+  border-left: 4px solid transparent;              /* reserve the 4px; --type modifiers fill it */
   transform: rotate(var(--cr-rotate-neg));
   box-shadow: 1px 1px 0 rgba(36, 28, 74, 0.2);
   text-decoration: none;
@@ -360,38 +372,35 @@
 }
 .cr-chip + .cr-chip { margin-left: var(--cr-space-2xs); transform: rotate(var(--cr-rotate-neg2)); }
 
-/* Post-type modifiers — color shifts to the taxonomy color */
-.cr-chip--blog     { color: var(--cr-type-blog); }
-.cr-chip--link     { color: var(--cr-type-link); }
-.cr-chip--video    { color: var(--cr-type-video); }
-.cr-chip--audio    { color: var(--cr-type-audio); }
-.cr-chip--quote    { color: var(--cr-type-quote); }
-.cr-chip--aside    { color: var(--cr-type-aside); }
-.cr-chip--status   { color: var(--cr-type-status); }
-.cr-chip--speaking { color: var(--cr-type-speaking); }
-.cr-chip--book     { color: var(--cr-type-book); }
+/* Post-type modifiers — accent carried via the 4px left border, not text color */
+.cr-chip--blog     { border-left-color: var(--cr-type-blog); }
+.cr-chip--link     { border-left-color: var(--cr-type-link); }
+.cr-chip--video    { border-left-color: var(--cr-type-video); }
+.cr-chip--audio    { border-left-color: var(--cr-type-audio); }
+.cr-chip--quote    { border-left-color: var(--cr-type-quote); }
+.cr-chip--aside    { border-left-color: var(--cr-type-aside); }
+.cr-chip--status   { border-left-color: var(--cr-type-status); }
+.cr-chip--speaking { border-left-color: var(--cr-type-speaking); }
+.cr-chip--book     { border-left-color: var(--cr-type-book); }
 
-/* Solid: tape becomes the post-type color, ink flips */
+/* Solid: post-type color fills the chip; text color adapts for AA contrast.
+   Note: aside and status do NOT support .cr-chip--solid — glaucous (#647baf)
+   fails AA against both ivory text (4.02:1) and russian-violet text (3.73:1).
+   Use the default chip variant (tape + glaucous left border + russian-violet
+   text, 12.47:1 AAA) for those post-types. */
 .cr-chip--solid {
   background: var(--cr-ink);
   color: var(--cr-printer-ivory);
+  border-left-color: transparent;                  /* solid is a filled block; no edge accent */
 }
-.cr-chip--blog.cr-chip--solid     { background: var(--cr-type-blog);     color: var(--cr-prussian-blue); }
-.cr-chip--link.cr-chip--solid     { background: var(--cr-type-link);     color: var(--cr-printer-ivory); }
-.cr-chip--video.cr-chip--solid    { background: var(--cr-type-video);    color: var(--cr-printer-ivory); }
-.cr-chip--audio.cr-chip--solid    { background: var(--cr-type-audio);    color: var(--cr-printer-ivory); }
-.cr-chip--quote.cr-chip--solid    { background: var(--cr-type-quote);    color: var(--cr-printer-ivory); }
-.cr-chip--aside.cr-chip--solid    { background: var(--cr-type-aside);    color: var(--cr-printer-ivory); }
-.cr-chip--status.cr-chip--solid   { background: var(--cr-type-status);   color: var(--cr-printer-ivory); }
-.cr-chip--speaking.cr-chip--solid { background: var(--cr-type-speaking); color: var(--cr-prussian-blue); }
-.cr-chip--book.cr-chip--solid     { background: var(--cr-type-book);     color: var(--cr-printer-ivory); }
-
-/* Outline: transparent base with type-colored border */
-.cr-chip--outline {
-  background: transparent;
-  border: 2px solid currentColor;
-  box-shadow: none;
-}
+.cr-chip--blog.cr-chip--solid     { background: var(--cr-type-blog);     color: var(--cr-prussian-blue);  } /* 5.58:1  AA */
+.cr-chip--link.cr-chip--solid     { background: var(--cr-type-link);     color: var(--cr-russian-violet); } /* 4.99:1  AA */
+.cr-chip--video.cr-chip--solid    { background: var(--cr-type-video);    color: var(--cr-printer-ivory);  } /* 6.11:1  AA */
+.cr-chip--audio.cr-chip--solid    { background: var(--cr-type-audio);    color: var(--cr-printer-ivory);  } /* 6.11:1  AA */
+.cr-chip--quote.cr-chip--solid    { background: var(--cr-type-quote);    color: var(--cr-printer-ivory);  } /* 15.00:1 AAA */
+.cr-chip--speaking.cr-chip--solid { background: var(--cr-type-speaking); color: var(--cr-prussian-blue);  } /* 7.93:1  AAA */
+.cr-chip--book.cr-chip--solid     { background: var(--cr-type-book);     color: var(--cr-printer-ivory);  } /* 15.00:1 AAA */
+/* aside, status: no --solid variant. Default chip is the only supported style. */
 
 
 /* ============ Hero layout ============

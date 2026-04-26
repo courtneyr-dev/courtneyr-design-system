@@ -221,7 +221,7 @@
     "cr-accent-block": "Generic accent block (--1 sky-blue, --2 periwinkle, --3 light-orange)",
     "cr-button":       "Full button family (--primary, --secondary, --outline, --soft) — zine restyled",
     "cr-cta":          "Alias for .cr-button--primary",
-    "cr-chip":         "Post-type taxonomy chip — masking-tape style with per-type color",
+    "cr-chip":         "Post-type taxonomy chip — masking-tape style. Tape bg + russian-violet text + 4px left-border accent in the post-type color. AAA contrast at small sizes for all variants. .cr-chip--solid fills the chip with the post-type color (aside/status excluded — glaucous fails AA).",
     "cr-hero":         "Hero layout (__inner, __display, __title, __title--accent, __lead)",
     "cr-stream":       "Feed layout container",
     "cr-stream-item":  "Stream feed item (__avatar, __body, __meta, __title, __tags) + per-type variants",

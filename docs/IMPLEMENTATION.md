@@ -114,7 +114,7 @@ For the post-type chip, key off the Post Format or Post Kind taxonomy and add th
 - `cr-chip cr-chip--speaking`
 - `cr-chip cr-chip--book`
 
-Optionally combine with `cr-chip--solid` for filled chips or `cr-chip--outline` for transparent ones.
+Optionally combine with `cr-chip--solid` for filled chips. Note that `aside` and `status` post-types do NOT support `--solid` (glaucous fails AA against light or dark text); use the default chip variant for those types.
 
 For per-type stream items (e.g. visually distinguishing video posts), add `cr-stream-item--blog`, `--video`, etc. as a modifier on the item's Group block.
 

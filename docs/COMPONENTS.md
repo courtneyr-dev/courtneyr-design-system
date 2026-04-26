@@ -237,11 +237,11 @@ Alias for `.cr-button--primary`. Use either; mockups use `.cr-cta` for the prima
 
 ## .cr-chip family
 
-Post-type taxonomy chip — masking-tape style. Yellow-cream background by default, slightly rotated, soft shadow. Adjacent chips alternate rotation direction so a row of three reads as hand-applied.
+Post-type taxonomy chip — masking-tape style. Yellow-cream background, slightly rotated, soft shadow. Adjacent chips alternate rotation direction so a row of three reads as hand-applied.
 
-The IndieWeb post-type taxonomy is preserved from v1.x: each post type maps to a token color (`--cr-type-{type}`).
+The IndieWeb post-type taxonomy is preserved from v1.x: each post type maps to a token color (`--cr-type-{type}`). The post-type color is carried as a **4px left border accent** — text always stays russian-violet on tape (12.47:1, AAA at small sizes).
 
-Per-type modifiers (text color):
+Per-type modifiers (left-border accent color):
 - `.cr-chip--blog`     · `📰` blog posts
 - `.cr-chip--link`     · `🔗` linkblog
 - `.cr-chip--video`    · `📹` video
@@ -252,16 +252,19 @@ Per-type modifiers (text color):
 - `.cr-chip--speaking` · `🗣️` talks
 - `.cr-chip--book`     · `📚` book notes
 
-Style modifiers (combine with a per-type modifier):
-- `.cr-chip--solid` — fills the chip with the post-type color, light text on top
-- `.cr-chip--outline` — transparent background, post-type-colored border, post-type-colored text
+Style modifier:
+- `.cr-chip--solid` — fills the chip with the post-type color; text adapts (prussian-blue for blog/speaking, russian-violet for link, ivory for video/audio/quote/book)
+
+**Aside and status do not support `.cr-chip--solid`** — glaucous (`#647baf`) fails AA contrast against both light and dark text. Use the default chip variant (tape + glaucous left border + russian-violet text) for those types.
+
+`.cr-chip--outline` was removed in v2.0.1 — it failed AA contrast for warm/light post-type colors (ut-orange, glaucous, selective-yellow on the ivory page background).
 
 ```html
 <a href="/category/blog" class="cr-chip cr-chip--blog">Blog</a>
 <a href="/category/link" class="cr-chip cr-chip--link">Linkblog</a>
 
 <a href="/talks" class="cr-chip cr-chip--speaking cr-chip--solid">Talk</a>
-<a href="/quotes" class="cr-chip cr-chip--quote cr-chip--outline">Quote</a>
+<a href="/category/aside" class="cr-chip cr-chip--aside">Aside</a>
 ```
 
 Tags can be plain `.cr-chip` (no per-type) for non-taxonomic labels:
