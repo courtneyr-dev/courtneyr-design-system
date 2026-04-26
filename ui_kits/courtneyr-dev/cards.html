@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cards & callouts — UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../components/components.css">
+<link rel="stylesheet" href="kit.css">
+</head>
+<body data-kit-page="cards">
+<div class="kit-shell">
+  <main class="kit-main">
+    <span class="kit-page-eyebrow">06 · Components</span>
+    <h1 class="kit-page-title">Cards &amp; callouts</h1>
+    <p class="kit-page-lead">Boxed content. v1.x had three card variants (default, elevated, inverse); v2.0 collapsed to a single zine card with a -1.2° rotation and a hard 6×6 shadow. Callouts and accent blocks fill the role of the removed variants.</p>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Card</h2><span class="kit-tag">.cr-card</span></div>
+      <div class="kit-stage">
+        <div class="cr-card">
+          <h3 style="margin: 0 0 var(--cr-space-sm); font-family: var(--cr-font-accent); font-weight: 800; font-size: var(--cr-text-xl);">Notes from Tuesday</h3>
+          <p style="margin: 0;">Rotation -1.2°. Hard shadow 6×6 in ink. Sharp corners. Surface-elevated background reads slightly lifted from the ivory page.</p>
+        </div>
+      </div>
+      <p class="kit-spec"><strong>One variant only.</strong> v1.x's <code>.cr-card--elevated</code> and <code>--inverse</code> were removed in v2.0.</p>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Callouts</h2><span class="kit-tag">.cr-callout · --note · --warn</span></div>
+      <div class="kit-stage">
+        <div class="cr-callout">
+          <span class="cr-callout__label">Default</span>
+          <p style="margin: 0;">Cerulean surface, ivory ink. The masking-tape label uses a tilted .cr-callout__label.</p>
+        </div>
+        <div class="cr-callout cr-callout--note">
+          <span class="cr-callout__label">Note</span>
+          <p style="margin: 0;">Prussian-blue surface, light-orange ink. For asides that should sit calmer on the page.</p>
+        </div>
+        <div class="cr-callout cr-callout--warn">
+          <span class="cr-callout__label">Warn</span>
+          <p style="margin: 0;">Selective-yellow surface, prussian-blue ink. For deprecation notices, AA failures, sharp warnings.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Accent blocks</h2><span class="kit-tag">.cr-accent-block--1/2/3</span></div>
+      <div class="kit-stage">
+        <div class="cr-accent-block cr-accent-block--1">
+          <h3 style="margin: 0 0 var(--cr-space-sm); font-family: var(--cr-font-accent); font-weight: 800;">Block 1 — sky</h3>
+          <p style="margin: 0;">Sky-blue surface, russian-violet ink. The cool accent — used for sidebars, info panels.</p>
+        </div>
+        <div class="cr-accent-block cr-accent-block--2">
+          <h3 style="margin: 0 0 var(--cr-space-sm); font-family: var(--cr-font-accent); font-weight: 800;">Block 2 — periwinkle</h3>
+          <p style="margin: 0;">Periwinkle surface, russian-violet ink. The lavender accent — feels softer, used for testimonials and quotes.</p>
+        </div>
+        <div class="cr-accent-block cr-accent-block--3">
+          <h3 style="margin: 0 0 var(--cr-space-sm); font-family: var(--cr-font-accent); font-weight: 800;">Block 3 — light orange</h3>
+          <p style="margin: 0;">Light-orange surface, russian-violet ink. The warm accent — used for table-of-contents (.cr-toc inherits these tokens) and "what you get" lists.</p>
+        </div>
+      </div>
+      <p class="kit-spec">Dark mode auto-flips: block 1 → prussian + sky text, block 2 → russian + periwinkle text, block 3 → cerulean + light-orange text. No component changes required.</p>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Pull quote</h2><span class="kit-tag">.cr-pull-quote</span></div>
+      <div class="kit-stage">
+        <blockquote class="cr-pull-quote">
+          The fastest way to make a slow blog is to spend a year picking a stack.
+          <cite>field notes, march</cite>
+        </blockquote>
+      </div>
+      <p class="kit-spec">Roboto Slab italic, 1.5rem. Marker stripes on top &amp; bottom. The <code>cite</code> renders with an em-dash prefix.</p>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Markup</h2><span class="kit-tag">copy-paste</span></div>
+      <pre class="kit-code">&lt;div class="cr-card"&gt;…&lt;/div&gt;
+
+&lt;div class="cr-callout cr-callout--note"&gt;
+  &lt;span class="cr-callout__label"&gt;Note&lt;/span&gt;
+  &lt;p&gt;…&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="cr-accent-block cr-accent-block--3"&gt;…&lt;/div&gt;
+
+&lt;blockquote class="cr-pull-quote"&gt;…&lt;cite&gt;source&lt;/cite&gt;&lt;/blockquote&gt;</pre>
+    </section>
+  </main>
+</div>
+<script src="kit-shell.js"></script>
+</body>
+</html>

@@ -44,6 +44,34 @@
   --cr-night-elevated:  #251f1c;
   --cr-white:           #ffffff;
   --cr-black:           #000000;
+
+  /* v2.1 — extended palette for the 18-type post taxonomy.
+     Each new token was chosen to pass 3:1 against masking tape #f3e5b8
+     (WCAG 1.4.11 non-text contrast for the chip's left-border accent).
+     A few also pass 4.5:1 against tape for use as inline text/icon color.
+
+     Color           Hex      vs tape   notes
+     ──────────────  ───────  ────────  ────────────────────────────────
+     glaucous-light  #5a7ea8  3.35:1    cooler than glaucous, visually distinct
+     russian-violet- #3d2f6e  9.13:1    softer than russian-violet; chip-text safe
+       soft
+     ut-orange-dark  #b85f00  3.57:1    burnt-orange counterpart to ut-orange
+     light-orange-d. #a87a45  3.02:1    muted ochre; light-orange (#fee2c3) failed AA
+     coral           #d63240  3.81:1    warm red, marker-feel; AA pass
+     cerulean-light  #3a8090  3.58:1    softer cerulean for repost
+     glaucous-dark   #3d527d  6.19:1    deeper than glaucous; chip-text safe
+     sage            #658057  3.50:1    desaturated green for events
+     mauve           #9d4e6c  4.47:1    dusty plum for review
+  */
+  --cr-glaucous-light:      #5a7ea8;
+  --cr-russian-violet-soft: #3d2f6e;
+  --cr-ut-orange-dark:      #b85f00;
+  --cr-light-orange-dark:   #a87a45;
+  --cr-coral:               #d63240;
+  --cr-cerulean-light:      #3a8090;
+  --cr-glaucous-dark:       #3d527d;
+  --cr-sage:                #658057;
+  --cr-mauve:               #9d4e6c;
 }
 
 
@@ -243,19 +271,32 @@
 
 /* =============================================================================
    8. POST-TYPE TOKENS
-   IndieWeb taxonomy colors. Used by .cr-chip--{type} and .cr-stream-item--{type}.
-   These are the source of truth for the post-type color system.
+   IndieWeb taxonomy + WordPress standard formats + Courtney-specific types.
+   v2.1: 18 types, each with its own accent. Used by .cr-chip--{type} and
+   .cr-stream-item--{type}. Source of truth for the post-type color system.
+
+   The chip carries the accent as a 4px left-border against masking tape
+   #f3e5b8 — every value below is verified ≥3:1 vs tape (WCAG 1.4.11).
    ============================================================================= */
 :root {
-  --cr-type-blog:     var(--cr-ut-orange);
-  --cr-type-link:     var(--cr-blue-green);
-  --cr-type-video:    var(--cr-cerulean);
-  --cr-type-audio:    var(--cr-cerulean);
-  --cr-type-quote:    var(--cr-russian-violet);
-  --cr-type-aside:    var(--cr-glaucous);
-  --cr-type-status:   var(--cr-glaucous);
-  --cr-type-speaking: var(--cr-selective-yellow);
-  --cr-type-book:     var(--cr-russian-violet);
+  --cr-type-blog:     var(--cr-russian-violet);       /*  1 standard / blog */
+  --cr-type-aside:    var(--cr-glaucous);             /*  2 aside (WP standard) */
+  --cr-type-image:    var(--cr-sky-blue);             /*  3 image (WP standard) */
+  --cr-type-gallery:  var(--cr-periwinkle);           /*  4 gallery (WP standard) */
+  --cr-type-video:    var(--cr-ut-orange);            /*  5 video (WP standard) */
+  --cr-type-audio:    var(--cr-selective-yellow);     /*  6 audio (WP standard) */
+  --cr-type-chat:     var(--cr-glaucous-light);       /*  7 chat (WP standard) */
+  --cr-type-status:   var(--cr-blue-green);           /*  8 status (WP standard) */
+  --cr-type-link:     var(--cr-cerulean);             /*  9 link (WP standard) */
+  --cr-type-bookmark: var(--cr-prussian-blue);        /* 10 bookmark (IndieWeb) */
+  --cr-type-quote:    var(--cr-russian-violet-soft);  /* 11 quote (WP standard) */
+  --cr-type-speaking: var(--cr-ut-orange-dark);       /* 12 speaking (Courtney) */
+  --cr-type-book:     var(--cr-light-orange-dark);    /* 13 book (Courtney) */
+  --cr-type-like:     var(--cr-coral);                /* 14 like (IndieWeb) */
+  --cr-type-repost:   var(--cr-cerulean-light);       /* 15 repost (IndieWeb) */
+  --cr-type-reply:    var(--cr-glaucous-dark);        /* 16 reply (IndieWeb) */
+  --cr-type-event:    var(--cr-sage);                 /* 17 event (IndieWeb) */
+  --cr-type-review:   var(--cr-mauve);                /* 18 review (IndieWeb) */
 }
 
 
@@ -272,11 +313,19 @@
     rgba(36, 28, 74, 0.012) 3px
   );
 
+  /* v2.1: softened default. Was 0.18 opacity / 6px grid — fought the type. */
   --cr-halftone: radial-gradient(
+    rgba(36, 28, 74, 0.08) 1px,
+    transparent 1.2px
+  );
+  --cr-halftone-size: 12px 12px;
+
+  /* Louder variant preserved for cases that genuinely need a screentone. */
+  --cr-halftone-strong: radial-gradient(
     rgba(36, 28, 74, 0.18) 1px,
     transparent 1.2px
   );
-  --cr-halftone-size: 6px 6px;
+  --cr-halftone-strong-size: 6px 6px;
 }
 
 
@@ -337,6 +386,29 @@
       rgba(255, 255, 255, 0.018) 2px,
       rgba(255, 255, 255, 0.018) 3px
     );
+
+    /* v2.1 — post-type accents in dark mode.
+       Each maps to a brighter variant of its light-mode color so the
+       4px chip edge stays visible against dark tape (#4a3f1c).
+       Every value below verified ≥3:1 vs dark tape. */
+    --cr-type-blog:     var(--cr-printer-ivory);   /* high-contrast white-on-black */
+    --cr-type-aside:    #a8b9d4;                   /* brighter glaucous */
+    --cr-type-image:    var(--cr-sky-blue);
+    --cr-type-gallery:  var(--cr-periwinkle);
+    --cr-type-video:    var(--cr-ut-orange);
+    --cr-type-audio:    var(--cr-selective-yellow);
+    --cr-type-chat:     #a8b9d4;                   /* glaucous-light dark */
+    --cr-type-status:   var(--cr-blue-green);
+    --cr-type-link:     var(--cr-sky-blue);        /* lifted from cerulean */
+    --cr-type-bookmark: var(--cr-sky-blue);        /* lifted from prussian */
+    --cr-type-quote:    #9b8fc7;                   /* russian-violet-soft dark */
+    --cr-type-speaking: #fda659;                   /* ut-orange-dark dark */
+    --cr-type-book:     #e0bd8a;                   /* light-orange-dark dark */
+    --cr-type-like:     #f37882;                   /* coral dark */
+    --cr-type-repost:   #7cc1d4;                   /* cerulean-light dark */
+    --cr-type-reply:    #8da4cc;                   /* glaucous-dark dark */
+    --cr-type-event:    #a8c098;                   /* sage dark */
+    --cr-type-review:   #d089a3;                   /* mauve dark */
   }
 }
 

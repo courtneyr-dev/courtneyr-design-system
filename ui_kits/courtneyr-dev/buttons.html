@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Buttons — UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../components/components.css">
+<link rel="stylesheet" href="kit.css">
+</head>
+<body data-kit-page="buttons">
+<div class="kit-shell">
+  <main class="kit-main">
+    <span class="kit-page-eyebrow">04 · Components</span>
+    <h1 class="kit-page-title">Buttons</h1>
+    <p class="kit-page-lead">Sharp corners, thick borders, hard offset shadows. Active state presses the button into its own shadow — translate(2,2) + reduced shadow. Roboto Slab 700, uppercase by convention but not enforced.</p>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Variants</h2><span class="kit-tag">.cr-button--*</span></div>
+      <div class="kit-stage">
+        <div class="kit-row">
+          <a class="cr-button cr-button--primary" href="#">Primary</a>
+          <a class="cr-button cr-button--secondary" href="#">Secondary</a>
+          <a class="cr-button cr-button--outline" href="#">Outline</a>
+          <a class="cr-button cr-button--soft" href="#">Soft</a>
+        </div>
+      </div>
+      <p class="kit-spec"><strong>Primary</strong> = UT Orange CTA, hovers to russian-violet · <strong>Secondary</strong> = russian-violet, hovers to cerulean · <strong>Outline</strong> = transparent, hovers to filled ink · <strong>Soft</strong> = light-orange surface</p>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>States</h2><span class="kit-tag">:hover · :active · :focus-visible</span></div>
+      <div class="kit-stage">
+        <div class="kit-row">
+          <a class="cr-button cr-button--primary" href="#">Default</a>
+          <a class="cr-button cr-button--primary" href="#" style="background: var(--cr-cta-bg-hover); color: var(--cr-cta-ink-hover);">Hover</a>
+          <a class="cr-button cr-button--primary" href="#" style="transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--cr-ink);">Active</a>
+          <a class="cr-button cr-button--primary" href="#" style="outline: 3px solid var(--cr-focus-ring); outline-offset: 2px;">Focus-visible</a>
+        </div>
+      </div>
+      <p class="kit-spec">Active state: <code>translate(2px, 2px)</code> + shadow shrinks to 2×2. The button "presses into" its shadow — physical, satisfying. Focus ring is selective-yellow at 3px offset 2.</p>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>In context</h2><span class="kit-tag">paired CTAs</span></div>
+      <div class="kit-stage">
+        <p style="margin: 0 0 var(--cr-space-md); font-size: var(--cr-text-lg); color: var(--cr-ink);">Want to talk about a residency, workshop, or audit?</p>
+        <div class="kit-row">
+          <a class="cr-cta" href="#">Email me →</a>
+          <a class="cr-button cr-button--outline" href="#">Download speaker kit (PDF)</a>
+        </div>
+      </div>
+      <p class="kit-spec">The <code>.cr-cta</code> alias for primary is provided for clarity in marketing markup. They render identically.</p>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Dark surface</h2><span class="kit-tag">behavior under inverse bg</span></div>
+      <div class="kit-stage kit-stage--dark">
+        <div class="kit-row">
+          <a class="cr-button cr-button--primary" href="#">Primary</a>
+          <a class="cr-button cr-button--secondary" href="#">Secondary</a>
+          <a class="cr-button cr-button--outline" href="#" style="color: var(--cr-printer-ivory);">Outline</a>
+          <a class="cr-button cr-button--soft" href="#">Soft</a>
+        </div>
+        <p class="kit-spec">Outline button needs an explicit ink override on dark surfaces — the token resolves to russian-violet which disappears against ink-dark.</p>
+      </div>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Markup</h2><span class="kit-tag">copy-paste</span></div>
+      <pre class="kit-code">&lt;a class="cr-button cr-button--primary" href="…"&gt;Primary&lt;/a&gt;
+&lt;a class="cr-button cr-button--secondary" href="…"&gt;Secondary&lt;/a&gt;
+&lt;a class="cr-button cr-button--outline" href="…"&gt;Outline&lt;/a&gt;
+&lt;a class="cr-button cr-button--soft" href="…"&gt;Soft&lt;/a&gt;
+
+&lt;!-- alias --&gt;
+&lt;a class="cr-cta" href="…"&gt;Primary CTA&lt;/a&gt;</pre>
+    </section>
+  </main>
+</div>
+<script src="kit-shell.js"></script>
+</body>
+</html>

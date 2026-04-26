@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chips — UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../components/components.css">
+<link rel="stylesheet" href="kit.css">
+<style>
+  .chip-row { display: flex; gap: var(--cr-space-md); flex-wrap: wrap; align-items: center; }
+  .chip-matrix {
+    display: grid;
+    grid-template-columns: 8rem 1fr 1fr;
+    gap: var(--cr-space-md);
+    align-items: center;
+    padding: var(--cr-space-sm) 0;
+    border-bottom: 1px dashed var(--cr-border-strong);
+    font-family: var(--cr-font-mono); font-size: var(--cr-text-xs);
+  }
+  .chip-matrix:last-child { border-bottom: 0; }
+  .chip-matrix__label { color: var(--cr-ink); font-weight: 700; }
+  .chip-matrix__none { color: var(--cr-ut-orange); font-weight: 700; font-style: italic; }
+</style>
+</head>
+<body data-kit-page="chips">
+<div class="kit-shell">
+  <main class="kit-main">
+    <span class="kit-page-eyebrow">05 · Components</span>
+    <h1 class="kit-page-title">Chips</h1>
+    <p class="kit-page-lead">The 18-type post taxonomy as masking-tape labels (WordPress standard formats + IndieWeb extensions + Courtney's speaking/book types). Default chip = cream tape with a 4&nbsp;px left-border accent in the post-type color. Solid chip = filled in the post-type color, ink adapts.</p>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Default chips · all 18 types</h2><span class="kit-tag">.cr-chip + .cr-chip--{type}</span></div>
+      <div class="kit-stage">
+        <div class="chip-row">
+          <span class="cr-chip cr-chip--blog">Blog</span>
+          <span class="cr-chip cr-chip--aside">Aside</span>
+          <span class="cr-chip cr-chip--image">Image</span>
+          <span class="cr-chip cr-chip--gallery">Gallery</span>
+          <span class="cr-chip cr-chip--video">Video</span>
+          <span class="cr-chip cr-chip--audio">Audio</span>
+          <span class="cr-chip cr-chip--chat">Chat</span>
+          <span class="cr-chip cr-chip--status">Status</span>
+          <span class="cr-chip cr-chip--link">Link</span>
+          <span class="cr-chip cr-chip--bookmark">Bookmark</span>
+          <span class="cr-chip cr-chip--quote">Quote</span>
+          <span class="cr-chip cr-chip--speaking">Speaking</span>
+          <span class="cr-chip cr-chip--book">Book</span>
+          <span class="cr-chip cr-chip--like">Like</span>
+          <span class="cr-chip cr-chip--repost">Repost</span>
+          <span class="cr-chip cr-chip--reply">Reply</span>
+          <span class="cr-chip cr-chip--event">Event</span>
+          <span class="cr-chip cr-chip--review">Review</span>
+        </div>
+      </div>
+      <p class="kit-spec"><strong>Russian-violet text on cream tape</strong> = 12.47:1 (AAA). The 4&nbsp;px left border carries the post-type color so accent never compromises legibility. Every accent verified ≥3:1 vs tape (WCAG 1.4.11 non-text contrast).</p>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Solid chips</h2><span class="kit-tag">.cr-chip + --{type} + --solid</span></div>
+      <div class="kit-stage">
+        <div class="chip-row">
+          <span class="cr-chip cr-chip--blog cr-chip--solid">Blog</span>
+          <span class="cr-chip cr-chip--video cr-chip--solid">Video</span>
+          <span class="cr-chip cr-chip--audio cr-chip--solid">Audio</span>
+          <span class="cr-chip cr-chip--link cr-chip--solid">Link</span>
+          <span class="cr-chip cr-chip--bookmark cr-chip--solid">Bookmark</span>
+          <span class="cr-chip cr-chip--quote cr-chip--solid">Quote</span>
+          <span class="cr-chip cr-chip--speaking cr-chip--solid">Speaking</span>
+          <span class="cr-chip cr-chip--like cr-chip--solid">Like</span>
+          <span class="cr-chip cr-chip--reply cr-chip--solid">Reply</span>
+          <span class="cr-chip cr-chip--review cr-chip--solid">Review</span>
+        </div>
+      </div>
+      <p class="kit-spec">Eight types do <strong>not</strong> support <code>--solid</code> — their accents fail AA against both ivory text and russian-violet text:
+        <strong>aside</strong>, <strong>image</strong>, <strong>gallery</strong>, <strong>status</strong>, <strong>chat</strong>, <strong>repost</strong>, <strong>book</strong>, <strong>event</strong>. Use the default tape variant for those.</p>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Contrast matrix · 18 types</h2><span class="kit-tag">AA-vetted combinations</span></div>
+      <div class="kit-stage">
+        <div class="chip-matrix"><span class="chip-matrix__label">Type</span><span>Default chip</span><span>Solid chip</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">blog</span><span>tape · russian-violet edge · 12.47:1 AAA</span><span>russian-violet · ivory · 15.00:1 AAA</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">aside</span><span>tape · glaucous edge · 12.47:1 AAA</span><span class="chip-matrix__none">— not supported —</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">image</span><span>tape · sky-blue edge · 12.47:1 AAA</span><span class="chip-matrix__none">— not supported —</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">gallery</span><span>tape · periwinkle edge · 12.47:1 AAA</span><span class="chip-matrix__none">— not supported —</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">video</span><span>tape · ut-orange edge · 12.47:1 AAA</span><span>ut-orange · prussian · 5.58:1 AA</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">audio</span><span>tape · selective-yellow edge · 12.47:1 AAA</span><span>selective · prussian · 7.93:1 AAA</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">chat</span><span>tape · glaucous-light edge · 12.47:1 AAA</span><span class="chip-matrix__none">— not supported —</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">status</span><span>tape · blue-green edge · 12.47:1 AAA</span><span class="chip-matrix__none">— not supported —</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">link</span><span>tape · cerulean edge · 12.47:1 AAA</span><span>cerulean · ivory · 6.11:1 AA</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">bookmark</span><span>tape · prussian-blue edge · 12.47:1 AAA</span><span>prussian · ivory · 13.25:1 AAA</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">quote</span><span>tape · russian-soft edge · 12.47:1 AAA</span><span>russian-soft · ivory · 10.98:1 AAA</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">speaking</span><span>tape · ut-orange-dark edge · 12.47:1 AAA</span><span>ut-orange-dark · ivory · 4.30:1 AA</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">book</span><span>tape · light-orange-dark edge · 12.47:1 AAA</span><span class="chip-matrix__none">— not supported —</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">like</span><span>tape · coral edge · 12.47:1 AAA</span><span>coral · ivory · 4.58:1 AA</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">repost</span><span>tape · cerulean-light edge · 12.47:1 AAA</span><span class="chip-matrix__none">— not supported —</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">reply</span><span>tape · glaucous-dark edge · 12.47:1 AAA</span><span>glaucous-dark · ivory · 7.44:1 AAA</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">event</span><span>tape · sage edge · 12.47:1 AAA</span><span class="chip-matrix__none">— not supported —</span></div>
+        <div class="chip-matrix"><span class="chip-matrix__label">review</span><span>tape · mauve edge · 12.47:1 AAA</span><span>mauve · ivory · 5.37:1 AA</span></div>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>v2.1 — what changed</h2><span class="kit-tag">9 → 18</span></div>
+      <div class="cr-callout">
+        <span class="cr-callout__label">Added (9 new types)</span>
+        <p style="margin: 0;">image, gallery, chat, bookmark, like, repost, reply, event, review — bringing chips to full coverage of the WordPress standard formats + IndieWeb taxonomy.</p>
+      </div>
+      <div class="cr-callout" style="margin-top: var(--cr-space-md);">
+        <span class="cr-callout__label">Recolored (1 type)</span>
+        <p style="margin: 0;"><code>blog</code> moved from UT-orange to russian-violet (its primary brand color, freeing UT-orange for video). <code>video</code> moved from cerulean to UT-orange. <code>audio</code> moved from cerulean to selective-yellow. <code>status</code> moved from glaucous to blue-green. <code>speaking</code> moved from selective-yellow to ut-orange-dark. <code>book</code> moved from russian-violet to light-orange-dark.</p>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Removed in v2.0.1</h2><span class="kit-tag">don't bring it back</span></div>
+      <div class="cr-callout cr-callout--warn">
+        <span class="cr-callout__label">Removed</span>
+        <p style="margin: 0;"><code>.cr-chip--outline</code> — failed AA against warm/light post-type colors. The default and solid variants together cover every taxonomy + AA need.</p>
+      </div>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Markup</h2><span class="kit-tag">copy-paste</span></div>
+      <pre class="kit-code">&lt;span class="cr-chip cr-chip--blog"&gt;Blog&lt;/span&gt;
+&lt;span class="cr-chip cr-chip--blog cr-chip--solid"&gt;Blog&lt;/span&gt;</pre>
+    </section>
+  </main>
+</div>
+<script src="kit-shell.js"></script>
+</body>
+</html>

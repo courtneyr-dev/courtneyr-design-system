@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tape & sparkles — UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../components/components.css">
+<link rel="stylesheet" href="kit.css">
+<style>
+  .pinned-card {
+    position: relative;
+    background: var(--cr-surface-elevated);
+    border: var(--cr-border-thick);
+    box-shadow: var(--cr-shadow-hard);
+    padding: var(--cr-space-lg);
+    max-width: 22rem;
+  }
+  .pinned-card .cr-tape {
+    position: absolute;
+    top: -0.75rem;
+    left: 1.5rem;
+  }
+  .sparkle-stage {
+    position: relative;
+    min-height: 8rem;
+    padding: var(--cr-space-xl);
+  }
+  .sparkle-stage .cr-sparkle--margin {
+    position: absolute;
+    font-size: var(--cr-text-3xl);
+  }
+</style>
+</head>
+<body data-kit-page="tape">
+<div class="kit-shell">
+  <main class="kit-main">
+    <span class="kit-page-eyebrow">09 · Components</span>
+    <h1 class="kit-page-title">Tape &amp; sparkles</h1>
+    <p class="kit-page-lead">The vocabulary of small accents. Everything here is decorative — none of these elements should ever carry the page's primary message. Use them to pin, label, decorate margins.</p>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Tape labels</h2><span class="kit-tag">.cr-tape</span></div>
+      <div class="kit-stage">
+        <div class="kit-row" style="gap: var(--cr-space-md);">
+          <span class="cr-tape">Field notes</span>
+          <span class="cr-tape" style="transform: rotate(2.8deg);">Draft</span>
+          <span class="cr-tape" style="transform: rotate(-2.5deg);">2024</span>
+          <span class="cr-tape" style="transform: rotate(1.5deg);">Pinned</span>
+        </div>
+      </div>
+      <p class="kit-spec">Cream tape (#f3e5b8) with russian-violet ink. Slight rotation by default (-2.5°). Override with rotation utilities for variety.</p>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Tape pinning a card</h2><span class="kit-tag">absolute over corner</span></div>
+      <div class="kit-stage">
+        <div class="pinned-card">
+          <span class="cr-tape">Pinned</span>
+          <h3 style="margin: var(--cr-space-md) 0 var(--cr-space-sm); font-family: var(--cr-font-accent); font-weight: 800;">Speaker kit (PDF)</h3>
+          <p style="margin: 0;">Bio + headshots + past talks. Updated quarterly.</p>
+        </div>
+      </div>
+      <p class="kit-spec">Pin tape with <code>position: absolute; top: -0.75rem; left: 1.5rem</code> on a relatively-positioned card. The tape overlaps the card's top edge.</p>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Sparkles</h2><span class="kit-tag">.cr-sparkle · --margin</span></div>
+      <div class="kit-stage sparkle-stage">
+        <p style="margin: 0; max-width: 28rem;">Sparkles are <span class="cr-sparkle">✦</span> decorative <span class="cr-sparkle">✺</span> asterisks. Inline they sit on the baseline. The <code>--margin</code> modifier positions them absolutely.</p>
+        <span class="cr-sparkle--margin" style="top: 1rem; left: 1rem; transform: rotate(-15deg); color: var(--cr-selective-yellow);">✺</span>
+        <span class="cr-sparkle--margin" style="top: 2rem; right: 2rem; transform: rotate(20deg);">✦</span>
+        <span class="cr-sparkle--margin" style="bottom: 0.5rem; left: 4rem; transform: rotate(-25deg);">✦</span>
+      </div>
+      <p class="kit-spec">Always <code>aria-hidden="true"</code> in markup — they are not content. On narrow viewports (&lt;60rem) hide them with display: none so they don't clip into copy.</p>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Marker bars</h2><span class="kit-tag">.cr-marker-bar · --short</span></div>
+      <div class="kit-stage">
+        <hr class="cr-marker-bar">
+        <p style="text-align: center; margin: 0; color: var(--cr-ink-muted); font-family: var(--cr-font-accent); font-style: italic;">Full-width marker bar — section divider</p>
+        <hr class="cr-marker-bar cr-marker-bar--short" style="margin-top: var(--cr-space-xl);">
+        <p style="text-align: center; margin: 0; color: var(--cr-ink-muted); font-family: var(--cr-font-accent); font-style: italic;">Short variant — under section heads</p>
+      </div>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Halftone overlays</h2><span class="kit-tag">.cr-halftone · --strong</span></div>
+      <div class="kit-grid-2">
+        <div class="kit-stage cr-halftone" style="min-height: 8rem;">
+          <p style="margin: 0; font-family: var(--cr-font-accent); font-weight: 700;">Default halftone (12px / 0.08)</p>
+          <p style="margin: var(--cr-space-xs) 0 0; color: var(--cr-ink-muted);">Use behind heroes, landing surfaces.</p>
+        </div>
+        <div class="kit-stage cr-halftone--strong" style="min-height: 8rem;">
+          <p style="margin: 0; font-family: var(--cr-font-accent); font-weight: 700;">Strong halftone (6px / 0.18)</p>
+          <p style="margin: var(--cr-space-xs) 0 0; color: var(--cr-ink-muted);">For genuine screentone moments only.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Highlight</h2><span class="kit-tag">.cr-highlight</span></div>
+      <div class="kit-stage">
+        <p style="margin: 0; font-family: var(--cr-font-accent); font-size: var(--cr-text-xl); color: var(--cr-ink); max-width: 36rem;">Run any inline phrase through <span class="cr-highlight">a highlighter swipe</span> to give it the marker pass. Always slightly off-center (vertical 50–92%) so it feels hand-drawn.</p>
+      </div>
+      <p class="kit-spec">Selective-yellow swipe at 50–92% of inline-block height. Pads 0.15em horizontal. Forces russian-violet text in dark mode so contrast holds.</p>
+    </section>
+  </main>
+</div>
+<script src="kit-shell.js"></script>
+</body>
+</html>

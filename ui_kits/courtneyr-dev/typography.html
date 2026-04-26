@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Typography — UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../components/components.css">
+<link rel="stylesheet" href="kit.css">
+<style>
+  .type-spec {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: var(--cr-space-md);
+    padding: var(--cr-space-md) 0;
+    border-bottom: 1px dashed var(--cr-border-strong);
+    align-items: baseline;
+  }
+  .type-spec:last-child { border-bottom: 0; }
+  .type-spec__label {
+    font-family: var(--cr-font-mono);
+    font-size: var(--cr-text-xs);
+    color: var(--cr-ink-muted);
+    line-height: var(--cr-leading-snug);
+  }
+  .type-spec__sample { color: var(--cr-ink); margin: 0; }
+  .pair-card {
+    background: var(--cr-surface-elevated);
+    border: var(--cr-border-thick);
+    box-shadow: var(--cr-shadow-hard);
+    padding: var(--cr-space-lg);
+  }
+</style>
+</head>
+<body data-kit-page="typography">
+<div class="kit-shell">
+  <main class="kit-main">
+    <span class="kit-page-eyebrow">02 · Brand</span>
+    <h1 class="kit-page-title">Typography</h1>
+    <p class="kit-page-lead">Three families, each with a clear job. Rock Salt is the brand voice — used <em>once</em> per view, never as body text. Roboto Slab carries headings, eyebrows, and chips. Barlow runs prose.</p>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>The three families</h2><span class="kit-tag">--cr-font-*</span></div>
+      <div class="kit-stage">
+        <div class="type-spec">
+          <div class="type-spec__label"><strong>Display</strong><br>Rock Salt<br>--cr-font-display<br>400 only</div>
+          <p class="type-spec__sample" style="font-family: var(--cr-font-display); font-size: var(--cr-text-3xl); line-height: 1.05;">courtneyr.dev</p>
+        </div>
+        <div class="type-spec">
+          <div class="type-spec__label"><strong>Accent</strong><br>Roboto Slab<br>--cr-font-accent<br>400/600/700/800/900</div>
+          <p class="type-spec__sample" style="font-family: var(--cr-font-accent); font-size: var(--cr-text-2xl); font-weight: 800;">An honest blog by a working developer</p>
+        </div>
+        <div class="type-spec">
+          <div class="type-spec__label"><strong>Body</strong><br>Barlow<br>--cr-font-body<br>400/500/600/700</div>
+          <p class="type-spec__sample" style="font-family: var(--cr-font-body); font-size: var(--cr-text-md); line-height: 1.55;">Sized for long-form reading — Barlow keeps a calm rhythm at 16–18&nbsp;px and stays legible under tight column widths. Use 400 for prose, 600 for emphasis.</p>
+        </div>
+        <div class="type-spec">
+          <div class="type-spec__label"><strong>Mono</strong><br>JetBrains Mono<br>--cr-font-mono<br>400/500</div>
+          <p class="type-spec__sample" style="font-family: var(--cr-font-mono); font-size: var(--cr-text-sm);">code, kbd, --cr-tokens, kit-spec annotations</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Type scale</h2><span class="kit-tag">--cr-text-*</span></div>
+      <div class="kit-stage">
+        <div class="type-spec"><div class="type-spec__label">5xl · 3.5rem</div><p class="type-spec__sample" style="font-size: var(--cr-text-5xl); font-family: var(--cr-font-accent); font-weight: 900; line-height: 1;">Heading 5xl</p></div>
+        <div class="type-spec"><div class="type-spec__label">4xl · 2.5rem</div><p class="type-spec__sample" style="font-size: var(--cr-text-4xl); font-family: var(--cr-font-accent); font-weight: 900; line-height: 1.1;">Heading 4xl</p></div>
+        <div class="type-spec"><div class="type-spec__label">3xl · 2rem</div><p class="type-spec__sample" style="font-size: var(--cr-text-3xl); font-family: var(--cr-font-accent); font-weight: 800;">Heading 3xl</p></div>
+        <div class="type-spec"><div class="type-spec__label">2xl · 1.5rem</div><p class="type-spec__sample" style="font-size: var(--cr-text-2xl); font-family: var(--cr-font-accent); font-weight: 700;">Heading 2xl</p></div>
+        <div class="type-spec"><div class="type-spec__label">xl · 1.25rem</div><p class="type-spec__sample" style="font-size: var(--cr-text-xl); font-family: var(--cr-font-accent); font-weight: 700;">Heading xl</p></div>
+        <div class="type-spec"><div class="type-spec__label">lg · 1.125rem</div><p class="type-spec__sample" style="font-size: var(--cr-text-lg);">Lead size lg</p></div>
+        <div class="type-spec"><div class="type-spec__label">md · 1rem</div><p class="type-spec__sample" style="font-size: var(--cr-text-md);">Body size md (default)</p></div>
+        <div class="type-spec"><div class="type-spec__label">sm · 0.875rem</div><p class="type-spec__sample" style="font-size: var(--cr-text-sm);">Small sm — eyebrows, captions</p></div>
+        <div class="type-spec"><div class="type-spec__label">xs · 0.75rem</div><p class="type-spec__sample" style="font-size: var(--cr-text-xs);">Extra small xs — chips, meta</p></div>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Pairings in the wild</h2><span class="kit-tag">how they combine</span></div>
+      <div class="kit-grid-2">
+        <div class="pair-card">
+          <span class="cr-eyebrow">Field notes</span>
+          <h3 style="margin: 0 0 var(--cr-space-sm); font-family: var(--cr-font-accent); font-size: var(--cr-text-2xl); font-weight: 800; color: var(--cr-ink);">Why I left the framework treadmill</h3>
+          <p style="margin: 0; color: var(--cr-ink); font-size: var(--cr-text-md); line-height: 1.55;">Eyebrow: Roboto Slab 700 small caps. Title: Roboto Slab 800. Body: Barlow 400. The hierarchy is family + weight, never color.</p>
+        </div>
+        <div class="pair-card">
+          <p style="font-family: var(--cr-font-display); font-size: var(--cr-text-2xl); margin: 0 0 var(--cr-space-sm); transform: rotate(-1.5deg); display: inline-block;">hello there</p>
+          <p style="margin: 0; font-size: var(--cr-text-md); color: var(--cr-ink-muted);">Rock Salt is decorative — used <strong>once</strong> per page, sparingly, and always with a slight rotation. Pair with calm Roboto Slab so the page doesn't get noisy.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>The rules</h2><span class="kit-tag">don'ts</span></div>
+      <div class="cr-callout">
+        <span class="cr-callout__label">Type rules</span>
+        <ul style="margin: var(--cr-space-sm) 0 0; color: var(--cr-callout-ink);">
+          <li>Rock Salt only at <code>--cr-text-2xl</code> or larger. Never below.</li>
+          <li>Rock Salt once per view. If you want it twice, you want one Rock Salt &amp; one Roboto Slab 900.</li>
+          <li>Body type is Barlow. Headings are Roboto Slab. Don't mix.</li>
+          <li>Tracking is set on the eyebrow, not on body. Don't space-letter prose.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="kit-shell.js"></script>
+</body>
+</html>

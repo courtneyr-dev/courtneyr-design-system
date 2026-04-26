@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hero — UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../components/components.css">
+<link rel="stylesheet" href="kit.css">
+<style>
+  /* Hero sparkles — a row above the eyebrow. v2.1 pattern. */
+  .hero-sparkles {
+    display: flex;
+    gap: var(--cr-space-md);
+    margin-bottom: var(--cr-space-sm);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  .hero-sparkles span {
+    font-size: var(--cr-text-2xl);
+    color: var(--cr-marker);
+    line-height: 1;
+  }
+  .hero-sparkles span:nth-child(1) { color: var(--cr-selective-yellow); transform: rotate(-15deg); }
+  .hero-sparkles span:nth-child(2) { transform: rotate(20deg); }
+  .hero-sparkles span:nth-child(3) { color: var(--cr-blue-green); transform: rotate(-8deg); }
+</style>
+</head>
+<body data-kit-page="hero">
+<div class="kit-shell">
+  <main class="kit-main">
+    <span class="kit-page-eyebrow">07 · Components</span>
+    <h1 class="kit-page-title">Hero</h1>
+    <p class="kit-page-lead">The .cr-hero primitive: a halftone-and-fiber surface with an inner column. The display, title, lead, and accent-title elements are the only required descendants. v1.x's __shape (blob shapes for layering) was removed in v2.0.</p>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Default — display + lead + CTA</h2><span class="kit-tag">.cr-hero</span></div>
+      <div class="kit-stage" style="padding: 0;">
+        <section class="cr-hero">
+          <div class="cr-hero__inner">
+            <div class="hero-sparkles" aria-hidden="true"><span>✺</span><span>✦</span><span>✦</span></div>
+            <span class="cr-eyebrow">Field notes &amp; talks</span>
+            <h2 class="cr-hero__display">an honest blog</h2>
+            <p class="cr-hero__lead">Written between 9-to-5 work and weekend rebuilds. <span class="cr-highlight">No course funnel</span>, no newsletter pop-up — just things I figured out the hard way.</p>
+            <div style="display: flex; gap: var(--cr-space-md);">
+              <a class="cr-cta" href="#">Read the latest →</a>
+              <a class="cr-button cr-button--outline" href="#">RSS feed</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Section hero — accent title</h2><span class="kit-tag">.cr-hero__title--accent</span></div>
+      <div class="kit-stage" style="padding: 0;">
+        <section class="cr-hero" style="padding: var(--cr-space-2xl) var(--cr-space-xl);">
+          <div class="cr-hero__inner">
+            <span class="cr-eyebrow">Speaking</span>
+            <h2 class="cr-hero__title cr-hero__title--accent">where i'll be next</h2>
+            <p class="cr-hero__lead">A shorter hero variant — for index-page section headers, archive lists, and tag landings. The accent title swaps to marker color for emphasis.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <hr class="kit-divider">
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Anatomy</h2><span class="kit-tag">__inner / __display / __title / __lead</span></div>
+      <div class="kit-stage">
+        <table style="margin: 0; font-family: var(--cr-font-mono); font-size: var(--cr-text-sm);">
+          <thead><tr><th>Element</th><th>Family</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td>.cr-hero</td><td>—</td><td>Outer wrapper · halftone + fiber + ivory surface</td></tr>
+            <tr><td>.cr-hero__inner</td><td>—</td><td>60rem max-width column, centered</td></tr>
+            <tr><td>.cr-hero__display</td><td>Rock Salt</td><td>Brand-voice display heading. <strong>Once per page.</strong></td></tr>
+            <tr><td>.cr-hero__title</td><td>Roboto Slab 900</td><td>Workhorse heading for section heroes</td></tr>
+            <tr><td>.cr-hero__title--accent</td><td>Roboto Slab 800</td><td>Marker-color variant for index pages</td></tr>
+            <tr><td>.cr-hero__lead</td><td>Roboto Slab 400</td><td>1.25rem lead paragraph, 40rem max-width</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>What's gone</h2><span class="kit-tag">v1.x → v2.0</span></div>
+      <div class="cr-callout cr-callout--warn">
+        <span class="cr-callout__label">Removed</span>
+        <p style="margin: 0;"><code>.cr-hero__shape</code>, <code>.cr-hero__shape--1</code>, <code>.cr-hero__shape--2</code> — the floating blob shapes. Layering is now exclusively halftone + fiber + sparkle margin. See the <a href="layering.html">Layering page</a>.</p>
+      </div>
+    </section>
+
+    <section class="kit-section">
+      <div class="kit-section__head"><h2>Markup</h2><span class="kit-tag">copy-paste</span></div>
+      <pre class="kit-code">&lt;section class="cr-hero"&gt;
+  &lt;div class="cr-hero__inner"&gt;
+    &lt;span class="cr-eyebrow"&gt;Field notes&lt;/span&gt;
+    &lt;h2 class="cr-hero__display"&gt;hello there&lt;/h2&gt;
+    &lt;p class="cr-hero__lead"&gt;…&lt;/p&gt;
+    &lt;a class="cr-cta" href="…"&gt;Read latest →&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</pre>
+    </section>
+  </main>
+</div>
+<script src="kit-shell.js"></script>
+</body>
+</html>
