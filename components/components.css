@@ -420,38 +420,63 @@
      • sage      — sage               (3.57:1 violet)
 */
 .cr-chip--solid {
-  background: var(--cr-ink);
-  color: var(--cr-printer-ivory);
+  background: var(--cr-ink);                       /* russian-violet → ivory in dark */
+  color: var(--cr-ink-inverse);                    /* ivory → russian-violet in dark — auto-flips */
   border-left-color: transparent;                  /* solid is a filled block; no edge accent */
 }
 /* Solid variants — grouped by post-type accent (v2.1).
    Three small-group types (aside, chat, status — all glaucous) intentionally
-   have NO solid variant: glaucous fails AA against both light and dark text. */
+   have NO solid variant: glaucous fails AA against both light and dark text.
+   Backgrounds use --cr-type-* tokens so they auto-flip in dark mode (e.g.
+   russian-violet → selective-yellow for longform). The dark-mode @media block
+   below flips the text colors correspondingly. */
 
-/* longform group → russian-violet bg */
+/* longform group — light: russian-violet bg / dark: selective-yellow bg */
 .cr-chip--blog.cr-chip--solid,
 .cr-chip--book.cr-chip--solid,
-.cr-chip--quote.cr-chip--solid    { background: var(--cr-russian-violet); color: var(--cr-printer-ivory); } /* 15:1 AAA */
+.cr-chip--quote.cr-chip--solid    { background: var(--cr-type-blog);     color: var(--cr-printer-ivory); } /* light 15:1 AAA */
 
-/* shares group → cerulean bg */
+/* shares group — light: cerulean bg / dark: sky-blue bg */
 .cr-chip--link.cr-chip--solid,
 .cr-chip--bookmark.cr-chip--solid,
-.cr-chip--repost.cr-chip--solid   { background: var(--cr-cerulean);       color: var(--cr-printer-ivory); } /* 6.11:1 AA */
+.cr-chip--repost.cr-chip--solid   { background: var(--cr-type-link);     color: var(--cr-printer-ivory); } /* light 6.11:1 AA */
 
-/* events group → prussian-blue bg */
+/* events group — light: prussian-blue bg / dark: periwinkle bg */
 .cr-chip--speaking.cr-chip--solid,
 .cr-chip--event.cr-chip--solid,
-.cr-chip--review.cr-chip--solid   { background: var(--cr-prussian-blue);  color: var(--cr-printer-ivory); } /* 13.25:1 AAA */
+.cr-chip--review.cr-chip--solid   { background: var(--cr-type-speaking); color: var(--cr-printer-ivory); } /* light 13.25:1 AAA */
 
-/* media group → blue-green bg, prussian-blue text (ivory fails on this lighter accent) */
+/* media group — blue-green bg in BOTH modes; prussian-blue text works for both */
 .cr-chip--image.cr-chip--solid,
 .cr-chip--gallery.cr-chip--solid,
-.cr-chip--video.cr-chip--solid    { background: var(--cr-blue-green);     color: var(--cr-prussian-blue);  } /* 4.57:1 AA */
+.cr-chip--video.cr-chip--solid    { background: var(--cr-type-video);    color: var(--cr-prussian-blue);  } /* light/dark 4.57:1 AA */
 
-/* impact group → black bg */
+/* impact group — light: black bg / dark: white bg */
 .cr-chip--audio.cr-chip--solid,
 .cr-chip--reply.cr-chip--solid,
-.cr-chip--like.cr-chip--solid     { background: #000000;                  color: var(--cr-printer-ivory); } /* 20:1 AAA — fixed v2.1: was prussian-blue text on black, 1.5:1 unreadable */
+.cr-chip--like.cr-chip--solid     { background: var(--cr-type-audio);    color: var(--cr-printer-ivory); } /* light 20:1 AAA */
+
+/* Dark-mode text overrides for solid chips —
+   when light-end accents become the chip bg in dark mode, text must flip to dark. */
+@media (prefers-color-scheme: dark) {
+  .cr-chip--blog.cr-chip--solid,
+  .cr-chip--book.cr-chip--solid,
+  .cr-chip--quote.cr-chip--solid,
+  .cr-chip--link.cr-chip--solid,
+  .cr-chip--bookmark.cr-chip--solid,
+  .cr-chip--repost.cr-chip--solid,
+  .cr-chip--speaking.cr-chip--solid,
+  .cr-chip--event.cr-chip--solid,
+  .cr-chip--review.cr-chip--solid,
+  .cr-chip--audio.cr-chip--solid,
+  .cr-chip--reply.cr-chip--solid,
+  .cr-chip--like.cr-chip--solid    { color: var(--cr-russian-violet); }
+  /* longform: selective-yellow + russian-violet = 8.50:1 AAA
+     shares:   sky-blue         + russian-violet = 9.27:1 AAA
+     events:   periwinkle       + russian-violet = 7.93:1 AAA
+     impact:   white            + russian-violet = 15:1   AAA
+     media:    blue-green stays in both modes — no override needed */
+}
 
 
 /* ============ Hero layout ============
