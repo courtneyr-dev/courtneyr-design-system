@@ -374,8 +374,8 @@
   font-weight: var(--cr-weight-bold);
   text-transform: uppercase;
   letter-spacing: var(--cr-tracking-eyebrow);
-  background: var(--cr-tape);
-  color: var(--cr-tape-ink);                       /* always russian-violet — 12.47:1 on tape */
+  background: var(--cr-surface);
+  color: var(--cr-tape-ink);                       /* russian-violet on ivory — 15:1 (was on cream tape; moved to ivory for AA accent variety) */
   padding: var(--cr-space-3xs) var(--cr-space-sm);
   border-left: 4px solid transparent;              /* reserve the 4px; --type modifiers fill it */
   transform: rotate(var(--cr-rotate-neg));

@@ -214,50 +214,56 @@ components:
     rounded: 0
     padding: 12px 24px
 
-  # ---------- Chips (post-type taxonomy + masking-tape) ----------
-  # All defaults: russian-violet text on tape (12.47:1 AAA).
+  # ---------- Chips (post-type taxonomy) ----------
+  # v2.1 — chip background is IVORY (was masking tape in v2.0). The cream-tape
+  # vocabulary is preserved for eyebrows + callout labels but not chips, because
+  # too few palette colors passed AA on tape. On ivory, 6 palette accents pass:
+  # russian-violet, cerulean, prussian-blue, blue-green, glaucous, plus black.
+  # 18 post types map to these 6 accents in 6 thematic groups; the icon shape
+  # carries per-type identification within a group.
+  # All chip defaults: russian-violet text on ivory (15:1 AAA).
   # Per-type modifiers add a 4px left border in the post-type color.
   chip:
-    backgroundColor: "{colors.tape}"
-    textColor: "{colors.on-tape}"
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
     rounded: 0
     padding: 2px 12px
   chip-blog:
-    backgroundColor: "{colors.tape}"
-    textColor: "{colors.on-tape}"
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
   chip-link:
-    backgroundColor: "{colors.tape}"
-    textColor: "{colors.on-tape}"
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
   chip-video:
-    backgroundColor: "{colors.tape}"
-    textColor: "{colors.on-tape}"
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
   chip-audio:
-    backgroundColor: "{colors.tape}"
-    textColor: "{colors.on-tape}"
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
   chip-quote:
-    backgroundColor: "{colors.tape}"
-    textColor: "{colors.on-tape}"
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
   chip-aside:
-    backgroundColor: "{colors.tape}"
-    textColor: "{colors.on-tape}"
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
   chip-status:
-    backgroundColor: "{colors.tape}"
-    textColor: "{colors.on-tape}"
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
   chip-speaking:
-    backgroundColor: "{colors.tape}"
-    textColor: "{colors.on-tape}"
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
   chip-book:
-    backgroundColor: "{colors.tape}"
-    textColor: "{colors.on-tape}"
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
 
   # Solid chips — post-type color fills the chip, text adapts for AA
@@ -303,9 +309,10 @@ components:
     typography: "{typography.chip}"
     rounded: 0
     padding: 2px 12px
-  # NOTE: chip-aside-solid and chip-status-solid intentionally omitted —
-  # glaucous fails AA against both light and dark text. Use the default
-  # chip variant (tape + glaucous border + russian-violet text) instead.
+  # NOTE: chip-{aside,chat,status}-solid intentionally omitted —
+  # glaucous (the small-group accent) fails AA against both light and dark text
+  # when used as a chip background. Use the default chip variant for these
+  # types: ivory background + glaucous border + russian-violet text.
 
   # ---------- Containers (callout, card, accent blocks, toc) ----------
   callout:

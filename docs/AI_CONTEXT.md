@@ -84,19 +84,34 @@ These came out of real iteration. Each has a reason.
 
 ## Post-type taxonomy (for the stream feed)
 
-| Type | Emoji | Color |
-|------|-------|-------|
-| Blog | 📰 | `#fb8500` |
-| Link | 🔗 | `#219ebc` |
-| Video | 📹 | `#126782` |
-| Audio | 🎧 | `#126782` |
-| Quote | 🔖 | `#241c4a` (italic text) |
-| Aside | 🗯️ | `#647baf` |
-| Status | 🖊️ | `#647baf` |
-| Speaking | 🗣️ | `#ffb703` |
-| Book | 📚 | `#241c4a` |
+The taxonomy covers **18 post types**: WordPress's 10 standard post formats, plus `speaking` and `book` (Courtney's custom CPTs), plus 6 IndieWeb extensions. Each type maps to one of **6 AA-passing palette colors** grouped thematically. The icon shape is the primary identifier within a color group; the color tells you what *kind* of action this is.
 
-These map to `--cr-type-{type}` tokens in `tokens.css`. Used by `.cr-chip--{type}` (masking-tape chips) and `.cr-stream-item--{type}` (per-type accent on the stream feed).
+| # | Type | Token | Accent | Group | Source |
+|---|------|-------|--------|-------|--------|
+| 01 | blog (default) | `--cr-type-blog` | russian-violet | longform / written | WP default |
+| 02 | aside | `--cr-type-aside` | glaucous | small / interstitial | WP standard |
+| 03 | image | `--cr-type-image` | blue-green | visual media | WP standard |
+| 04 | gallery | `--cr-type-gallery` | blue-green | visual media | WP standard |
+| 05 | video | `--cr-type-video` | blue-green | visual media | WP standard |
+| 06 | audio | `--cr-type-audio` | black | impact / expression | WP standard |
+| 07 | chat | `--cr-type-chat` | glaucous | small / interstitial | WP standard |
+| 08 | status | `--cr-type-status` | glaucous | small / interstitial | WP standard |
+| 09 | link | `--cr-type-link` | cerulean | shares / outbound | WP standard |
+| 10 | bookmark | `--cr-type-bookmark` | cerulean | shares / outbound | IndieWeb |
+| 11 | quote | `--cr-type-quote` | russian-violet | longform / written | WP standard |
+| 12 | speaking | `--cr-type-speaking` | prussian-blue | events / judgment | Courtney CPT |
+| 13 | book | `--cr-type-book` | russian-violet | longform / written | Courtney CPT |
+| 14 | like | `--cr-type-like` | black | impact / expression | IndieWeb |
+| 15 | repost | `--cr-type-repost` | cerulean | shares / outbound | IndieWeb |
+| 16 | reply | `--cr-type-reply` | black | impact / expression | IndieWeb |
+| 17 | event | `--cr-type-event` | prussian-blue | events / judgment | IndieWeb |
+| 18 | review | `--cr-type-review` | prussian-blue | events / judgment | IndieWeb |
+
+Why only 6 accents instead of 18? Math. Of the 11 brand palette colors, only 6 pass WCAG 1.4.11's 3:1 non-text contrast threshold against the ivory chip surface (`#fbfaf5`). Periwinkle, sky-blue, ut-orange, selective-yellow, light-orange, and gray are too light. Expanding the palette to support 18 distinct accents was rejected — palette discipline wins. The icon shape carries the per-type identification; the color carries the group.
+
+These tokens map to `--cr-type-{type}` in `tokens.css`, applied via `.cr-chip--{type}` (chips with a 4px left border in the type's accent) and `.cr-stream-item--{type}` (per-type accent stripe on the stream feed).
+
+**Dark-mode inversion:** the same groups invert to light-end palette colors (selective-yellow, sky-blue, periwinkle, blue-green, glaucous, white) on photocopier black. See dark-mode block in `tokens.css`.
 
 ## Dark mode
 

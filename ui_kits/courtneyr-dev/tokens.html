@@ -61,19 +61,19 @@
     <hr class="kit-divider">
 
     <section class="kit-section">
-      <div class="kit-section__head"><h2>v2.1 extended palette</h2><span class="kit-tag">9 new · taxonomy support</span></div>
-      <p class="kit-spec" style="margin-top:0;">Added to support the 9 new post types (image, gallery, chat, bookmark, like, repost, reply, event, review) plus deeper variants of existing colors for speaking and book. Every value below verified ≥3:1 vs masking tape (WCAG 1.4.11 non-text contrast).</p>
-      <div class="kit-swatch-grid">
-        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#5a7ea8"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Glaucous Light</span>--cr-glaucous-light<br>#5a7ea8 · 3.35:1 vs tape</div></div>
-        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#3d2f6e"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Russian Violet Soft</span>--cr-russian-violet-soft<br>#3d2f6e · 9.13:1 vs tape</div></div>
-        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#b85f00"></div><div class="kit-swatch__body"><span class="kit-swatch__name">UT Orange Dark</span>--cr-ut-orange-dark<br>#b85f00 · 3.57:1 vs tape</div></div>
-        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#a87a45"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Light Orange Dark</span>--cr-light-orange-dark<br>#a87a45 · 3.02:1 vs tape</div></div>
-        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#d63240"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Coral</span>--cr-coral<br>#d63240 · 3.81:1 vs tape</div></div>
-        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#3a8090"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Cerulean Light</span>--cr-cerulean-light<br>#3a8090 · 3.58:1 vs tape</div></div>
-        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#3d527d"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Glaucous Dark</span>--cr-glaucous-dark<br>#3d527d · 6.19:1 vs tape</div></div>
-        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#658057"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Sage</span>--cr-sage<br>#658057 · 3.50:1 vs tape</div></div>
-        <div class="kit-swatch"><div class="kit-swatch__chip" style="background:#9d4e6c"></div><div class="kit-swatch__body"><span class="kit-swatch__name">Mauve</span>--cr-mauve<br>#9d4e6c · 4.47:1 vs tape</div></div>
-      </div>
+      <div class="kit-section__head"><h2>v2.1 accent set — 6 colors, palette-strict, WCAG 2.2 AA</h2><span class="kit-tag">no palette expansion</span></div>
+      <p class="kit-spec" style="margin-top:0;">v2.1 keeps the 11-color brand palette intact. Only the 6 darkest/most-saturated palette colors pass WCAG 1.4.11's 3:1 non-text contrast threshold against the ivory chip surface (#fbfaf5). 18 post types map to these 6 accents in 6 thematic groups; the icon shape disambiguates within a group.</p>
+      <table class="kit-table">
+        <thead><tr><th>Accent</th><th>Token</th><th>Ratio vs ivory</th><th>Group</th><th>Post types</th></tr></thead>
+        <tbody>
+          <tr><td>Russian Violet</td><td><code>--cr-russian-violet</code></td><td>15:1</td><td>longform / written</td><td>blog · book · quote</td></tr>
+          <tr><td>Cerulean</td><td><code>--cr-cerulean</code></td><td>6.11:1</td><td>shares / outbound</td><td>link · bookmark · repost</td></tr>
+          <tr><td>Prussian Blue</td><td><code>--cr-prussian-blue</code></td><td>13.25:1</td><td>events / judgment</td><td>speaking · event · review</td></tr>
+          <tr><td>Blue-Green</td><td><code>--cr-blue-green</code></td><td>3.01:1</td><td>visual media</td><td>image · gallery · video</td></tr>
+          <tr><td>Glaucous</td><td><code>--cr-glaucous</code></td><td>4.02:1</td><td>small / interstitial</td><td>aside · chat · status</td></tr>
+          <tr><td>Black</td><td><code>#000000</code></td><td>20:1</td><td>impact / expression</td><td>audio · reply · like</td></tr>
+        </tbody>
+      </table>
     </section>
 
     <hr class="kit-divider">
@@ -85,24 +85,24 @@
         <table style="margin:0">
           <thead><tr><th>#</th><th>Type</th><th>Token</th><th>Resolves to</th><th>Source</th></tr></thead>
           <tbody>
-            <tr><td>01</td><td>blog</td><td><code>--cr-type-blog</code></td><td>Russian Violet</td><td>standard</td></tr>
+            <tr><td>01</td><td>blog</td><td><code>--cr-type-blog</code></td><td>Russian Violet</td><td>WP default</td></tr>
             <tr><td>02</td><td>aside</td><td><code>--cr-type-aside</code></td><td>Glaucous</td><td>WP standard</td></tr>
-            <tr><td>03</td><td>image</td><td><code>--cr-type-image</code></td><td>Sky Blue</td><td>WP standard</td></tr>
-            <tr><td>04</td><td>gallery</td><td><code>--cr-type-gallery</code></td><td>Periwinkle</td><td>WP standard</td></tr>
-            <tr><td>05</td><td>video</td><td><code>--cr-type-video</code></td><td>UT Orange</td><td>WP standard</td></tr>
-            <tr><td>06</td><td>audio</td><td><code>--cr-type-audio</code></td><td>Selective Yellow</td><td>WP standard</td></tr>
-            <tr><td>07</td><td>chat</td><td><code>--cr-type-chat</code></td><td>Glaucous Light</td><td>WP standard</td></tr>
-            <tr><td>08</td><td>status</td><td><code>--cr-type-status</code></td><td>Blue-Green</td><td>WP standard</td></tr>
+            <tr><td>03</td><td>image</td><td><code>--cr-type-image</code></td><td>Blue-Green</td><td>WP standard</td></tr>
+            <tr><td>04</td><td>gallery</td><td><code>--cr-type-gallery</code></td><td>Blue-Green</td><td>WP standard</td></tr>
+            <tr><td>05</td><td>video</td><td><code>--cr-type-video</code></td><td>Blue-Green</td><td>WP standard</td></tr>
+            <tr><td>06</td><td>audio</td><td><code>--cr-type-audio</code></td><td>Black</td><td>WP standard</td></tr>
+            <tr><td>07</td><td>chat</td><td><code>--cr-type-chat</code></td><td>Glaucous</td><td>WP standard</td></tr>
+            <tr><td>08</td><td>status</td><td><code>--cr-type-status</code></td><td>Glaucous</td><td>WP standard</td></tr>
             <tr><td>09</td><td>link</td><td><code>--cr-type-link</code></td><td>Cerulean</td><td>WP standard</td></tr>
-            <tr><td>10</td><td>bookmark</td><td><code>--cr-type-bookmark</code></td><td>Prussian Blue</td><td>IndieWeb</td></tr>
-            <tr><td>11</td><td>quote</td><td><code>--cr-type-quote</code></td><td>Russian Violet Soft</td><td>WP standard</td></tr>
-            <tr><td>12</td><td>speaking</td><td><code>--cr-type-speaking</code></td><td>UT Orange Dark</td><td>Courtney</td></tr>
-            <tr><td>13</td><td>book</td><td><code>--cr-type-book</code></td><td>Light Orange Dark</td><td>Courtney</td></tr>
-            <tr><td>14</td><td>like</td><td><code>--cr-type-like</code></td><td>Coral</td><td>IndieWeb</td></tr>
-            <tr><td>15</td><td>repost</td><td><code>--cr-type-repost</code></td><td>Cerulean Light</td><td>IndieWeb</td></tr>
-            <tr><td>16</td><td>reply</td><td><code>--cr-type-reply</code></td><td>Glaucous Dark</td><td>IndieWeb</td></tr>
-            <tr><td>17</td><td>event</td><td><code>--cr-type-event</code></td><td>Sage</td><td>IndieWeb</td></tr>
-            <tr><td>18</td><td>review</td><td><code>--cr-type-review</code></td><td>Mauve</td><td>IndieWeb</td></tr>
+            <tr><td>10</td><td>bookmark</td><td><code>--cr-type-bookmark</code></td><td>Cerulean</td><td>IndieWeb</td></tr>
+            <tr><td>11</td><td>quote</td><td><code>--cr-type-quote</code></td><td>Russian Violet</td><td>WP standard</td></tr>
+            <tr><td>12</td><td>speaking</td><td><code>--cr-type-speaking</code></td><td>Prussian Blue</td><td>Courtney</td></tr>
+            <tr><td>13</td><td>book</td><td><code>--cr-type-book</code></td><td>Russian Violet</td><td>Courtney</td></tr>
+            <tr><td>14</td><td>like</td><td><code>--cr-type-like</code></td><td>Black</td><td>IndieWeb</td></tr>
+            <tr><td>15</td><td>repost</td><td><code>--cr-type-repost</code></td><td>Cerulean</td><td>IndieWeb</td></tr>
+            <tr><td>16</td><td>reply</td><td><code>--cr-type-reply</code></td><td>Black</td><td>IndieWeb</td></tr>
+            <tr><td>17</td><td>event</td><td><code>--cr-type-event</code></td><td>Prussian Blue</td><td>IndieWeb</td></tr>
+            <tr><td>18</td><td>review</td><td><code>--cr-type-review</code></td><td>Prussian Blue</td><td>IndieWeb</td></tr>
           </tbody>
         </table>
       </div>
