@@ -8,47 +8,47 @@ description: >
 
 colors:
   # ---- Spec idioms (primary / secondary / tertiary / accent / neutral) ----
-  primary:           "#241c4a"   # Russian Violet — main ink, headings, nav
-  secondary:         "#126782"   # Cerulean — links, muted ink, callout bg
-  tertiary:          "#fb8500"   # UT Orange — primary CTA, marker bar, sparkles
-  accent:            "#ffb703"   # Selective Yellow — highlighter, focus ring
-  neutral:           "#fbfaf5"   # Printer Ivory — page surface (light)
-  neutral-dark:      "#1a1714"   # Photocopier Black — page surface (dark)
+  primary: "#241c4a" # Russian Violet — main ink, headings, nav
+  secondary: "#126782" # Cerulean — links, muted ink, callout bg
+  tertiary: "#fb8500" # UT Orange — primary CTA, marker bar, sparkles
+  accent: "#ffb703" # Selective Yellow — highlighter, focus ring
+  neutral: "#fbfaf5" # Printer Ivory — page surface (light)
+  neutral-dark: "#1a1714" # Photocopier Black — page surface (dark)
 
   # ---- Surface variants ----
-  surface-elevated:        "#ffffff"
-  surface-elevated-dark:   "#251f1c"
-  surface-soft:            "#fee2c3"
+  surface-elevated: "#ffffff"
+  surface-elevated-dark: "#251f1c"
+  surface-soft: "#fee2c3"
 
   # ---- Specialty inks (AA-validated text-on-color pairs) ----
-  on-tertiary:             "#023047"   # Prussian Blue on UT Orange — 5.58:1 AA
-  on-accent:               "#023047"   # Prussian Blue on Selective Yellow — 7.93:1 AAA
-  on-secondary:            "#fbfaf5"   # Ivory on Cerulean — 6.11:1 AA
-  ink-muted:               "#126782"   # = secondary
-  ink-soft:                "#4a4566"
+  on-tertiary: "#023047" # Prussian Blue on UT Orange — 5.58:1 AA
+  on-accent: "#023047" # Prussian Blue on Selective Yellow — 7.93:1 AAA
+  on-secondary: "#fbfaf5" # Ivory on Cerulean — 6.11:1 AA
+  ink-muted: "#126782" # = secondary
+  ink-soft: "#4a4566"
 
   # ---- Palette extensions referenced by components ----
-  sky-blue:                "#8ecae6"   # accent-block-1 bg, button-secondary text
-  blue-green:              "#219ebc"   # post-type: link
-  periwinkle:              "#bcb5e3"   # accent-block-2 bg, dark-mode ink-muted
-  glaucous:                "#647baf"   # background only — fails AA as small text
-  prussian-blue:           "#023047"   # = on-tertiary alias, callout-note bg
-  light-orange:            "#fee2c3"   # = surface-soft alias, callout-note text
+  sky-blue: "#8ecae6" # accent-block-1 bg, button-secondary text
+  blue-green: "#219ebc" # post-type: link
+  periwinkle: "#bcb5e3" # accent-block-2 bg, dark-mode ink-muted
+  glaucous: "#647baf" # background only — fails AA as small text
+  prussian-blue: "#023047" # = on-tertiary alias, callout-note bg
+  light-orange: "#fee2c3" # = surface-soft alias, callout-note text
 
   # ---- Masking-tape (chip background) ----
-  tape:                    "#f3e5b8"
-  on-tape:                 "#241c4a"   # = primary, 12.47:1 on tape — AAA at small sizes
+  tape: "#f3e5b8"
+  on-tape: "#241c4a" # = primary, 12.47:1 on tape — AAA at small sizes
 
   # ---- Post-type taxonomy (IndieWeb) ----
-  type-blog:               "#fb8500"
-  type-link:               "#219ebc"
-  type-video:              "#126782"
-  type-audio:              "#126782"
-  type-quote:              "#241c4a"
-  type-aside:              "#647baf"
-  type-status:             "#647baf"
-  type-speaking:           "#ffb703"
-  type-book:               "#241c4a"
+  type-blog: "#fb8500"
+  type-link: "#219ebc"
+  type-video: "#126782"
+  type-audio: "#126782"
+  type-quote: "#241c4a"
+  type-aside: "#647baf"
+  type-status: "#647baf"
+  type-speaking: "#ffb703"
+  type-book: "#241c4a"
 
 typography:
   display:
@@ -207,7 +207,7 @@ components:
   button-soft-hover:
     backgroundColor: "{colors.accent}"
     textColor: "{colors.on-accent}"
-  cta:                                       # alias for button-primary
+  cta: # alias for button-primary
     backgroundColor: "{colors.tertiary}"
     textColor: "{colors.on-tertiary}"
     typography: "{typography.button}"
@@ -225,87 +225,87 @@ components:
   # Per-type modifiers add a 4px left border in the post-type color.
   chip:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
+    textColor: "{colors.on-tape}" # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
     rounded: 0
     padding: 2px 12px
   chip-blog:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
+    textColor: "{colors.on-tape}" # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
   chip-link:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
+    textColor: "{colors.on-tape}" # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
   chip-video:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
+    textColor: "{colors.on-tape}" # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
   chip-audio:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
+    textColor: "{colors.on-tape}" # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
   chip-quote:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
+    textColor: "{colors.on-tape}" # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
   chip-aside:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
+    textColor: "{colors.on-tape}" # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
   chip-status:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
+    textColor: "{colors.on-tape}" # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
   chip-speaking:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
+    textColor: "{colors.on-tape}" # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
   chip-book:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.on-tape}"          # russian-violet — 15:1 on ivory
+    textColor: "{colors.on-tape}" # russian-violet — 15:1 on ivory
     typography: "{typography.chip}"
 
   # Solid chips — post-type color fills the chip, text adapts for AA
   chip-blog-solid:
     backgroundColor: "{colors.type-blog}"
-    textColor: "{colors.on-tertiary}"        # 5.58:1 AA
+    textColor: "{colors.on-tertiary}" # 5.58:1 AA
     typography: "{typography.chip}"
     rounded: 0
     padding: 2px 12px
   chip-link-solid:
     backgroundColor: "{colors.type-link}"
-    textColor: "{colors.primary}"            # 4.99:1 AA
+    textColor: "{colors.primary}" # 4.99:1 AA
     typography: "{typography.chip}"
     rounded: 0
     padding: 2px 12px
   chip-video-solid:
     backgroundColor: "{colors.type-video}"
-    textColor: "{colors.neutral}"            # 6.11:1 AA
+    textColor: "{colors.neutral}" # 6.11:1 AA
     typography: "{typography.chip}"
     rounded: 0
     padding: 2px 12px
   chip-audio-solid:
     backgroundColor: "{colors.type-audio}"
-    textColor: "{colors.neutral}"            # 6.11:1 AA
+    textColor: "{colors.neutral}" # 6.11:1 AA
     typography: "{typography.chip}"
     rounded: 0
     padding: 2px 12px
   chip-quote-solid:
     backgroundColor: "{colors.type-quote}"
-    textColor: "{colors.neutral}"            # 15.00:1 AAA
+    textColor: "{colors.neutral}" # 15.00:1 AAA
     typography: "{typography.chip}"
     rounded: 0
     padding: 2px 12px
   chip-speaking-solid:
     backgroundColor: "{colors.type-speaking}"
-    textColor: "{colors.on-accent}"          # 7.93:1 AAA
+    textColor: "{colors.on-accent}" # 7.93:1 AAA
     typography: "{typography.chip}"
     rounded: 0
     padding: 2px 12px
   chip-book-solid:
     backgroundColor: "{colors.type-book}"
-    textColor: "{colors.neutral}"            # 15.00:1 AAA
+    textColor: "{colors.neutral}" # 15.00:1 AAA
     typography: "{typography.chip}"
     rounded: 0
     padding: 2px 12px
@@ -327,7 +327,7 @@ components:
     backgroundColor: "{colors.accent}"
     textColor: "{colors.on-accent}"
     padding: 16px 24px
-  callout-label:                             # masking-tape badge inside callout
+  callout-label: # masking-tape badge inside callout
     backgroundColor: "{colors.tape}"
     textColor: "{colors.on-tape}"
     typography: "{typography.eyebrow}"
@@ -361,13 +361,13 @@ components:
     backgroundColor: "{colors.neutral}"
     textColor: "{colors.primary}"
     padding: 72px 32px
-  hero-display:                              # Rock Salt
+  hero-display: # Rock Salt
     typography: "{typography.display}"
     textColor: "{colors.primary}"
-  hero-title:                                # Roboto Slab black weight
+  hero-title: # Roboto Slab black weight
     typography: "{typography.h1}"
     textColor: "{colors.primary}"
-  hero-title-accent:                         # color shift inside __title
+  hero-title-accent: # color shift inside __title
     textColor: "{colors.tertiary}"
   hero-lead:
     typography: "{typography.lead}"
@@ -414,26 +414,26 @@ components:
     typography: "{typography.pull-quote}"
     textColor: "{colors.primary}"
     padding: 24px 0
-  tape:                                      # standalone masking-tape label
+  tape: # standalone masking-tape label
     backgroundColor: "{colors.tape}"
     textColor: "{colors.on-tape}"
     typography: "{typography.eyebrow}"
     padding: 4px 12px
-  marker-bar:                                # 8px UT Orange section divider, rotated
+  marker-bar: # 8px UT Orange section divider, rotated
     backgroundColor: "{colors.tertiary}"
     height: 8px
   marker-bar-short:
     backgroundColor: "{colors.tertiary}"
     height: 6px
     width: 8rem
-  sparkle:                                   # decorative ✦ — always aria-hidden
+  sparkle: # decorative ✦ — always aria-hidden
     textColor: "{colors.tertiary}"
     typography: "{typography.h4}"
-  sparkle-margin:                            # absolutely positioned variant
+  sparkle-margin: # absolutely positioned variant
     textColor: "{colors.accent}"
-  halftone:                                  # dot overlay (background utility)
+  halftone: # dot overlay (background utility)
     backgroundColor: "{colors.neutral}"
-  skip-link:                                 # accessibility — hidden until focused
+  skip-link: # accessibility — hidden until focused
     backgroundColor: "{colors.primary}"
     textColor: "{colors.neutral}"
     padding: 12px 16px
@@ -464,38 +464,94 @@ Five tokens drive everything:
 - **Secondary** `#126782` (Cerulean) — link color, muted ink, callout background. Slightly lower contrast than primary; used for supporting text and focused-attention surfaces.
 - **Tertiary** `#fb8500` (UT Orange) — primary CTA, marker bar, sparkles. The single warmest color in the system; high visibility, used sparingly for "pay attention to this."
 - **Accent** `#ffb703` (Selective Yellow) — highlighter swipe, focus ring, dark-mode primary CTA. Pairs with Prussian Blue ink (`#023047`).
-- **Neutral** `#fbfaf5` (Printer Ivory) — page surface in light mode. *Not* warm cream — that fought the yellow highlighter. The cooler ivory keeps the highlight feeling distinct.
+- **Neutral** `#fbfaf5` (Printer Ivory) — page surface in light mode. _Not_ warm cream — that fought the yellow highlighter. The cooler ivory keeps the highlight feeling distinct.
 
 Light-mode dark surface is `#1a1714` (Photocopier Black) — not Prussian Blue. Prussian Blue was the dark surface in v1.x; v2.0 flipped to photocopier black so hard shadows can recolor to selective yellow and stay visible.
 
 ### Locked color decisions
 
-| Decision | Why |
-|---|---|
-| `figcaption` is **cerulean**, not glaucous | Glaucous on cream is 3.5:1 — fails AA |
-| `dfn` has no underline | It looks like a link otherwise |
-| Tables stay un-rotated | Tables exist to be scanned, not stylized |
-| Surface is **printer ivory**, not warm cream | Warm cream fought the yellow highlighter |
-| Wordmark renders as all-paths SVG | No font dependency at runtime |
-| `aria-hidden="true"` decorative SVGs | Equalize Digital warnings on these are correct-implementation safe-to-dismiss |
+| Decision                                     | Why                                                                           |
+| -------------------------------------------- | ----------------------------------------------------------------------------- |
+| `figcaption` is **cerulean**, not glaucous   | Glaucous on cream is 3.5:1 — fails AA                                         |
+| `dfn` has no underline                       | It looks like a link otherwise                                                |
+| Tables stay un-rotated                       | Tables exist to be scanned, not stylized                                      |
+| Surface is **printer ivory**, not warm cream | Warm cream fought the yellow highlighter                                      |
+| Wordmark renders as all-paths SVG            | No font dependency at runtime                                                 |
+| `aria-hidden="true"` decorative SVGs         | Equalize Digital warnings on these are correct-implementation safe-to-dismiss |
 
 ### Post-type taxonomy
 
 The IndieWeb post types each map to a token color. These appear in the system as `.cr-chip--{type}` left-border accents and as `.cr-stream-item--{type}` per-type avatar accents.
 
-| Type | Emoji | Color | Token |
-|------|-------|-------|-------|
-| Blog | 📰 | UT Orange `#fb8500` | `colors.type-blog` |
-| Link | 🔗 | Blue-Green `#219ebc` | `colors.type-link` |
-| Video | 📹 | Cerulean `#126782` | `colors.type-video` |
-| Audio | 🎧 | Cerulean `#126782` | `colors.type-audio` |
-| Quote | 🔖 | Russian Violet `#241c4a` | `colors.type-quote` |
-| Aside | 🗯️ | Glaucous `#647baf` | `colors.type-aside` |
-| Status | 🖊️ | Glaucous `#647baf` | `colors.type-status` |
-| Speaking | 🗣️ | Selective Yellow `#ffb703` | `colors.type-speaking` |
-| Book | 📚 | Russian Violet `#241c4a` | `colors.type-book` |
+| Type     | Emoji | Color                      | Token                  |
+| -------- | ----- | -------------------------- | ---------------------- |
+| Blog     | 📰    | UT Orange `#fb8500`        | `colors.type-blog`     |
+| Link     | 🔗    | Blue-Green `#219ebc`       | `colors.type-link`     |
+| Video    | 📹    | Cerulean `#126782`         | `colors.type-video`    |
+| Audio    | 🎧    | Cerulean `#126782`         | `colors.type-audio`    |
+| Quote    | 🔖    | Russian Violet `#241c4a`   | `colors.type-quote`    |
+| Aside    | 🗯️    | Glaucous `#647baf`         | `colors.type-aside`    |
+| Status   | 🖊️    | Glaucous `#647baf`         | `colors.type-status`   |
+| Speaking | 🗣️    | Selective Yellow `#ffb703` | `colors.type-speaking` |
+| Book     | 📚    | Russian Violet `#241c4a`   | `colors.type-book`     |
 
 Post-type colors only appear as **chip border accents** (4px left), as solid chip backgrounds (where AA permits), and as decorative avatar accents. They never appear as small text on the page surface.
+
+## Dark Mode
+
+Dark mode is built on token reassignment, not a separate stylesheet. Every semantic color token has a dark-mode value in the `@media (prefers-color-scheme: dark)` block of `tokens/tokens.css`. Raw palette tokens (`--cr-russian-violet`, `--cr-selective-yellow`, etc.) **do not change between modes** — only semantic tokens are reassigned to point at different palette entries. Components and pages that consume only semantic tokens flip automatically.
+
+### Activation
+
+`@media (prefers-color-scheme: dark)` is currently the only activation mechanism. The system honors the user's OS-level preference. A `[data-theme="dark"]` attribute selector parallel to the media query is reserved for future manual-toggle work but is not wired up today.
+
+### Surface stack
+
+| Role                               | Light                   | Dark                        |
+| ---------------------------------- | ----------------------- | --------------------------- |
+| Page (`--cr-surface`)              | Printer Ivory `#fbfaf5` | Photocopier Black `#1a1714` |
+| Soft panel (`--cr-surface-soft`)   | Light Orange `#fee2c3`  | Prussian Blue `#023047`     |
+| Elevated (`--cr-surface-elevated`) | Printer Ivory           | Night Elevated `#251f1c`    |
+
+### Hard shadows
+
+Hard shadows recolor in dark mode. `--cr-shadow-hard` flips from `4px 4px 0 var(--cr-ink)` (russian violet on ivory) to `4px 4px 0 var(--cr-selective-yellow)` so the zine signature stays visible against photocopier black.
+
+### Tape
+
+Cream tape `#f3e5b8` reads as ivory-on-ivory in dark mode, so `--cr-tape` reassigns to `#4a3f1c` (warm aged kraft) and `--cr-tape-ink` flips to selective yellow. Three light-mode elements use tape: eyebrow tape strips, callout labels, and the wordmark sticker. (Chips no longer use tape — v2.1 moved chip background to `--cr-surface`.)
+
+Selective yellow on `#4a3f1c` measures ≈7.0:1 — clears AA Large at any size and AAA at 18pt+.
+
+### Chip behavior
+
+Chips compose three tokens that all flip:
+
+1. **Surface** — `--cr-surface` (chip bg) flips ivory → photocopier black.
+2. **Border accent** — the 4px left edge uses the post-type token (`--cr-type-blog`, etc.). In light mode each token points at a darker palette color (russian violet, prussian blue, cerulean, black, blue-green, glaucous). In dark mode it re-points at a brighter end-of-palette equivalent (selective yellow, periwinkle, sky blue, white, blue-green, glaucous) so the edge stays visible against dark tape and dark surfaces.
+3. **Solid chip text** — when light-end accents become the chip _background_ in dark mode, text would fail contrast against printer ivory. The `@media (prefers-color-scheme: dark)` block in `components/components.css` flips solid-chip text to russian violet for the longform, shares, events, and impact groups. Media group (blue-green) keeps prussian blue text in both modes.
+
+Three small-group post types — **aside, chat, status** — intentionally have no `.cr-chip--solid` variant in either mode. Glaucous `#647baf` fails AA against both ivory and russian violet, so the bordered variant is the only available form.
+
+### AA verification
+
+Most-used dark-mode pairings, all measured at the dark surface stack:
+
+| Pairing                                                     | Use            | Ratio      |
+| ----------------------------------------------------------- | -------------- | ---------- |
+| Printer ivory text on photocopier black                     | Body copy      | 16.4:1 AAA |
+| Sky blue links on photocopier black                         | Inline link    | 9.7:1 AAA  |
+| Periwinkle muted ink on photocopier black                   | Meta, captions | 9.1:1 AAA  |
+| Selective yellow on `#4a3f1c` (tape)                        | Tape ink       | 7.0:1 AAA  |
+| Russian violet on selective yellow (longform solid chip)    | Chip text      | 8.5:1 AAA  |
+| Russian violet on sky blue (shares solid chip)              | Chip text      | 9.3:1 AAA  |
+| Russian violet on periwinkle (events solid chip)            | Chip text      | 7.9:1 AAA  |
+| Russian violet on white (impact solid chip)                 | Chip text      | 15.0:1 AAA |
+| Prussian blue on blue-green (media solid chip — both modes) | Chip text      | 4.9:1 AA   |
+
+### What is intentionally not theme-aware
+
+The kit sidebar (`ui_kits/courtneyr-dev/kit.css`) uses raw palette tokens directly (`--cr-russian-violet` background, `--cr-printer-ivory` text). It stays the same in both modes by design — the sidebar reads as a fixed branded surface against either page background. Documentation swatches in `tokens.html` likewise display literal palette hex values; that is correct.
 
 ## Typography
 
@@ -510,19 +566,19 @@ Do not introduce additional font families.
 
 ### Role guidance
 
-| Role | Family | Weight | Notes |
-|------|--------|--------|-------|
-| Wordmark | Rock Salt | 400 | Lowercase, all-paths SVG |
-| Hero display | Rock Salt | 400 | Keep copy under ~6 words |
-| Hero title | Roboto Slab | 900 | Roboto Slab when Rock Salt would be too loud |
-| Section h2 | Roboto Slab | 800 | Warm and assertive |
-| Subsection h3 | Roboto Slab | 700 | |
-| Stream title | Roboto Slab | 700 | Slab serif so post titles feel substantial |
-| Eyebrow | Roboto Slab | 700 | Block-level, NOT inline-block. UT Orange. |
-| Body | Barlow | 400–500 | |
-| Meta / chip | Roboto Slab | 700 | Uppercase, tracked 0.12em |
-| Quote | Roboto Slab italic | 400 | Default `<blockquote>` and `.cr-pull-quote` |
-| Mono | system mono | 400 | |
+| Role          | Family             | Weight  | Notes                                        |
+| ------------- | ------------------ | ------- | -------------------------------------------- |
+| Wordmark      | Rock Salt          | 400     | Lowercase, all-paths SVG                     |
+| Hero display  | Rock Salt          | 400     | Keep copy under ~6 words                     |
+| Hero title    | Roboto Slab        | 900     | Roboto Slab when Rock Salt would be too loud |
+| Section h2    | Roboto Slab        | 800     | Warm and assertive                           |
+| Subsection h3 | Roboto Slab        | 700     |                                              |
+| Stream title  | Roboto Slab        | 700     | Slab serif so post titles feel substantial   |
+| Eyebrow       | Roboto Slab        | 700     | Block-level, NOT inline-block. UT Orange.    |
+| Body          | Barlow             | 400–500 |                                              |
+| Meta / chip   | Roboto Slab        | 700     | Uppercase, tracked 0.12em                    |
+| Quote         | Roboto Slab italic | 400     | Default `<blockquote>` and `.cr-pull-quote`  |
+| Mono          | system mono        | 400     |                                              |
 
 ## Layout
 
@@ -568,12 +624,12 @@ Hard shadows already provide visual layering. If a card needs to "lift" above ne
 
 The rotation budget is **four locked values**:
 
-| Token | Value | Used on |
-|-------|-------|---------|
-| `--cr-rotate-1` | `-1.2deg` | `<hr>`, `.cr-marker-bar--short`, `.cr-card`, callout label |
-| `--cr-rotate-2` | `1.5deg` | `.cr-marker-bar` |
-| `--cr-rotate-neg` | `-2.5deg` | `.cr-tape`, `.cr-chip` (default), stream-item avatar |
-| `--cr-rotate-neg2` | `2.8deg` | adjacent `.cr-chip + .cr-chip` (alternates) |
+| Token              | Value     | Used on                                                    |
+| ------------------ | --------- | ---------------------------------------------------------- |
+| `--cr-rotate-1`    | `-1.2deg` | `<hr>`, `.cr-marker-bar--short`, `.cr-card`, callout label |
+| `--cr-rotate-2`    | `1.5deg`  | `.cr-marker-bar`                                           |
+| `--cr-rotate-neg`  | `-2.5deg` | `.cr-tape`, `.cr-chip` (default), stream-item avatar       |
+| `--cr-rotate-neg2` | `2.8deg`  | adjacent `.cr-chip + .cr-chip` (alternates)                |
 
 Don't introduce more rotation values. Don't override these with explicit per-element angles.
 
@@ -685,4 +741,4 @@ All buttons share: sharp corners, thick border, hard offset shadow, "press" effe
 
 ---
 
-*See also: `docs/AI_CONTEXT.md` for site context and constraints; `docs/COMPONENTS.md` for class-by-class HTML examples; `docs/LAYERING.md` for rotation/depth/z-index details; `docs/IMPLEMENTATION.md` for WordPress + Ollie integration.*
+_See also: `docs/AI_CONTEXT.md` for site context and constraints; `docs/COMPONENTS.md` for class-by-class HTML examples; `docs/LAYERING.md` for rotation/depth/z-index details; `docs/IMPLEMENTATION.md` for WordPress + Ollie integration._
