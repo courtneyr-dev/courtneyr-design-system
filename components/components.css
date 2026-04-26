@@ -75,10 +75,18 @@
   color: var(--cr-russian-violet);
 }
 @media (prefers-color-scheme: dark) {
-  /* keep dark text on yellow even in dark mode (OS pref, only when user hasn't chosen) */
-  :root:not([data-theme]) .cr-highlight { color: var(--cr-russian-violet); }
+  /* In dark mode, the marker-style gradient leaves the top half of each letter
+     sitting against photocopier-black (russian-violet on that = 1.6:1, invisible).
+     Switch to a solid yellow block so contrast holds across the whole letter. */
+  :root:not([data-theme]) .cr-highlight {
+    background: var(--cr-highlight);                /* solid, overrides the gradient */
+    color: var(--cr-russian-violet);
+  }
 }
-:root[data-theme="dark"] .cr-highlight { color: var(--cr-russian-violet); }
+:root[data-theme="dark"] .cr-highlight {
+  background: var(--cr-highlight);
+  color: var(--cr-russian-violet);
+}
 
 
 /* ============ Pull quote ============
