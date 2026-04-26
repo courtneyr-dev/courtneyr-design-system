@@ -311,3 +311,34 @@
 .kit-spec ul > li::before, .kit-cover-card ul > li::before {
   content: none;
 }
+
+
+/* === Theme toggle (added by Round B foundation) === */
+.kit-sidebar__theme {
+  margin-top: auto;
+  padding-top: var(--cr-space-md);
+  border-top: 1px dashed var(--cr-border);
+}
+.kit-theme-toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: 100%;
+  padding: var(--cr-space-2xs) var(--cr-space-sm);
+  font-family: var(--cr-font-accent);
+  font-size: var(--cr-text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--cr-tracking-eyebrow);
+  background: var(--cr-surface);
+  color: var(--cr-ink);
+  border: 2px solid var(--cr-ink);
+  border-radius: 0;
+  box-shadow: 3px 3px 0 var(--cr-ink);
+  transform: rotate(-1.2deg);
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+.kit-theme-toggle:hover { transform: rotate(0); }
+.kit-theme-toggle__label { font-weight: 700; }
+.kit-theme-toggle__state { font-weight: 500; opacity: 0.8; }
