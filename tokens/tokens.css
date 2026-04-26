@@ -610,21 +610,141 @@ address { font-style: normal; }
 
 /* =============================================================================
    12. LEGACY DEFENSES
-   courtneyr.dev's posts go back to 2007. Older content can include <center>,
-   <font>, <tt>, <big>. Don't let them break the page.
+   courtneyr.dev's posts go back to 2007. Older content can include long-
+   deprecated elements (<center>, <font>, <tt>, <big>, <marquee>, <blink>,
+   <acronym>, <nobr>) and pre-Gutenberg WordPress class markup. Don't let
+   any of it break the page or harm accessibility.
    ============================================================================= */
+
+/* ---- HTML4 / pre-HTML5 deprecated elements ---- */
 center { display: block; text-align: center; }
 font   { font: inherit !important; color: inherit !important; }
 tt     { font-family: var(--cr-font-mono); font-size: 0.95em; }
 big    { font-size: var(--cr-text-md); }
 strike, s { text-decoration: line-through; opacity: 0.7; }
 
-/* WordPress alignments commonly inserted by Classic Editor */
+/* HTML4 abbreviation. HTML5 says use <abbr>; old posts may still use <acronym>. */
+acronym {
+  text-decoration: underline dotted;
+  cursor: help;
+  font-variant: normal;
+}
+
+/* IE-era no-break wrapper. */
+nobr { white-space: nowrap; }
+
+/* ---- Deprecated motion elements (a11y critical) ----
+   <marquee> and <blink> are legacy browser-native animations that bypass
+   prefers-reduced-motion (the global reduced-motion block above doesn't
+   catch them — the animation isn't CSS). Strip the animation, render as
+   normal flow content. Old posts with marquee or blink stop trapping
+   keyboard focus, stop triggering vestibular issues, and stop violating
+   WCAG 2.2.2 (Pause, Stop, Hide).
+*/
+marquee {
+  display: inline;
+  animation: none !important;
+  scroll-behavior: auto;
+}
+blink {
+  text-decoration: none;
+  animation: none !important;
+}
+
+/* ---- Modern semantics worth styling explicitly ---- */
+time {
+  font-variant-numeric: tabular-nums;        /* nicer date alignment */
+}
+
+meter, progress {
+  display: inline-block;
+  width: 100%;
+  max-width: 20rem;
+  height: 1em;
+  vertical-align: middle;
+}
+progress {
+  border: var(--cr-border-thin);
+  border-radius: var(--cr-radius-xs);
+  background: var(--cr-surface-elevated);
+}
+progress::-webkit-progress-bar              { background: var(--cr-surface-elevated); }
+progress::-webkit-progress-value            { background: var(--cr-marker); }
+progress::-moz-progress-bar                 { background: var(--cr-marker); }
+meter::-webkit-meter-bar                    { background: var(--cr-surface-elevated); border: var(--cr-border-thin); }
+meter::-webkit-meter-optimum-value          { background: var(--cr-blue-green); }
+meter::-webkit-meter-suboptimum-value       { background: var(--cr-selective-yellow); }
+meter::-webkit-meter-even-less-good-value   { background: var(--cr-ut-orange); }
+
+/* ---- HTML5 sectioning elements (defensive display: block) ----
+   Modern browsers handle this, but a stray `* { display: inline }` from
+   user-supplied content shouldn't be able to collapse a <main> or <article>.
+*/
+main, nav, header, footer, article, section, aside, hgroup {
+  display: block;
+}
+
+/* ---- [hidden] attribute (belt-and-suspenders) ----
+   Browsers handle [hidden] by default, but a parent rule like
+   * { display: block } would override it. This restores the contract.
+*/
+[hidden] { display: none !important; }
+
+/* ---- WordPress legacy class markup ----
+   Pre-Gutenberg [caption] and [gallery] shortcodes, and Classic Editor
+   alignment classes. Newer Block Editor markup already uses <figure>,
+   <ul>, etc. — covered by element defaults above.
+*/
+
+/* WordPress alignments (Classic Editor) */
 .alignleft   { float: left;  margin: 0 var(--cr-space-md) var(--cr-space-md) 0; }
 .alignright  { float: right; margin: 0 0 var(--cr-space-md) var(--cr-space-md); }
 .aligncenter { display: block; margin-left: auto; margin-right: auto; }
 .alignwide   { max-width: 90%; margin-left: auto; margin-right: auto; }
 .alignfull   { width: 100%; }
+
+/* [caption] shortcode — predates <figure>, common in pre-2017 posts */
+.wp-caption {
+  margin: var(--cr-space-lg) 0;
+  max-width: 100%;
+}
+.wp-caption img { max-width: 100%; height: auto; display: block; }
+.wp-caption-text,
+.wp-caption-dd {
+  color: var(--cr-cerulean);                 /* match figcaption — NOT glaucous */
+  font-family: var(--cr-font-accent);
+  font-style: italic;
+  font-size: var(--cr-text-sm);
+  margin-top: var(--cr-space-xs);
+}
+
+/* [gallery] shortcode — flex-based grid */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cr-space-md);
+  margin: var(--cr-space-lg) 0;
+  list-style: none;
+  padding: 0;
+}
+.gallery-row { display: flex; flex-wrap: wrap; gap: var(--cr-space-md); width: 100%; }
+.gallery-item { flex: 1 1 calc(50% - var(--cr-space-md)); margin: 0; }
+.gallery-icon img { max-width: 100%; height: auto; display: block; }
+.gallery-caption {
+  color: var(--cr-cerulean);                 /* match figcaption — NOT glaucous */
+  font-family: var(--cr-font-accent);
+  font-style: italic;
+  font-size: var(--cr-text-sm);
+  margin-top: var(--cr-space-xs);
+}
+
+/* Common .gallery-columns-{N} variants. Others fall back to the
+   default 2-column layout via the .gallery-item rule above. */
+.gallery-columns-1 .gallery-item { flex: 1 1 100%; }
+.gallery-columns-2 .gallery-item { flex: 1 1 calc(50% - var(--cr-space-md)); }
+.gallery-columns-3 .gallery-item { flex: 1 1 calc(33.333% - var(--cr-space-md)); }
+.gallery-columns-4 .gallery-item { flex: 1 1 calc(25% - var(--cr-space-md)); }
+.gallery-columns-5 .gallery-item { flex: 1 1 calc(20% - var(--cr-space-md)); }
 
 
 /* =============================================================================
