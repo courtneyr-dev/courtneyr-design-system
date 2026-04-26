@@ -72,6 +72,7 @@ These came out of real iteration. Each has a reason.
 | Rock Salt is display-only | It's an expensive, marker-dense font. Never used for body text. |
 | `aria-hidden="true"` decorative SVG icons | Correct decorative implementation. Equalize Digital warnings on these are safe to dismiss via Ignore. |
 | `DISABLE_WP_CRON=true` and late `action_scheduler_run_queue` | Expected on GoDaddy. Not actionable. |
+| MathML uses Rock Salt for `<mi>`/`<mn>`/`<mtext>`/`<ms>` | Variables, numbers, and inline math text render in the handdrawn display font — like a teacher writing on a whiteboard. Operators (`<mo>`) keep a math-font fallback so Unicode math glyphs render correctly. |
 
 ## Layout principles
 

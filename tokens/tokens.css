@@ -676,6 +676,43 @@ meter::-webkit-meter-optimum-value          { background: var(--cr-blue-green); 
 meter::-webkit-meter-suboptimum-value       { background: var(--cr-selective-yellow); }
 meter::-webkit-meter-even-less-good-value   { background: var(--cr-ut-orange); }
 
+/* ---- MathML — handdrawn lettering (teacher's-whiteboard feel) ----
+   Rock Salt on identifiers (variables), numbers, and inline math text —
+   the parts that benefit from a teacher's-handwriting vibe. Operators
+   stay on a math-font fallback so the Unicode operator block (∫ ∑ × ÷
+   ≠ ≤ ≥ ≈ ∈ ∀ ∃ ∂ ∇ √ etc.) renders with proper math metrics. Fraction
+   bars, radical signs, root extenders, and superscript/subscript
+   positioning are browser-drawn natively from currentColor and inherit
+   ink — they don't need font coverage.
+
+   Browser support: Firefox always; Chrome 109+ (Jan 2023); Safari forever.
+   Older browsers fall through to plain-text rendering of the inner
+   content — still legible, just not laid out.
+
+   The visual outcome: cursive Rock Salt variables and numbers, clean
+   math-font operators, native fraction/radical drawing. Reads like
+   chalkboard math.
+*/
+math {
+  font-size: 1.05em;
+  line-height: 1.4;
+}
+math[display="block"] {
+  display: block;
+  margin: var(--cr-space-lg) auto;
+  font-size: 1.25em;
+  text-align: center;
+}
+/* Lettering parts — Rock Salt */
+mi, mn, mtext, ms {
+  font-family: var(--cr-font-display);
+  font-style: normal;                          /* Rock Salt has its own slant — kill UA italic on <mi> */
+}
+/* Operators — math font fallback for Unicode operator glyphs */
+mo {
+  font-family: "Cambria Math", "Latin Modern Math", "STIX Two Math", math, serif;
+}
+
 /* ---- HTML5 sectioning elements (defensive display: block) ----
    Modern browsers handle this, but a stray `* { display: inline }` from
    user-supplied content shouldn't be able to collapse a <main> or <article>.
