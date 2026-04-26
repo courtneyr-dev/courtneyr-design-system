@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hero mockup — courtneyr.dev design system v2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700&family=Barlow:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../../tokens/tokens.css">
+<link rel="stylesheet" href="../../components/components.css">
+<style>
+  /* page-only — never bleeds into the system */
+  .demo-tag {
+    position: fixed;
+    top: 1rem; right: 1rem;
+    font-family: var(--cr-font-accent);
+    font-size: var(--cr-text-sm);
+    background: var(--cr-tape);
+    color: var(--cr-tape-ink);
+    padding: var(--cr-space-2xs) var(--cr-space-sm);
+    transform: rotate(-2deg);
+    z-index: 100;
+  }
+  .hero-grid {
+    display: grid;
+    gap: var(--cr-space-2xl);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) {
+    .hero-grid { grid-template-columns: 2fr 1fr; align-items: start; }
+  }
+  .feature-grid {
+    display: grid;
+    gap: var(--cr-space-lg);
+    grid-template-columns: 1fr;
+    margin: var(--cr-space-2xl) 0;
+  }
+  @media (min-width: 768px) {
+    .feature-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .margin-sparkle {
+    position: absolute;
+    color: var(--cr-marker);
+    font-size: var(--cr-text-3xl);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .margin-sparkle--top-left  { top:  -1rem; left:  -1rem; transform: rotate(-15deg); }
+  .margin-sparkle--bot-right { bottom: -1rem; right: -1rem; transform: rotate(20deg); }
+</style>
+</head>
+<body>
+<a href="#main" class="cr-skip-link">Skip to content</a>
+<span class="demo-tag">v2.0 hero mockup</span>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="cr-hero">
+    <div class="cr-hero__inner">
+      <span class="margin-sparkle margin-sparkle--top-left" aria-hidden="true">✦</span>
+
+      <span class="cr-eyebrow">Open Source Developer Advocate</span>
+      <h1 class="cr-display">courtneyr.dev</h1>
+      <p style="font-family:var(--cr-font-accent); font-size: var(--cr-text-xl); max-width: 40rem; line-height: var(--cr-leading-snug);">
+        Building <span class="cr-highlight">open source community</span> at GoDaddy.
+        Teaching WordPress on Learn.WordPress.org. Co-founder of the
+        <a href="#">WP Community Collective</a>.
+      </p>
+
+      <p style="margin-top: var(--cr-space-xl);">
+        <a href="#about" class="cr-cta">Read about me</a>
+        <a href="#work" class="cr-cta" style="background: var(--cr-russian-violet); color: var(--cr-sky-blue); margin-left: var(--cr-space-sm);">See my work →</a>
+      </p>
+
+      <span class="margin-sparkle margin-sparkle--bot-right" aria-hidden="true">✦</span>
+    </div>
+  </section>
+
+  <hr class="cr-marker-bar" aria-hidden="true">
+
+  <!-- ============ THREE-UP FEATURE BLOCKS ============ -->
+  <section style="max-width: 72rem; margin: 0 auto; padding: 0 var(--cr-space-xl);">
+    <span class="cr-eyebrow">What I'm doing right now</span>
+    <h2>Three things on my desk</h2>
+
+    <div class="feature-grid">
+
+      <article class="cr-accent-block cr-accent-block--1">
+        <span class="cr-tape">WordPress</span>
+        <h3 style="margin-top: var(--cr-space-sm);">Post Formats for Block Themes</h3>
+        <p>A plugin restoring genuine post-format support to modern block themes — with IndieWeb integration on the roadmap.</p>
+        <p><a href="#" style="color: inherit; font-weight: 700;">View on WordPress.org →</a></p>
+      </article>
+
+      <article class="cr-accent-block cr-accent-block--2">
+        <span class="cr-tape">Training</span>
+        <h3 style="margin-top: var(--cr-space-sm);">Learn.WordPress.org</h3>
+        <p>Writing lesson plans for the WordPress Training Team — practical, task-focused, accessible to new contributors.</p>
+        <p><a href="#" style="color: inherit; font-weight: 700;">See my lessons →</a></p>
+      </article>
+
+      <article class="cr-accent-block cr-accent-block--3">
+        <span class="cr-tape">Community</span>
+        <h3 style="margin-top: var(--cr-space-sm);">WP Community Collective</h3>
+        <p>Co-founder of a nonprofit advocating for the long-term health of the WordPress contributor ecosystem.</p>
+        <p><a href="#" style="color: inherit; font-weight: 700;">Visit WPCC →</a></p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ PULL QUOTE ============ -->
+  <section style="max-width: 60rem; margin: var(--cr-space-3xl) auto; padding: 0 var(--cr-space-xl);">
+    <blockquote class="cr-pull-quote">
+      I want WordPress to be a place where new contributors feel welcome, where
+      educators have what they need to teach, and where open source values aren't
+      a marketing pose.
+      <cite>From a recent Training Team meeting</cite>
+    </blockquote>
+  </section>
+
+  <!-- ============ CALLOUT EXAMPLE ============ -->
+  <section style="max-width: 60rem; margin: 0 auto; padding: 0 var(--cr-space-xl) var(--cr-space-3xl);">
+    <span class="cr-eyebrow">Speaking & teaching</span>
+    <h2>Available for talks and workshops</h2>
+
+    <div class="cr-callout">
+      <span class="cr-callout__label">Booking note</span>
+      <p>I speak about WordPress, open source community health, IndieWeb, accessibility, and DevRel. I'm based in Pennsylvania and travel for events.</p>
+      <p><a href="#" style="color: var(--cr-sky-blue);">Speaker kit →</a></p>
+    </div>
+
+    <div class="cr-card">
+      <h3>Recent talks</h3>
+      <ul>
+        <li>WordCamp US — &ldquo;Teaching WordPress in 2025&rdquo;</li>
+        <li>State of the Word watch party — Chambersburg</li>
+        <li>Learn.WordPress.org workshop series</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="cr-marker-bar cr-marker-bar--short" aria-hidden="true">
+
+  <footer style="text-align: center; padding: var(--cr-space-2xl); font-size: var(--cr-text-sm); color: var(--cr-ink-muted);">
+    <p>This is a v2.0 design system mockup. The real site is at <a href="https://courtneyr.dev">courtneyr.dev</a>.</p>
+  </footer>
+
+</main>
+</body>
+</html>

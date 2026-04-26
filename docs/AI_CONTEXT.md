@@ -10,45 +10,76 @@ Courtney Robertson — Senior Open Source Developer Advocate at GoDaddy, WordPre
 
 ## Site context
 
-- **Platform:** WordPress
+- **Platform:** WordPress (since 2007, custom DB prefix `wp_38b546a172_`)
 - **Theme:** Ollie block theme (with Ollie Pro)
-- **Font system:** Rock Salt (display/handwritten) + Barlow (body) + Roboto Slab (accent). All three loaded via Ollie's font library — do NOT swap them.
-- **Hosting:** GoDaddy Managed WordPress
+- **Hosting:** GoDaddy Managed WordPress (MWPv2) with bundled Sucuri WAF
+- **Server-side cron:** `DISABLE_WP_CRON=true` is correct, not a bug. Late `action_scheduler_run_queue` is expected.
+- **Deployment:** GitHub Actions from `courtneyr-dev/courtneyr-dev-site` to GoDaddy via `gd-wordpress-deployer`. Custom code only — never WordPress core, never third-party plugins.
+- **CSP:** Lives in custom `font-display-swap-site-performance-security` plugin via the `send_headers` hook. Currently in Report-Only mode. WAF-level headers were disabled by Sucuri support.
+- **Font system:** Rock Salt (display) + Roboto Slab (accent) + Barlow (body) + system mono (code). All three webfonts loaded via Ollie's font library. Do NOT swap them.
 - **Active IndieWeb plugins:** Post Formats for Block Themes, Link Extension for XFN, ActivityPub, IndieWeb, IndieWeb Post Kinds
-- **Accessibility target:** WCAG AA minimum, AAA where achievable (Equalize Digital Accessibility Checker Pro active)
+- **Accessibility target:** WCAG AA minimum, AAA where achievable. Equalize Digital Accessibility Checker Pro is active in the editor.
 
 ## Brand direction in one sentence
 
-Warm, teacher-ish, soft-rounded, shape-layered. Think Jen Hatmaker meets Morten Rand-Hendriksen — approachable expertise with a strong IndieWeb/open-source backbone.
+Personal site with the voice of a patient teacher and the visual confidence of a hand-pasted zine. WordPress + IndieWeb + AA contrast.
 
-## Visual identity — the three non-negotiables
+The guiding principle:
+
+> **Decoration in margins, calm in measure.**
+
+What this means in practice:
+
+- **Reading content** — blog posts, long-form — stays calm. Body text is Barlow on printer ivory. Tables are un-rotated. The measure (`65ch`) is respected. Zine moments appear at the edges: TOC card, callout, eyebrow, masking tape on a section header.
+- **Marketing/landing** — hero sections, the homepage — gets the full treatment. Rock Salt display, big halftone surfaces, accent blocks, sparkles, rotation.
+
+Don't apply the loud zine treatment to body content. Don't make the marketing pages calm. The two modes coexist deliberately.
+
+## Visual identity — the three moves
 
 ### 1. Palette split
-- **Primary (CTAs, links, warmth):** Ut Orange `#fb8500`
-- **Signature shape color:** Sky Blue `#8ecae6`
+- **Primary (CTAs, marker bar, sparkles):** Ut Orange `#fb8500`
+- **Highlighter:** Selective Yellow `#ffb703`
 - **Ink:** Russian Violet `#241c4a`
+- **Soft signature, accent block 1:** Sky Blue `#8ecae6`
 - Everything else supports. Do not let secondary colors dominate a composition.
 
-### 2. Shape-layering (THE signature)
-Every feature image gets this treatment:
-1. One soft **circle behind** the image (sky-blue, light-orange, or periwinkle — never orange or violet for the circle).
-2. The image itself with **border-radius: 1.25rem**.
-3. One **floating badge** (small white pill card with shadow) overlapping a corner. Holds a stat, credit, or short label.
+### 2. Zine vocabulary
+Hard offset shadows (`4px 4px 0` and `6px 6px 0`, no blur). Slight rotation (-1.2°, 1.5°, -2.5°, 2.8°). Hand-drawn highlighters. Halftone overlays on hero surfaces. Sparkles in margins. Masking-tape labels for tags and callout headers. UT Orange marker stripes between sections.
 
-Rules: one circle + one badge per image. Circle peeks ~30% from behind the image. Skip badges on thumbnails under 200px. See `docs/SHAPE_LAYERING.md`.
+The depth idiom is hard, photocopied, hand-applied — not soft, blurred, or polished.
 
-### 3. Three fonts, three jobs
-- **Rock Salt** (display, handwritten marker): the wordmark, hero display titles kept short. Never use for body or long paragraphs.
-- **Barlow** (body sans): paragraphs, UI labels, buttons, navigation, meta chips. Default to weight 400, bump to 500–600 for emphasis.
-- **Roboto Slab** (accent serif): section headings (h2/h3), stream card titles, numerals in stats, pull-quotes. Weight 700–900 for headings, 400 for quotes.
+### 3. Three (well, four) fonts, four jobs
+- **Rock Salt** — wordmark, hero displays kept short. Display only.
+- **Roboto Slab** — section headings, eyebrows, blockquote, stream titles. Weight 700–900.
+- **Barlow** — body, UI, buttons, navigation, meta. Weight 400–600.
+- **system mono** — code, kbd, samp, var.
 
-Do not introduce additional font families. Rock Salt already carries display personality; adding a second script font would fight it.
+Do not introduce additional font families.
+
+## Locked decisions you should never silently overturn
+
+These came out of real iteration. Each has a reason.
+
+| Decision | Why |
+|---|---|
+| `<dfn>` has no underline | It looks like a link otherwise. |
+| `figcaption` is cerulean, not glaucous | Glaucous on cream is 3.5:1 — fails AA. |
+| Tables are un-rotated | Tables exist to be scanned, not stylized. |
+| Surface is *printer* ivory, not warm cream | Warm cream fought the yellow highlighter. |
+| Eyebrow is `display: block`, not `inline-block` | Inline-block let it sit on the same line as the h2. |
+| Wordmark is all-paths SVG | No font dependency. Works even if Rock Salt fails to load. |
+| Rock Salt is display-only | It's an expensive, marker-dense font. Never used for body text. |
+| `aria-hidden="true"` decorative SVG icons | Correct decorative implementation. Equalize Digital warnings on these are safe to dismiss via Ignore. |
+| `DISABLE_WP_CRON=true` and late `action_scheduler_run_queue` | Expected on GoDaddy. Not actionable. |
+| MathML uses Rock Salt for `<mi>`/`<mn>`/`<mtext>`/`<ms>` | Variables, numbers, and inline math text render in the handdrawn display font — like a teacher writing on a whiteboard. Operators (`<mo>`) keep a math-font fallback so Unicode math glyphs render correctly. |
 
 ## Layout principles
 
-- Rounded corners everywhere: cards and image frames at `1.25rem`, pills at full radius.
-- Generous spacing — minimum `1.25rem` padding inside cards.
-- Asymmetric hero compositions (text left, shape-layered portrait right).
+- Reading containers cap at `65ch` (`var(--cr-measure)`).
+- Generous spacing between sections — minimum `var(--cr-space-2xl)` (3rem).
+- Hard shadows on cards, callouts, accent blocks, the CTA buttons. No soft drop shadows except on legacy stream-item hover lift and chip subtle shadow.
+- Slight rotation on accents (cards, masking tape, callout labels). Body text and headings stay upright.
 - Hybrid homepage: hero + newsletter at top, **aggregate stream feed** below (mixes all post types chronologically — modeled on [nerdy.dev](https://nerdy.dev)).
 
 ## Post-type taxonomy (for the stream feed)
@@ -65,35 +96,89 @@ Do not introduce additional font families. Rock Salt already carries display per
 | Speaking | 🗣️ | `#ffb703` |
 | Book | 📚 | `#241c4a` |
 
+These map to `--cr-type-{type}` tokens in `tokens.css`. Used by `.cr-chip--{type}` (masking-tape chips) and `.cr-stream-item--{type}` (per-type accent on the stream feed).
+
 ## Dark mode
 
-Triggered by `prefers-color-scheme: dark` OR a manual `[data-theme="dark"]` attribute. Surface flips to Prussian Blue base (`#0a0f24`), ink to Periwinkle (`#bcb5e3`), primary to Selective Yellow (`#ffb703`). Full token mapping in `tokens/tokens.css`.
+Triggered by `prefers-color-scheme: dark`. Optionally honored via a manual `[data-theme="dark"]` attribute on `<html>` (not currently implemented at the JS layer, but tokens.css accepts it without further changes).
+
+Surface flips to **photocopier black** `#1a1714` (not Prussian Blue — that was v1.x). Ink flips to printer ivory. Selective yellow drives accents. Hard shadows recolor to selective yellow as well, so the zine signature stays visible against the dark surface.
+
+Full token mapping in `tokens/tokens.css` under section 10 (dark mode flips).
 
 ## Motion
 
-Subtle only. Gentle hover lifts on cards. A slow `cr-drift` animation on hero blob shapes. All motion gated behind `@media (prefers-reduced-motion: no-preference)` — respect the user.
+Subtle only. Gentle hover lifts on cards. Quick (80ms) "press" effect on buttons. All motion gated behind `@media (prefers-reduced-motion: no-preference)` — and the global reduced-motion block in tokens.css zeroes out all transitions and animations when the user prefers reduced motion.
 
 ## Voice & tone
 
-- Warm, conversational, direct. Speaks in second person.
+- Warm, conversational, direct. Speaks in second person when addressing the reader.
 - Shows her work — cites sources, names tools.
-- **Avoid:** generic AI-speak ("delve," "leverage," "navigate the complexities," "robust solution"), corporate filler, passive voice.
-- **Favor:** specific nouns, concrete examples, the occasional pirate joke.
+- **Avoid:** generic AI-speak (`delve`, `leverage`, `navigate the complexities`, `robust solution`), corporate filler, passive voice, em dashes (Courtney removes them in editing), brochure-style polish.
+- **Favor:** specific nouns, concrete examples, plain language, technical when needed, the occasional pirate joke.
 
 ## Constraints / things to NOT do
 
-- Do not add new fonts. Rock Salt + Barlow + Roboto Slab only.
+- Do not add new fonts. Rock Salt + Roboto Slab + Barlow + system mono only.
 - Do not use Automattic or Awesome Motive products in suggestions (user preference).
 - Do not recommend replacing Yoast SEO with alternatives (it's chosen).
 - Do not auto-fix Permissions-Policy or CSP headers — those live in a custom plugin and at the WAF layer.
 - Do not suggest removing inactive plugins/themes — they are intentional.
 - Do not use purple-gradient-on-white backgrounds (cliché).
+- Do not introduce new rotation values beyond the four locked tokens.
+- Do not introduce new shadow values without naming them in `tokens.css` first.
+- Do not auto-apply zine treatment to body content. The principle is "decoration in margins, calm in measure."
+
+## How to navigate as a fresh agent
+
+1. Read this file (you're doing it).
+2. Open `design-system/mockups/styleguide.html` in a browser. Scroll through. Toggle OS dark mode while scrolling — every block flips correctly.
+3. Read `tokens/tokens.css` top to bottom. The order is intentional: raw palette → semantic tokens → typography → spacing → radius → shapes → motion → post-type tokens → texture → dark mode flips → element defaults → legacy defenses → reduced motion.
+4. Read `components/components.css`. Each `.cr-*` class is documented inline with why it exists.
+5. If asked to extend the system, propose changes in **semantic tokens first**, then components. Don't introduce new raw palette colors without owner sign-off.
+6. If asked to add a new component, propose the class first, get approval, then write it.
+
+## Repo map
+
+```
+courtneyr-design-system/
+├── tokens/tokens.css              ← raw palette, semantic tokens, element defaults
+├── components/components.css      ← .cr-* classes
+├── brand/
+│   ├── brand.json                 ← machine-readable spec
+│   ├── wordmark.svg               ← all-paths SVG, no font dependency
+│   ├── wordmark-preview.png
+│   └── theme.json.fragment.json   ← Ollie integration starter
+├── design-system/mockups/
+│   ├── hero.html                  ← landing example, full zine treatment
+│   ├── reading.html               ← blog post, calm-with-zine-accents
+│   └── styleguide.html            ← every common HTML element, OS dark-mode flippable
+├── docs/
+│   ├── AI_CONTEXT.md              ← you are here
+│   ├── COMPONENTS.md              ← class-by-class reference
+│   ├── LAYERING.md                ← rotation, layering, z-index conventions (replaces SHAPE_LAYERING.md)
+│   └── IMPLEMENTATION.md          ← how to wire into Ollie
+├── demo/
+│   ├── BrandSystem.jsx            ← deferred cleanup in v2.1
+│   └── index.html                 ← deferred refresh in v2.1
+└── README.md
+```
+
+## What's deferred to v2.1+
+
+- `theme.json.fragment.json` expansion when wiring into the live site
+- `demo/index.html` refresh as a quick-tour landing for the design system itself
+- `demo/BrandSystem.jsx` cleanup (still references shape-layering and stale font names)
+- Real-site deployment + Equalize Digital re-test
+- Ollie child theme + Git Backup task (existing roadmap item in Things, Blog area)
+- Perfmatters Script Manager scoping for Rock Salt (only loads on pages that use `.cr-display` or `.cr-hero__display`)
 
 ## Where to find more
 
 - Full tokens: `tokens/tokens.css`
-- Canonical components: `components/components.css`
+- Component classes: `components/components.css`
+- Class-by-class reference: `docs/COMPONENTS.md`
 - Machine-readable brand spec: `brand/brand.json`
-- Static reference page: `demo/index.html`
-- WordPress application guide: `docs/IMPLEMENTATION.md`
-- Shape-layering deep-dive: `docs/SHAPE_LAYERING.md`
+- WordPress integration: `docs/IMPLEMENTATION.md`
+- Layering / rotation / depth conventions: `docs/LAYERING.md`
+- Three reference mockups: `design-system/mockups/`
