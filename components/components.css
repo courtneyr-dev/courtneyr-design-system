@@ -75,8 +75,17 @@
   color: var(--cr-russian-violet);
 }
 @media (prefers-color-scheme: dark) {
-  /* keep dark text on yellow even in dark mode */
-  .cr-highlight { color: var(--cr-russian-violet); }
+  /* In dark mode, the marker-style gradient leaves the top half of each letter
+     sitting against photocopier-black (russian-violet on that = 1.6:1, invisible).
+     Switch to a solid yellow block so contrast holds across the whole letter. */
+  :root:not([data-theme]) .cr-highlight {
+    background: var(--cr-highlight);                /* solid, overrides the gradient */
+    color: var(--cr-russian-violet);
+  }
+}
+:root[data-theme="dark"] .cr-highlight {
+  background: var(--cr-highlight);
+  color: var(--cr-russian-violet);
 }
 
 
@@ -336,7 +345,7 @@
 }
 .cr-button--outline:hover {
   background: var(--cr-ink);
-  color: var(--cr-printer-ivory);
+  color: var(--cr-ink-inverse);                  /* auto-flips: ivory on dark, russian-violet on light */
 }
 
 .cr-button--soft {
@@ -459,24 +468,39 @@
 /* Dark-mode text overrides for solid chips —
    when light-end accents become the chip bg in dark mode, text must flip to dark. */
 @media (prefers-color-scheme: dark) {
-  .cr-chip--blog.cr-chip--solid,
-  .cr-chip--book.cr-chip--solid,
-  .cr-chip--quote.cr-chip--solid,
-  .cr-chip--link.cr-chip--solid,
-  .cr-chip--bookmark.cr-chip--solid,
-  .cr-chip--repost.cr-chip--solid,
-  .cr-chip--speaking.cr-chip--solid,
-  .cr-chip--event.cr-chip--solid,
-  .cr-chip--review.cr-chip--solid,
-  .cr-chip--audio.cr-chip--solid,
-  .cr-chip--reply.cr-chip--solid,
-  .cr-chip--like.cr-chip--solid    { color: var(--cr-russian-violet); }
-  /* longform: selective-yellow + russian-violet = 8.50:1 AAA
+  /* OS-level dark mode — only when user hasn't explicitly chosen via [data-theme] */
+  :root:not([data-theme]) .cr-chip--blog.cr-chip--solid,
+  :root:not([data-theme]) .cr-chip--book.cr-chip--solid,
+  :root:not([data-theme]) .cr-chip--quote.cr-chip--solid,
+  :root:not([data-theme]) .cr-chip--link.cr-chip--solid,
+  :root:not([data-theme]) .cr-chip--bookmark.cr-chip--solid,
+  :root:not([data-theme]) .cr-chip--repost.cr-chip--solid,
+  :root:not([data-theme]) .cr-chip--speaking.cr-chip--solid,
+  :root:not([data-theme]) .cr-chip--event.cr-chip--solid,
+  :root:not([data-theme]) .cr-chip--review.cr-chip--solid,
+  :root:not([data-theme]) .cr-chip--audio.cr-chip--solid,
+  :root:not([data-theme]) .cr-chip--reply.cr-chip--solid,
+  :root:not([data-theme]) .cr-chip--like.cr-chip--solid    { color: var(--cr-russian-violet); }
+}
+/* Manual dark-mode override (parallel to the @media block above) */
+:root[data-theme="dark"] .cr-chip--blog.cr-chip--solid,
+:root[data-theme="dark"] .cr-chip--book.cr-chip--solid,
+:root[data-theme="dark"] .cr-chip--quote.cr-chip--solid,
+:root[data-theme="dark"] .cr-chip--link.cr-chip--solid,
+:root[data-theme="dark"] .cr-chip--bookmark.cr-chip--solid,
+:root[data-theme="dark"] .cr-chip--repost.cr-chip--solid,
+:root[data-theme="dark"] .cr-chip--speaking.cr-chip--solid,
+:root[data-theme="dark"] .cr-chip--event.cr-chip--solid,
+:root[data-theme="dark"] .cr-chip--review.cr-chip--solid,
+:root[data-theme="dark"] .cr-chip--audio.cr-chip--solid,
+:root[data-theme="dark"] .cr-chip--reply.cr-chip--solid,
+:root[data-theme="dark"] .cr-chip--like.cr-chip--solid    { color: var(--cr-russian-violet); }
+/* Contrast pairings (apply to either trigger):
+     longform: selective-yellow + russian-violet = 8.50:1 AAA
      shares:   sky-blue         + russian-violet = 9.27:1 AAA
      events:   periwinkle       + russian-violet = 7.93:1 AAA
      impact:   white            + russian-violet = 15:1   AAA
      media:    blue-green stays in both modes — no override needed */
-}
 
 
 /* ============ Hero layout ============

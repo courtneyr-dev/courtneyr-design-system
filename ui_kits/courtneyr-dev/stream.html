@@ -7,6 +7,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Roboto+Slab:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<script>
+  /* Pre-paint theme init — reads localStorage and applies before CSS evaluates.
+     Avoids flash of wrong theme. The toggle in kit-shell.js writes here. */
+  (function () {
+    try {
+      var t = localStorage.getItem('cr-kit-theme');
+      if (t === 'dark' || t === 'light') {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+    } catch (e) { /* localStorage blocked — fall back to prefers-color-scheme */ }
+  })();
+</script>
 <link rel="stylesheet" href="../../tokens/tokens.css">
 <link rel="stylesheet" href="../../components/components.css">
 <script src="../../components/icons-inject.js?v=24" defer></script>

@@ -325,7 +325,8 @@
    Surface flips from printer ivory to photocopier black.
    ============================================================================= */
 @media (prefers-color-scheme: dark) {
-  :root {
+  /* OS-level dark mode — only applies if user has not explicitly chosen via [data-theme] */
+  :root:not([data-theme]) {
     --cr-surface:          var(--cr-photocopier-blk);
     --cr-surface-soft:     var(--cr-prussian-blue);
     --cr-surface-elevated: var(--cr-night-elevated);
@@ -359,6 +360,12 @@
     --cr-primary:       var(--cr-selective-yellow);
     --cr-primary-hover: var(--cr-sky-blue);
     --cr-primary-ink:   var(--cr-russian-violet);
+
+    /* CTA buttons — dark mode override (selective-yellow + russian-violet = 8.5:1 AAA) */
+    --cr-cta-bg:        var(--cr-selective-yellow);
+    --cr-cta-bg-hover:  var(--cr-sky-blue);
+    --cr-cta-ink:       var(--cr-russian-violet);
+    --cr-cta-ink-hover: var(--cr-russian-violet);
     --cr-accent:        var(--cr-sky-blue);
     --cr-accent-shape:  var(--cr-cerulean);
     --cr-accent-soft:   var(--cr-prussian-blue);
@@ -401,6 +408,90 @@
     --cr-type-review:   var(--cr-periwinkle);         /* 18 review */
   }
 }
+
+/* Manual dark mode override — ui-kit toggle sets [data-theme="dark"] on <html> */
+:root[data-theme="dark"] {
+    --cr-surface:          var(--cr-photocopier-blk);
+    --cr-surface-soft:     var(--cr-prussian-blue);
+    --cr-surface-elevated: var(--cr-night-elevated);
+
+    --cr-ink:         var(--cr-printer-ivory);
+    --cr-ink-muted:   var(--cr-periwinkle);
+    --cr-ink-soft:    #c8c2d8;
+    --cr-ink-inverse: var(--cr-russian-violet);
+
+    --cr-link:         var(--cr-sky-blue);
+    --cr-link-hover:   var(--cr-selective-yellow);
+    --cr-link-visited: var(--cr-periwinkle);
+
+    --cr-rule:          #3a342f;
+    --cr-border:        rgba(188, 181, 227, 0.15);
+    --cr-border-strong: rgba(188, 181, 227, 0.30);
+
+    --cr-callout-bg:  var(--cr-prussian-blue);
+    --cr-callout-ink: var(--cr-sky-blue);
+
+    --cr-accent-1-bg:  var(--cr-prussian-blue);
+    --cr-accent-1-ink: var(--cr-sky-blue);
+    --cr-accent-2-bg:  var(--cr-russian-violet);
+    --cr-accent-2-ink: var(--cr-periwinkle);
+    --cr-accent-3-bg:  var(--cr-cerulean);
+    --cr-accent-3-ink: var(--cr-light-orange);
+
+    --cr-tape:     #4a3f1c;
+    --cr-tape-ink: var(--cr-selective-yellow);
+
+    --cr-primary:       var(--cr-selective-yellow);
+    --cr-primary-hover: var(--cr-sky-blue);
+    --cr-primary-ink:   var(--cr-russian-violet);
+
+    /* CTA buttons — dark mode override (selective-yellow + russian-violet = 8.5:1 AAA) */
+    --cr-cta-bg:        var(--cr-selective-yellow);
+    --cr-cta-bg-hover:  var(--cr-sky-blue);
+    --cr-cta-ink:       var(--cr-russian-violet);
+    --cr-cta-ink-hover: var(--cr-russian-violet);
+    --cr-accent:        var(--cr-sky-blue);
+    --cr-accent-shape:  var(--cr-cerulean);
+    --cr-accent-soft:   var(--cr-prussian-blue);
+
+    --cr-code-bg:  #2a2520;
+    --cr-code-ink: var(--cr-periwinkle);
+
+    --cr-shadow-hard:   4px 4px 0 var(--cr-selective-yellow);
+    --cr-shadow-hard-2: 6px 6px 0 var(--cr-selective-yellow);
+
+    --cr-fiber: repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(255, 255, 255, 0.018) 2px,
+      rgba(255, 255, 255, 0.018) 3px
+    );
+
+    /* v2.1 — post-type accents in dark mode.
+       Each maps to a brighter variant of its light-mode color so the
+       4px chip edge stays visible against dark tape (#4a3f1c).
+       Every value below verified ≥3:1 vs dark tape. */
+    --cr-type-blog:     var(--cr-selective-yellow);  /*  1 blog (warm/inviting) */
+    --cr-type-aside:    var(--cr-glaucous);           /*  2 aside (works on both) */
+    --cr-type-image:    var(--cr-blue-green);         /*  3 image (works on both) */
+    --cr-type-gallery:  var(--cr-blue-green);         /*  4 gallery */
+    --cr-type-video:    var(--cr-blue-green);         /*  5 video */
+    --cr-type-audio:    #ffffff;                      /*  6 audio (impact - inverted to white) */
+    --cr-type-chat:     var(--cr-glaucous);           /*  7 chat */
+    --cr-type-status:   var(--cr-glaucous);           /*  8 status */
+    --cr-type-link:     var(--cr-sky-blue);           /*  9 link (cool, lighter than cerulean) */
+    --cr-type-bookmark: var(--cr-sky-blue);           /* 10 bookmark */
+    --cr-type-quote:    var(--cr-selective-yellow);   /* 11 quote */
+    --cr-type-speaking: var(--cr-periwinkle);         /* 12 speaking (lighter than prussian) */
+    --cr-type-book:     var(--cr-selective-yellow);   /* 13 book */
+    --cr-type-like:     #ffffff;                      /* 14 like */
+    --cr-type-repost:   var(--cr-sky-blue);           /* 15 repost */
+    --cr-type-reply:    #ffffff;                      /* 16 reply */
+    --cr-type-event:    var(--cr-periwinkle);         /* 17 event */
+    --cr-type-review:   var(--cr-periwinkle);         /* 18 review */
+}
+
 
 
 /* =============================================================================
