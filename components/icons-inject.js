@@ -102,10 +102,12 @@
   
   <symbol id="post-icon-link" viewBox="0 0 24 24">
     <title>Link</title>
-    
-    <path d="M14 7 L16 5 A3.5 3.5 0 0 1 21 10 L19 12"></path>
-    <path d="M10 17 L8 19 A3.5 3.5 0 0 1 3 14 L5 12"></path>
-    <path d="M9 15 L15 9"></path>
+    <!-- Tilted gem-style paperclip — adapted from Lucide (MIT-licensed).
+         One continuous bent wire:
+           outer-tip (upper-right) -> diagonal down-left -> outer bottom hook
+           -> diagonal up-right -> outer top loop (large arc) -> diagonal down-left
+           -> inner bottom hook (small) -> diagonal up-right ending at inner tip. -->
+    <path d="M21.44 11.05 L12.25 20.24 A6 6 0 0 1 3.76 11.75 L12.33 3.18 A4 4 0 1 1 18 8.84 L9.41 17.41 A2 2 0 0 1 6.58 14.58 L15.07 6.10"></path>
   </symbol>
 
   
