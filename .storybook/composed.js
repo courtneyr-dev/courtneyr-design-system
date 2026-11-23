@@ -23,6 +23,6 @@ export function refs(overrides = JSON.parse(process.env.STORYBOOK_REF_URLS || '{
   return Object.fromEntries(
     composed
       .filter((entry) => !entry.planned || entry.id in overrides)
-      .map(({ id, title, path, url }) => [id, { title, url: (overrides[id] ?? url ?? path).replace(/\/$/, '') }]),
+      .map(({ id, title, path, url }) => [id, { title, url: (overrides[id] ?? url ?? path.slice(1)).replace(/\/$/, '') }]),
   );
 }

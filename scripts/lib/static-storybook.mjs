@@ -15,10 +15,12 @@ const TYPES = {
   '.woff2': 'font/woff2',
 };
 
-export function serve(root = ROOT) {
+export function serve(root = ROOT, basePath = '') {
   const server = createServer(async (req, res) => {
     const path = normalize(decodeURIComponent(new URL(req.url, 'http://localhost').pathname));
-    const file = join(root, path.endsWith('/') ? `${path}index.html` : path);
+    if (!path.startsWith(`${basePath}/`)) return res.writeHead(404).end();
+    const asset = path.slice(basePath.length);
+    const file = join(root, asset.endsWith('/') ? `${asset}index.html` : asset);
     try {
       const body = await readFile(file);
       res.writeHead(200, { 'content-type': TYPES[extname(file)] ?? 'application/octet-stream' });
@@ -28,7 +30,7 @@ export function serve(root = ROOT) {
     }
   });
   return new Promise((resolve) =>
-    server.listen(0, '127.0.0.1', () => resolve({ server, url: `http://127.0.0.1:${server.address().port}` })),
+    server.listen(0, '127.0.0.1', () => resolve({ server, url: `http://127.0.0.1:${server.address().port}${basePath}` })),
   );
 }
 
