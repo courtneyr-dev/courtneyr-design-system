@@ -4,11 +4,15 @@ import { withStorybook } from './lib/static-storybook.mjs';
 
 const SCHEMES = ['light', 'dark'];
 
-// These gradients are texture (fiber, halftone) or a partial highlighter swipe
-// over a solid surface. axe can't read a background through a gradient and
-// leaves contrast unmeasured, so remove them and measure against the solid
-// color underneath. An unmeasured contrast check anywhere else fails the run.
-const TEXTURE_OFF = 'body, .cr-hero, .cr-halftone, .cr-highlight { background-image: none !important; }';
+// axe can't read a background through a gradient and leaves contrast
+// unmeasured. Fiber and halftone are texture over a solid surface, so remove
+// them. The light-mode .cr-highlight swipe puts each letter half on the
+// surface and half on the yellow band; text that passes on the band is dark
+// enough to pass on any lighter surface, so fill the swipe solid and measure
+// there. An unmeasured contrast check anywhere else fails the run.
+const TEXTURE_OFF = `
+  body, .cr-hero, .cr-halftone { background-image: none !important; }
+  .cr-highlight { background: var(--cr-highlight) !important; }`;
 
 const ISSUES = 'https://github.com/courtneyr-dev/courtneyr-design-system/issues';
 const COMPONENTS = 'components-documented-classes--all-components';
