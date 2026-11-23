@@ -20,9 +20,9 @@ const KNOWN_IN_STORYBOOK_UI = [
   },
   {
     rule: 'aria-allowed-attr',
-    target: /^\.css-[a-z0-9]+$/,
+    target: /^\.css-[a-z0-9]+(:nth-child\(\d+\))?$/,
     html: /^<div aria-label="Hide .* stories" aria-expanded=/,
-    why: `${STORYBOOK_UI}: the composed Storybook's header is a div with aria-expanded and no role`,
+    why: `${STORYBOOK_UI}: each composed Storybook's header is a div with aria-expanded and no role`,
   },
   {
     rule: 'aria-valid-attr-value',
