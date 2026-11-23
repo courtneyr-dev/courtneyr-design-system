@@ -170,7 +170,7 @@ async function checkLinks(url, roots) {
 
 if (!existsSync(join(DIST, 'index.html'))) throw new Error('dist/index.html is missing. Run `npm run build:pages` first.');
 
-const { server, url } = await serve(DIST);
+const { server, url } = await serve(DIST, '/courtneyr-design-system');
 const browser = await chromium.launch({ channel: 'chrome' });
 try {
   const context = await browser.newContext({ viewport: { width: 1280, height: 4000 } });

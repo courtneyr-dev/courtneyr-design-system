@@ -115,7 +115,7 @@ All three are self-contained — open them directly in a browser. They import `t
 
 ## Storybook
 
-This repo hosts the composition Storybook for courtneyr.dev. The `Storybook Pages` workflow can publish it to storybook.courtneyr.dev, but GitHub Pages is off and no DNS record exists yet. See [Publish to storybook.courtneyr.dev](#publish-to-storybookcourtneyrdev).
+This repo hosts the composition Storybook for courtneyr.dev. The `Storybook Pages` workflow publishes it at [the design system's GitHub Pages URL](https://courtneyr-dev.github.io/courtneyr-design-system/). See [Publish to GitHub Pages](#publish-to-github-pages).
 
 ```sh
 npm ci
@@ -143,7 +143,7 @@ The test scripts drive the installed Google Chrome through `playwright-core`, so
 
 `.storybook/composed.json` lists every Storybook the host composes. `.storybook/main.js` turns it into `refs`, and `scripts/build-pages.mjs` reads it to build the ones published from here. Each entry is one of two kinds:
 
-- **Built here.** `build` names a public repo, a full commit SHA and the folder that holds its Storybook. `path` is where it lands on storybook.courtneyr.dev. The build runs `npm ci --ignore-scripts` and `npm run build-storybook` in that folder. The ref URL is the root-absolute `path`, such as `/site/`, so the composed site works only at a domain root. At `courtneyr-dev.github.io/courtneyr-design-system/` the browser asks for `courtneyr-dev.github.io/site/`, and the ref 404s.
+- **Built here.** `build` names a public repo, a full commit SHA and the folder that holds its Storybook. `path` is where it lands within `dist/`. The build runs `npm ci --ignore-scripts` and `npm run build-storybook` in that folder. The host resolves its ref relative to the current page, so `/site/` in the registry loads under `/courtneyr-design-system/site/` on GitHub Pages.
 - **Published elsewhere.** `url` is the Storybook's own address, such as a plugin's `https://courtneyr-dev.github.io/<repo>/storybook/`. Add `"planned": true` while that URL doesn't serve a Storybook yet. The host leaves planned entries out, because a ref that fails to load shows "Something went wrong loading this Storybook" in the sidebar.
 
 ```json
@@ -175,7 +175,7 @@ The host composes the courtneyr.dev site Storybook, Post Formats for Block Theme
 
 ---
 
-## Publish to storybook.courtneyr.dev
+## Publish to GitHub Pages
 
 `.github/workflows/storybook-pages.yml` runs on every push to `main`, on every pull request into `main`, and on a manual run. It has two jobs:
 
@@ -188,12 +188,12 @@ The host composes the courtneyr.dev site Storybook, Post Formats for Block Theme
 
 | URL | Content |
 |---|---|
-| `https://storybook.courtneyr.dev/` | This repo's foundations stories, with every composed Storybook in the sidebar |
-| `https://storybook.courtneyr.dev/site/` | The courtneyr-child site Storybook, built from the pinned commit |
+| `https://courtneyr-dev.github.io/courtneyr-design-system/` | This repo's foundations stories, with every composed Storybook in the sidebar |
+| `https://courtneyr-dev.github.io/courtneyr-design-system/site/` | The courtneyr-child site Storybook, built from the pinned commit |
 
 ### What the checks cover
 
-`npm run test:pages` runs `npm run test:a11y` on this repo's stories, then `scripts/check-pages.mjs` on `dist/` served from a local port:
+`npm run test:pages` runs `npm run test:a11y` on this repo's stories, then `scripts/check-pages.mjs` on `dist/` served at `/courtneyr-design-system/` on a local port:
 
 - **Composition.** It opens the host in Chrome, expands each ref in the sidebar, and fails unless the sidebar lists as many stories as the ref's `index.json`. Then it opens every ref story from the sidebar and fails unless each one finishes rendering inside the host.
 - **axe on stories.** Every story in each Storybook built here, in light and dark mode, with the WCAG 2.0, 2.1 and 2.2 A and AA rules. A render that errors or throws fails too. A rule that a story turns off in its own `parameters.a11y.config.rules` stays off, the same as in that repo's own test, and the run prints each one. The courtneyr-child page stories turn off one rule, `list`, and explain why on their Overview story. Storybooks published elsewhere run axe in their own repo.
@@ -214,20 +214,15 @@ python3 -m http.server 8080 --directory dist   # optional: browse the result at 
 
 Courtney takes these steps. Each one is a public change.
 
-1. If courtneyr.dev isn't a verified domain for the courtneyr-dev account yet, verify it in the account's Pages settings. Verification stops anyone else from claiming a subdomain.
-2. In this repo, open **Settings > Pages**. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-3. On the same page, enter `storybook.courtneyr.dev` under **Custom domain** and click **Save**. Do this before the DNS record exists and before the merge in step 6. Without the domain, the first deploy publishes at `courtneyr-dev.github.io/courtneyr-design-system/`, where the `/site/` ref 404s.
-4. courtneyr.dev's DNS is on Cloudflare (nameservers `wren.ns.cloudflare.com` and `zod.ns.cloudflare.com`). In the Cloudflare dashboard, add a `CNAME` record for `storybook` that points to `courtneyr-dev.github.io`, and set **Proxy status** to **DNS only** (grey cloud). A proxied record hides GitHub's address, so GitHub can't verify the domain or issue the HTTPS certificate.
-5. Confirm the record resolves. `dig +short storybook.courtneyr.dev CNAME` returns `courtneyr-dev.github.io.`, and **Settings > Pages** shows the DNS check passing.
-6. Remove the `do not merge` label and merge the pull request. The push to `main` starts the workflow. If the deploy job ran before Pages was on, open **Actions > Storybook Pages** and click **Run workflow** on `main`.
-7. When the certificate is ready, select **Enforce HTTPS** in **Settings > Pages**. GitHub says this can take up to 24 hours.
-8. Open `https://storybook.courtneyr.dev/` and `https://storybook.courtneyr.dev/site/`.
+1. In this repo, open **Settings > Pages**. Under **Build and deployment**, set **Source** to **GitHub Actions**. Leave **Custom domain** blank to serve the Storybook directly on `github.io`.
+2. Merge the pull request. The push to `main` starts the workflow. To deploy the existing `main`, open **Actions > Storybook Pages** and click **Run workflow**.
+3. Open the [combined Storybook](https://courtneyr-dev.github.io/courtneyr-design-system/) and the [site Storybook](https://courtneyr-dev.github.io/courtneyr-design-system/site/).
 
 ### Roll back
 
 - To take the site down, open **Settings > Pages**, click the **...** menu next to **Your site is live at**, and select **Unpublish site**. The next successful workflow run publishes it again, so also open **Actions > Storybook Pages** and select **Disable workflow** from the **...** menu.
 - To undo a bad publish, revert the commit on `main`. The push publishes the reverted build.
-- To retire the domain, remove the DNS record first, then clear **Custom domain**. A record that points at GitHub Pages with no site claiming it lets someone else claim the subdomain. Clearing the domain moves the site to `courtneyr-dev.github.io/courtneyr-design-system/`, where the `/site/` ref 404s, so also unpublish the site and disable the workflow as above, or accept a broken project-path site.
+- To retire a Pages custom domain, remove its DNS record and let cached records expire before clearing **Custom domain**. A record that points at GitHub Pages with no site claiming it lets someone else claim the subdomain. Clearing the custom domain restores the repository's GitHub Pages URL.
 
 ---
 

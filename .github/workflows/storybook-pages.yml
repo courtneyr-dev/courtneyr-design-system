@@ -1,9 +1,5 @@
 name: Storybook Pages
 
-# Nothing goes live until Courtney turns on GitHub Pages (source: GitHub Actions), sets the
-# custom domain storybook.courtneyr.dev in Settings > Pages, and adds the DNS CNAME record.
-# Until Pages is on, the deploy job fails and publishes nothing.
-
 on:
   push:
     branches: [main]
