@@ -153,7 +153,7 @@ The test scripts drive the installed Google Chrome through `playwright-core`, so
   "path": "/site/",
   "build": {
     "repo": "courtneyr-dev/courtneyr-child",
-    "sha": "2ae06b0cfee9ad3fdd6a2253201f5078314d799d",
+    "sha": "8eea37b78d1e4a391169da9e70b2f4da2dd28542",
     "dir": "storybook"
   }
 }
@@ -171,7 +171,7 @@ STORYBOOK_REF_URLS='{"post-formats":"http://localhost:6007"}' npm run storybook
 2. Run `npm run pages`. It fails if the new Storybook doesn't compose, fails axe, or has a broken link.
 3. Open a pull request. Merging to `main` publishes the result once Pages is on.
 
-Outpost and post-kinds-for-indieweb join the same way once their Storybooks publish at their `/storybook/` URLs.
+The host composes the courtneyr.dev site Storybook, Post Formats for Block Themes and Post Kinds for IndieWeb. Outpost joins the same way once its Storybook publishes at its `/storybook/` URL.
 
 ---
 
@@ -196,7 +196,7 @@ Outpost and post-kinds-for-indieweb join the same way once their Storybooks publ
 `npm run test:pages` runs `npm run test:a11y` on this repo's stories, then `scripts/check-pages.mjs` on `dist/` served from a local port:
 
 - **Composition.** It opens the host in Chrome, expands each ref in the sidebar, and fails unless the sidebar lists as many stories as the ref's `index.json`. Then it opens every ref story from the sidebar and fails unless each one finishes rendering inside the host.
-- **axe on stories.** Every story in each Storybook built here, in light and dark mode, with the WCAG 2.0, 2.1 and 2.2 A and AA rules. A render that errors or throws fails too. A rule that a story turns off in its own `parameters.a11y.config.rules` stays off, the same as in that repo's own test, and the run prints each one. The courtneyr-child page stories turn off two rules and explain why on their Overview story. Storybooks published elsewhere run axe in their own repo.
+- **axe on stories.** Every story in each Storybook built here, in light and dark mode, with the WCAG 2.0, 2.1 and 2.2 A and AA rules. A render that errors or throws fails too. A rule that a story turns off in its own `parameters.a11y.config.rules` stays off, the same as in that repo's own test, and the run prints each one. The courtneyr-child page stories turn off one rule, `list`, and explain why on their Overview story. Storybooks published elsewhere run axe in their own repo.
 - **axe on the Storybook UI.** The host page with every ref expanded, in light and dark mode. Storybook 10.6.6's own sidebar markup breaks three rules, listed in `KNOWN_IN_STORYBOOK_UI` with the reason for each. Any other violation fails, and so does a known one that stops occurring.
 - **Links.** linkinator crawls the index and iframe pages of every Storybook in `dist/`, including CSS `url()` links. It sees static HTML and CSS only, not links inside rendered stories. It has no skip rules. If one is ever needed, give it a name and a reason, and match only the false failure.
 

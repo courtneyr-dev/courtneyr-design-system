@@ -5,14 +5,18 @@
     "path": "/site/",
     "build": {
       "repo": "courtneyr-dev/courtneyr-child",
-      "sha": "2ae06b0cfee9ad3fdd6a2253201f5078314d799d",
+      "sha": "8eea37b78d1e4a391169da9e70b2f4da2dd28542",
       "dir": "storybook"
     }
   },
   {
     "id": "post-formats",
     "title": "Post Formats for Block Themes",
-    "url": "https://courtneyr-dev.github.io/post-formats-for-block-themes/storybook/",
-    "planned": true
+    "url": "https://courtneyr-dev.github.io/post-formats-for-block-themes/storybook/"
+  },
+  {
+    "id": "post-kinds",
+    "title": "Post Kinds for IndieWeb",
+    "url": "https://courtneyr-dev.github.io/post-kinds-for-indieweb/storybook/"
   }
 ]
