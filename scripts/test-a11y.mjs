@@ -14,14 +14,7 @@ const TEXTURE_OFF = `
   body, .cr-hero, .cr-halftone { background-image: none !important; }
   .cr-highlight { background: var(--cr-highlight) !important; }`;
 
-const ISSUES = 'https://github.com/courtneyr-dev/courtneyr-design-system/issues';
-const COMPONENTS = 'components-documented-classes--all-components';
-const KNOWN = [
-  { story: COMPONENTS, scheme: 'light', rule: 'color-contrast', target: /^\.cr-eyebrow$/, issue: `${ISSUES}/5` },
-  { story: COMPONENTS, scheme: 'light', rule: 'color-contrast', target: /^\.cr-hero__title--accent$/, issue: `${ISSUES}/5` },
-  { story: 'foundations-brand--icons', scheme: 'dark', rule: 'color-contrast', target: /> figcaption$/, issue: `${ISSUES}/6` },
-  { story: COMPONENTS, scheme: 'dark', rule: 'color-contrast', target: /^(\.cr-toc__heading|a\[href\$="#(why|fix)"\])$/, issue: `${ISSUES}/6` },
-];
+const KNOWN = [];
 
 const known = (story, scheme, rule, target) =>
   KNOWN.find((k) => k.story === story && k.scheme === scheme && k.rule === rule && k.target.test(target));
