@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, rmSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { composed } from '../.storybook/composed.js';
@@ -7,11 +7,6 @@ import { composed } from '../.storybook/composed.js';
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const DIST = join(ROOT, 'dist');
 const WORK = join(ROOT, '.pages-work');
-
-// GitHub ignores dist/CNAME on a workflow-deployed Pages site. This domain serves only after
-// Courtney enables Pages (source: GitHub Actions), sets it as the custom domain in
-// Settings > Pages, and adds the DNS CNAME record.
-const DOMAIN = 'storybook.courtneyr.dev';
 
 function run(cmd, args, cwd) {
   console.log(`$ ${[cmd, ...args].join(' ')}    (in ${relative(ROOT, cwd) || '.'})`);
@@ -42,5 +37,4 @@ for (const { id, path, build } of composed.filter((entry) => entry.build)) {
   run('npm', ['run', 'build-storybook', '--', '--output-dir', join(DIST, path)], dir);
 }
 
-writeFileSync(join(DIST, 'CNAME'), `${DOMAIN}\n`);
-console.log(`\ndist/ assembled: host at /, ${composed.filter((e) => e.build).map((e) => `${e.id} at ${e.path}`).join(', ')}, CNAME ${DOMAIN}`);
+console.log(`\ndist/ assembled: host at /, ${composed.filter((e) => e.build).map((e) => `${e.id} at ${e.path}`).join(', ')}`);

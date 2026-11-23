@@ -177,14 +177,14 @@ Outpost and post-kinds-for-indieweb join the same way once their Storybooks publ
 
 ## Publish to storybook.courtneyr.dev
 
-`.github/workflows/storybook-pages.yml` runs on every push to `main` and on a manual run. It has two jobs:
+`.github/workflows/storybook-pages.yml` runs on every push to `main`, on every pull request into `main`, and on a manual run. It has two jobs:
 
 1. **Build and check** (`contents: read`). It runs `npm run build:pages`, then `npm run test:pages`, and uploads `dist/` as the Pages artifact.
-2. **Deploy to GitHub Pages** (`pages: write`, `id-token: write`, environment `github-pages`). It runs only on `main` and publishes the artifact. Until Pages is on, this job fails with "Ensure GitHub Pages has been enabled" and publishes nothing.
+2. **Deploy to GitHub Pages** (`pages: write`, `id-token: write`, environment `github-pages`). It runs only for a push or a manual run on `main`, never for a pull request, and publishes the artifact. Until Pages is on, this job fails with "Ensure GitHub Pages has been enabled" and publishes nothing.
 
 ### What the build puts in dist/
 
-`npm run build:pages` builds this repo's Storybook and copies it to `dist/`. For each built-here entry, it fetches the pinned commit into `.pages-work/<id>/`, builds that Storybook into `dist/<path>`, and writes `dist/CNAME`. GitHub ignores `CNAME` for sites published by a workflow. The custom domain comes from Settings > Pages.
+`npm run build:pages` builds this repo's Storybook and copies it to `dist/`. For each built-here entry, it fetches the pinned commit into `.pages-work/<id>/` and builds that Storybook into `dist/<path>`. The build writes no `CNAME` file, because GitHub ignores one on a site published by a workflow. The custom domain comes from Settings > Pages.
 
 | URL | Content |
 |---|---|
