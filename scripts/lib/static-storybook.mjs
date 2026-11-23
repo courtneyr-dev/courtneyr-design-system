@@ -15,10 +15,10 @@ const TYPES = {
   '.woff2': 'font/woff2',
 };
 
-function serve() {
+export function serve(root = ROOT) {
   const server = createServer(async (req, res) => {
     const path = normalize(decodeURIComponent(new URL(req.url, 'http://localhost').pathname));
-    const file = join(ROOT, path.endsWith('/') ? `${path}index.html` : path);
+    const file = join(root, path.endsWith('/') ? `${path}index.html` : path);
     try {
       const body = await readFile(file);
       res.writeHead(200, { 'content-type': TYPES[extname(file)] ?? 'application/octet-stream' });

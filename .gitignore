@@ -12,6 +12,7 @@ Thumbs.db
 node_modules/
 dist/
 storybook-static/
+.pages-work/
 .env
 .env.local
 
