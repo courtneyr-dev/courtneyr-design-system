@@ -12,6 +12,9 @@ Personal site with the voice of a patient teacher and the visual confidence of a
 
 ```
 courtneyr-design-system/
+├── .storybook/                     ← composition-host Storybook config (refs live in main.js)
+├── stories/                        ← foundations stories, read from the files below at build time
+├── scripts/                        ← version check, contrast table, Storybook a11y and palette tests
 ├── tokens/
 │   └── tokens.css                  ← raw palette, semantic tokens, element defaults, dark mode
 ├── components/
@@ -109,6 +112,44 @@ All three are self-contained — open them directly in a browser. They import `t
 
 ---
 
+## Storybook
+
+This repo hosts the composition Storybook for courtneyr.dev. It builds locally only. No Pages site or domain is set up yet.
+
+```sh
+npm ci
+npm run storybook         # dev server on http://localhost:6006
+npm run build-storybook   # static build in storybook-static/ (git-ignored)
+npm test                  # version and components checks, build, a11y test, palette test
+```
+
+The stories read `tokens/tokens.css`, `components/icons.svg`, `brand/wordmark.svg` and `docs/COMPONENTS.md` at build time, so a token or class added to those files shows up without a story edit:
+
+- **Color.** Every color custom property in `tokens.css`, plus the light gray contrast table.
+- **Typography.** Families, type scale, weights, leading and tracking from section 3 of `tokens.css`.
+- **Brand.** The wordmark and every symbol in `icons.svg`.
+- **Components.** Every section of `COMPONENTS.md` that has an HTML example, rendered with `components.css`.
+
+`npm run test:a11y` opens each story in the built Storybook, in light and dark mode, and runs axe with the WCAG 2.0, 2.1 and 2.2 A and AA rules from `.storybook/a11y-rules.js`. It removes the fiber, halftone and highlighter gradients first, because axe can't measure contrast through a gradient. Any new violation fails the run, and so does a contrast check axe still can't measure. Known violations are listed in `scripts/test-a11y.mjs` with an issue link. The run also fails when a known violation stops occurring, so the list only shrinks.
+
+`npm run check:components` fails when a COMPONENTS.md example uses a `.cr-*` class that `components.css` doesn't define.
+
+`npm run test:palette` counts the color custom properties in `tokens.css` with the browser's CSS engine and checks that the palette story renders exactly that set.
+
+The test scripts drive the installed Google Chrome through `playwright-core`, so they don't download a browser.
+
+### Composition refs
+
+`refs` in `.storybook/main.js` is empty on purpose. Each repo's Storybook joins by reference once it builds and has a URL. The courtneyr-child site Storybook is next. Don't add a ref for a Storybook that doesn't exist yet. An entry looks like:
+
+```js
+refs: {
+  'courtneyr-child': { title: 'courtneyr.dev theme', url: 'https://example.invalid/storybook' },
+},
+```
+
+---
+
 ## Versioning
 
 The tokens follow [Semantic Versioning](https://semver.org/). `package.json` holds the version:
@@ -137,7 +178,7 @@ This brand system is authored for Courtney Robertson's personal use. Code patter
 
 ## Version
 
-**v2.4.0** adds `--cr-light-gray` (`#ebebeb`), the 11th brief color. It's a surface color: see "Light gray contrast" in `DESIGN.md` before putting text on it.
+**v2.4.0** adds `--cr-light-gray` (`#ebebeb`), the 11th brief color. It's a surface color: see "Light gray contrast" in `DESIGN.md` before putting text on it. Also adds the composition-host Storybook and the version check.
 
 **v2.0.0** — Zine pivot. Selective merge from v1.1: button family preserved (zine-restyled), post-type chips restyled as masking-tape, stream-item structure preserved (zine-restyled), shape-layering deprecated entirely.
 

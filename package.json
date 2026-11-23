@@ -6,7 +6,21 @@
   "description": "Brand tokens, components and the composition-host Storybook for courtneyr.dev",
   "license": "MIT",
   "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o storybook-static",
     "check:version": "node scripts/check-version.mjs",
-    "contrast": "node scripts/contrast.mjs"
+    "check:components": "node scripts/check-components.mjs",
+    "contrast": "node scripts/contrast.mjs",
+    "test:a11y": "node scripts/test-a11y.mjs",
+    "test:palette": "node scripts/test-palette.mjs",
+    "test": "npm run check:version && npm run check:components && npm run build-storybook && npm run test:a11y && npm run test:palette"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@storybook/addon-a11y": "10.6.6",
+    "@storybook/html-vite": "10.6.6",
+    "playwright-core": "1.65.1",
+    "storybook": "10.6.6",
+    "vite": "8.3.8"
   }
 }

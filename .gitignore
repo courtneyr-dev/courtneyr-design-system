@@ -11,8 +11,10 @@ Thumbs.db
 # Node (if anyone ever adds tooling)
 node_modules/
 dist/
+storybook-static/
 .env
 .env.local
 
 # Claude
 .claude/
+
