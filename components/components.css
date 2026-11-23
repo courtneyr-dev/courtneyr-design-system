@@ -56,8 +56,22 @@
   font-weight: var(--cr-weight-bold);
   text-transform: uppercase;
   letter-spacing: var(--cr-tracking-eyebrow);
-  color: var(--cr-marker);
+  color: var(--cr-prussian-blue);
   margin-bottom: var(--cr-space-2xs);
+}
+/* UT Orange text is 2.37:1 on ivory and 7.18:1 on photocopier black, so the
+   eyebrow and the hero accent use Prussian Blue in light mode only. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .cr-eyebrow,
+  :root:not([data-theme]) .cr-hero__title--accent,
+  :root[data-theme="system"] .cr-eyebrow,
+  :root[data-theme="system"] .cr-hero__title--accent {
+    color: var(--cr-marker);
+  }
+}
+:root[data-theme="dark"] .cr-eyebrow,
+:root[data-theme="dark"] .cr-hero__title--accent {
+  color: var(--cr-marker);
 }
 
 
@@ -188,11 +202,11 @@
   text-transform: uppercase;
   letter-spacing: var(--cr-tracking-eyebrow);
   margin: 0 0 var(--cr-space-sm);
-  color: var(--cr-russian-violet);
+  color: var(--cr-accent-3-ink);
 }
 .cr-toc ol, .cr-toc ul { margin: 0; padding-left: var(--cr-space-md); }
-.cr-toc a { color: var(--cr-russian-violet); text-decoration-thickness: 1px; }
-.cr-toc a:hover { background: var(--cr-highlight); }
+.cr-toc a { color: var(--cr-accent-3-ink); text-decoration-thickness: 1px; }
+.cr-toc a:hover { background: var(--cr-highlight); color: var(--cr-russian-violet); }
 
 
 /* ============ Tape label ============
@@ -538,7 +552,7 @@
 .cr-hero__title--accent {
   /* alternate slab-serif treatment for headings that lead a section */
   font-weight: var(--cr-weight-extrabold);
-  color: var(--cr-marker);
+  color: var(--cr-prussian-blue);
 }
 
 .cr-hero__lead {

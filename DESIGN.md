@@ -473,7 +473,7 @@ Light-mode dark surface is `#1a1714` (Photocopier Black) — not Prussian Blue. 
 
 | Decision                                     | Why                                                                           |
 | -------------------------------------------- | ----------------------------------------------------------------------------- |
-| `figcaption` is **cerulean**, not glaucous   | Glaucous on cream is 3.5:1 — fails AA                                         |
+| `figcaption` is **`--cr-ink-muted`**, not glaucous | Glaucous on cream is 3.5:1 — fails AA                                         |
 | `dfn` has no underline                       | It looks like a link otherwise                                                |
 | Tables stay un-rotated                       | Tables exist to be scanned, not stylized                                      |
 | Surface is **printer ivory**, not warm cream | Warm cream fought the yellow highlighter                                      |
@@ -595,7 +595,7 @@ Do not introduce additional font families.
 | Section h2    | Roboto Slab        | 800     | Warm and assertive                           |
 | Subsection h3 | Roboto Slab        | 700     |                                              |
 | Stream title  | Roboto Slab        | 700     | Slab serif so post titles feel substantial   |
-| Eyebrow       | Roboto Slab        | 700     | Block-level, NOT inline-block. UT Orange.    |
+| Eyebrow       | Roboto Slab        | 700     | Block-level, NOT inline-block. Prussian Blue in light mode, UT Orange in dark mode. |
 | Body          | Barlow             | 400–500 |                                              |
 | Meta / chip   | Roboto Slab        | 700     | Uppercase, tracked 0.12em                    |
 | Quote         | Roboto Slab italic | 400     | Default `<blockquote>` and `.cr-pull-quote`  |
@@ -697,7 +697,7 @@ All buttons share: sharp corners, thick border, hard offset shadow, "press" effe
 - `.cr-hero__inner` — centered max-width container
 - `.cr-hero__display` — Rock Salt heading (short copy only)
 - `.cr-hero__title` — Roboto Slab heading (longer copy)
-- `.cr-hero__title--accent` — UT Orange recolor for a phrase inside `__title`
+- `.cr-hero__title--accent` — Prussian Blue (light) or UT Orange (dark) recolor for a phrase inside `__title`
 - `.cr-hero__lead` — slab serif lead paragraph
 
 ### Stream (homepage feed)
@@ -718,7 +718,7 @@ All buttons share: sharp corners, thick border, hard offset shadow, "press" effe
 ### Inline & decorative
 
 - `.cr-display` — standalone Rock Salt heading
-- `.cr-eyebrow` — block-level UT Orange kicker
+- `.cr-eyebrow` — block-level kicker, Prussian Blue in light mode and UT Orange in dark mode
 - `.cr-highlight` — yellow-highlighter swipe behind inline text
 - `.cr-tape` — masking-tape inline label
 - `.cr-marker-bar` (with `--short`) — UT Orange section divider

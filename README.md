@@ -4,7 +4,7 @@ Personal site with the voice of a patient teacher and the visual confidence of a
 
 [courtneyr.dev](https://courtneyr.dev) is the personal site of Courtney Robertson — Senior Open Source Developer Advocate at GoDaddy, WordPress contributor, co-founder of WP Community Collective.
 
-![Built for WordPress + Ollie](https://img.shields.io/badge/built_for-WordPress_%2B_Ollie-fb8500?style=flat-square) ![Version 2.4.0](https://img.shields.io/badge/version-2.4.0-241c4a?style=flat-square)
+![Built for WordPress + Ollie](https://img.shields.io/badge/built_for-WordPress_%2B_Ollie-fb8500?style=flat-square) ![Version 2.4.1](https://img.shields.io/badge/version-2.4.1-241c4a?style=flat-square)
 
 ---
 
@@ -177,6 +177,8 @@ The `tokens.css` header, `brand/brand.json`, the badge above and the Version sec
 This brand system is authored for Courtney Robertson's personal use. Code patterns (tokens, components, layering utilities) are MIT — borrow them freely. The `brand/` folder (logo, palette, voice) is reserved for Courtney.
 
 ## Version
+
+**v2.4.1** fixes four WCAG 2.2 AA contrast failures. `.cr-eyebrow` and `.cr-hero__title--accent` use Prussian Blue in light mode (13.25:1 on ivory) and keep UT Orange in dark mode (7.18:1). Figure captions use `--cr-ink-muted` (Periwinkle in dark mode, 9.22:1). `.cr-toc` text uses `--cr-accent-3-ink` (Light Orange on Cerulean in dark mode, 5.13:1), and its link hover keeps Russian Violet on yellow (8.97:1).
 
 **v2.4.0** adds `--cr-light-gray` (`#ebebeb`), the 11th brief color. It's a surface color: see "Light gray contrast" in `DESIGN.md` before putting text on it. Also adds the composition-host Storybook and the version check.
 

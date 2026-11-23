@@ -1,5 +1,5 @@
 /* =============================================================================
-   courtneyr.dev — design tokens v2.4.0
+   courtneyr.dev — design tokens v2.4.1
    Zine aesthetic. Printer-ivory surface. Hard shadows. Light rotation.
    "Decoration in margins, calm in measure."
 
@@ -725,7 +725,7 @@ figure { margin: var(--cr-space-lg) 0; }
 img, picture, video, svg, canvas { max-width: 100%; height: auto; display: block; }
 figcaption {
   /* explicitly NOT glaucous — fails AA on cream */
-  color: var(--cr-cerulean);
+  color: var(--cr-ink-muted);
   font-family: var(--cr-font-accent);
   font-style: italic;
   font-size: var(--cr-text-sm);
@@ -941,7 +941,7 @@ main, nav, header, footer, article, section, aside, hgroup {
 .wp-caption img { max-width: 100%; height: auto; display: block; }
 .wp-caption-text,
 .wp-caption-dd {
-  color: var(--cr-cerulean);                 /* match figcaption — NOT glaucous */
+  color: var(--cr-ink-muted);                /* match figcaption — NOT glaucous */
   font-family: var(--cr-font-accent);
   font-style: italic;
   font-size: var(--cr-text-sm);
@@ -961,7 +961,7 @@ main, nav, header, footer, article, section, aside, hgroup {
 .gallery-item { flex: 1 1 calc(50% - var(--cr-space-md)); margin: 0; }
 .gallery-icon img { max-width: 100%; height: auto; display: block; }
 .gallery-caption {
-  color: var(--cr-cerulean);                 /* match figcaption — NOT glaucous */
+  color: var(--cr-ink-muted);                /* match figcaption — NOT glaucous */
   font-family: var(--cr-font-accent);
   font-style: italic;
   font-size: var(--cr-text-sm);

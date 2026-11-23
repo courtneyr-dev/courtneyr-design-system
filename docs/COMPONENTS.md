@@ -303,7 +303,7 @@ Elements:
 - `.cr-hero__inner` — max-width container (60rem), centered, position-relative for sparkle anchoring
 - `.cr-hero__display` — Rock Salt, big, fluid sizing via `clamp()`. Display only — keep copy under ~6 words.
 - `.cr-hero__title` — Roboto Slab, weight 900, fluid sizing. The accent voice when Rock Salt would be too loud.
-- `.cr-hero__title--accent` — wraps a phrase inside `__title` to recolor it UT Orange.
+- `.cr-hero__title--accent` — wraps a phrase inside `__title` to recolor it Prussian Blue in light mode and UT Orange in dark mode.
 - `.cr-hero__lead` — slab serif lead paragraph, muted ink, max-width 40rem.
 
 ### .cr-stream
