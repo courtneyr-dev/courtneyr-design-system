@@ -15,10 +15,10 @@ const TYPES = {
   '.woff2': 'font/woff2',
 };
 
-function serve() {
+export function serve(root = ROOT) {
   const server = createServer(async (req, res) => {
     const path = normalize(decodeURIComponent(new URL(req.url, 'http://localhost').pathname));
-    const file = join(ROOT, path.endsWith('/') ? `${path}index.html` : path);
+    const file = join(root, path.endsWith('/') ? `${path}index.html` : path);
     try {
       const body = await readFile(file);
       res.writeHead(200, { 'content-type': TYPES[extname(file)] ?? 'application/octet-stream' });
@@ -45,6 +45,12 @@ export async function withStorybook(run) {
       await page.emulateMedia({ colorScheme });
       await page.goto(`${url}/iframe.html?id=${id}&viewMode=story`);
       await page.waitForSelector('body.sb-show-main, body.sb-show-errordisplay');
+      // addon-a11y runs its own axe pass in the afterEach phase, and a second axe run started
+      // before it ends throws "Axe is already running".
+      await page.waitForFunction((storyId) => {
+        const render = window.__STORYBOOK_PREVIEW__?.currentRender;
+        return render?.id === storyId && ['finished', 'errored', 'aborted'].includes(render.phase);
+      }, id);
       if (await page.$('body.sb-show-errordisplay')) throw new Error(`Story ${id} threw while rendering.`);
       await page.evaluate(() => document.fonts.ready);
     };
