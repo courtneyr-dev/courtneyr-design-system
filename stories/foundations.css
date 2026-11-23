@@ -1,0 +1,85 @@
+.fd-swatches,
+.fd-icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: var(--cr-space-md);
+  max-width: none;
+  padding: 0;
+  list-style: none;
+}
+
+.fd-swatches li {
+  display: grid;
+  gap: var(--cr-space-3xs);
+  padding: 0;
+}
+
+.fd-swatch {
+  display: block;
+  height: 4rem;
+  border: var(--cr-border-thick);
+}
+
+.fd-table {
+  border-collapse: collapse;
+  margin-block: var(--cr-space-lg);
+}
+
+.fd-table caption {
+  text-align: start;
+  font-family: var(--cr-font-accent);
+  font-weight: var(--cr-weight-bold);
+}
+
+.fd-table th,
+.fd-table td {
+  padding: var(--cr-space-xs);
+  border: var(--cr-border-thin);
+  text-align: start;
+  vertical-align: top;
+}
+
+.fd-sample {
+  display: inline-block;
+  padding: var(--cr-space-2xs) var(--cr-space-xs);
+  background: var(--cr-light-gray);
+}
+
+.fd-sample--large {
+  font-size: 24px;
+}
+
+.fd-wordmark svg {
+  width: min(100%, 40rem);
+  height: auto;
+}
+
+.fd-icons figure {
+  margin: 0;
+  text-align: center;
+}
+
+.fd-icon {
+  width: 3rem;
+  height: 3rem;
+  color: var(--cr-ink);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cr-icon-fill {
+  fill: currentColor;
+  stroke: none;
+}
+
+.fd-component {
+  margin-block-end: var(--cr-space-2xl);
+}
+
+.fd-example {
+  position: relative;
+  margin-block: var(--cr-space-md);
+}

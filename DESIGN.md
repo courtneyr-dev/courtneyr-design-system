@@ -34,6 +34,7 @@ colors:
   glaucous: "#647baf" # background only — fails AA as small text
   prussian-blue: "#023047" # = on-tertiary alias, callout-note bg
   light-orange: "#fee2c3" # = surface-soft alias, callout-note text
+  light-gray: "#ebebeb" # surface only, see "Light gray contrast"
 
   # ---- Masking-tape (chip background) ----
   tape: "#f3e5b8"
@@ -478,6 +479,26 @@ Light-mode dark surface is `#1a1714` (Photocopier Black) — not Prussian Blue. 
 | Surface is **printer ivory**, not warm cream | Warm cream fought the yellow highlighter                                      |
 | Wordmark renders as all-paths SVG            | No font dependency at runtime                                                 |
 | `aria-hidden="true"` decorative SVGs         | Equalize Digital warnings on these are correct-implementation safe-to-dismiss |
+
+### Light gray contrast
+
+`--cr-light-gray` (`#ebebeb`) is a surface color. These token colors pass WCAG 2.2 AA as text on it. Ratios are rounded down.
+
+| Text color                   | Token                   | Ratio on `#ebebeb` | Passes                  |
+| ---------------------------- | ----------------------- | ------------------ | ----------------------- |
+| Black `#000000`              | `--cr-black`            | 17.61:1            | Normal and large text   |
+| Photocopier Black `#1a1714`  | `--cr-photocopier-blk`  | 14.97:1            | Normal and large text   |
+| Night Elevated `#251f1c`     | `--cr-night-elevated`   | 13.64:1            | Normal and large text   |
+| Russian Violet `#241c4a`     | `--cr-russian-violet`   | 13.14:1            | Normal and large text   |
+| Prussian Blue `#023047`      | `--cr-prussian-blue`    | 11.61:1            | Normal and large text   |
+| Ink Soft `#4a4566`           | `--cr-ink-soft`         | 7.54:1             | Normal and large text   |
+| Link Visited `#5a4a8a`       | `--cr-link-visited`     | 6.33:1             | Normal and large text   |
+| Cerulean `#126782`           | `--cr-cerulean`         | 5.35:1             | Normal and large text   |
+| Glaucous `#647baf`           | `--cr-glaucous`         | 3.52:1             | Large text only         |
+
+Every other palette color fails both thresholds on light gray: Blue-Green 2.63:1, UT Orange 2.08:1, Periwinkle 1.62:1, Sky Blue 1.50:1, Selective Yellow 1.46:1, and the light surfaces (ivory, white, tape, light orange, code background, rule) at 1.25:1 or less.
+
+`npm run contrast` prints this table from `tokens.css`, with every alias token listed. The Storybook story "Foundations / Color / Light gray contrast" renders the same numbers, and axe checks each passing sample.
 
 ### Post-type taxonomy
 

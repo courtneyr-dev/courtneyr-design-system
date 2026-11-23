@@ -17,6 +17,7 @@
         { "name": "Selective Yellow",  "slug": "selective-yellow",  "color": "#ffb703" },
         { "name": "Ut Orange",         "slug": "ut-orange",         "color": "#fb8500" },
         { "name": "Light Orange",      "slug": "light-orange",      "color": "#fee2c3" },
+        { "name": "Light Gray",        "slug": "light-gray",        "color": "#ebebeb" },
         { "name": "Cream",             "slug": "cream",             "color": "#fdfaf4" },
         { "name": "Night Surface",     "slug": "night-surface",     "color": "#0a0f24" },
 
