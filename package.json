@@ -1,0 +1,12 @@
+{
+  "name": "courtneyr-design-system",
+  "version": "2.4.0",
+  "private": true,
+  "type": "module",
+  "description": "Brand tokens, components and the composition-host Storybook for courtneyr.dev",
+  "license": "MIT",
+  "scripts": {
+    "check:version": "node scripts/check-version.mjs",
+    "contrast": "node scripts/contrast.mjs"
+  }
+}

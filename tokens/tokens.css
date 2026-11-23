@@ -1,5 +1,5 @@
 /* =============================================================================
-   courtneyr.dev — design tokens v2.0
+   courtneyr.dev — design tokens v2.4.0
    Zine aesthetic. Printer-ivory surface. Hard shadows. Light rotation.
    "Decoration in margins, calm in measure."
 
@@ -39,6 +39,7 @@
   --cr-selective-yellow:#ffb703;
   --cr-ut-orange:       #fb8500;
   --cr-light-orange:    #fee2c3;
+  --cr-light-gray:      #ebebeb;  /* Surface only. Text pairs that pass AA: DESIGN.md "Light gray contrast". */
   --cr-printer-ivory:   #fbfaf5;
   --cr-photocopier-blk: #1a1714;
   --cr-night-elevated:  #251f1c;

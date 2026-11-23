@@ -4,7 +4,7 @@ Personal site with the voice of a patient teacher and the visual confidence of a
 
 [courtneyr.dev](https://courtneyr.dev) is the personal site of Courtney Robertson — Senior Open Source Developer Advocate at GoDaddy, WordPress contributor, co-founder of WP Community Collective.
 
-![Built for WordPress + Ollie](https://img.shields.io/badge/built_for-WordPress_%2B_Ollie-fb8500?style=flat-square) ![v2.0](https://img.shields.io/badge/version-2.0.0-241c4a?style=flat-square)
+![Built for WordPress + Ollie](https://img.shields.io/badge/built_for-WordPress_%2B_Ollie-fb8500?style=flat-square) ![Version 2.4.0](https://img.shields.io/badge/version-2.4.0-241c4a?style=flat-square)
 
 ---
 
@@ -109,6 +109,18 @@ All three are self-contained — open them directly in a browser. They import `t
 
 ---
 
+## Versioning
+
+The tokens follow [Semantic Versioning](https://semver.org/). `package.json` holds the version:
+
+- **Major.** A token or class is removed or renamed, or changes meaning.
+- **Minor.** A token or class is added.
+- **Patch.** A value changes and keeps its meaning, such as a contrast fix.
+
+The `tokens.css` header, `brand/brand.json`, the badge above and the Version section below carry the same number. `npm run check:version` fails when any of them disagree. Versions 2.1 through 2.3 shipped in commit messages only, and 2.4.0 brings every place back in line.
+
+---
+
 ## What's deferred to v2.1+
 
 - `theme.json.fragment.json` expansion to a full Ollie-compatible fragment
@@ -124,6 +136,8 @@ All three are self-contained — open them directly in a browser. They import `t
 This brand system is authored for Courtney Robertson's personal use. Code patterns (tokens, components, layering utilities) are MIT — borrow them freely. The `brand/` folder (logo, palette, voice) is reserved for Courtney.
 
 ## Version
+
+**v2.4.0** adds `--cr-light-gray` (`#ebebeb`), the 11th brief color. It's a surface color: see "Light gray contrast" in `DESIGN.md` before putting text on it.
 
 **v2.0.0** — Zine pivot. Selective merge from v1.1: button family preserved (zine-restyled), post-type chips restyled as masking-tape, stream-item structure preserved (zine-restyled), shape-layering deprecated entirely.
 

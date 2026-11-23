@@ -2,7 +2,7 @@
   "$schema": "https://design-tokens.github.io/community-group/format/",
   "name": "courtneyr.dev",
   "description": "Brand design system for Courtney Robertson — Senior Open Source Developer Advocate at GoDaddy, WordPress educator, IndieWeb contributor. Personal site with the voice of a patient teacher and the visual confidence of a hand-pasted zine. WordPress + IndieWeb + AA contrast.",
-  "version": "2.0.0",
+  "version": "2.4.0",
   "aesthetic": "zine",
   "tone": "warm, conversational, direct, teacher-ish",
   "principles": [
@@ -31,6 +31,7 @@
       "selective-yellow": { "value": "#ffb703", "description": "Highlighter, dark-mode primary, focus ring" },
       "ut-orange":        { "value": "#fb8500", "description": "Primary CTA, marker bar, sparkles" },
       "light-orange":     { "value": "#fee2c3", "description": "TOC card, accent block 3" },
+      "light-gray":       { "value": "#ebebeb", "description": "Surface only. Text pairs that pass AA are listed in DESIGN.md, Light gray contrast" },
       "printer-ivory":    { "value": "#fbfaf5", "description": "Page surface (light mode)" },
       "photocopier-blk":  { "value": "#1a1714", "description": "Page surface (dark mode)" },
       "night-elevated":   { "value": "#251f1c", "description": "Dark-mode card surface" }
