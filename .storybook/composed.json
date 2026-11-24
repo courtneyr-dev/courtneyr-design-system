@@ -5,7 +5,7 @@
     "path": "/site/",
     "build": {
       "repo": "courtneyr-dev/courtneyr-child",
-      "sha": "8eea37b78d1e4a391169da9e70b2f4da2dd28542",
+      "sha": "e71980cf410bb502299c04939fbd1c472cf19656",
       "dir": "storybook"
     }
   },

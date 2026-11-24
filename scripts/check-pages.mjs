@@ -6,30 +6,11 @@ import { LinkChecker } from 'linkinator';
 import { chromium } from 'playwright-core';
 import { WCAG_TAGS } from '../.storybook/a11y-rules.js';
 import { composed } from '../.storybook/composed.js';
+import { checkManagerNavigation } from './lib/composed-a11y.mjs';
 import { serve } from './lib/static-storybook.mjs';
 
 const DIST = fileURLToPath(new URL('../dist', import.meta.url));
 const SCHEMES = ['light', 'dark'];
-
-const STORYBOOK_UI = 'Storybook 10.6.6 manager markup, not this repo';
-const KNOWN_IN_STORYBOOK_UI = [
-  {
-    rule: 'label-content-name-mismatch',
-    target: /> \.css-[a-z0-9]+\[aria-label="Collapse"\]\[data-action="collapse-root"\]$/,
-    why: `${STORYBOOK_UI}: each sidebar section button shows its name and is labeled "Collapse"`,
-  },
-  {
-    rule: 'aria-allowed-attr',
-    target: /^\.css-[a-z0-9]+(:nth-child\(\d+\))?$/,
-    html: /^<div aria-label="Hide .* stories" aria-expanded=/,
-    why: `${STORYBOOK_UI}: each composed Storybook's header is a div with aria-expanded and no role`,
-  },
-  {
-    rule: 'aria-valid-attr-value',
-    target: /^#[a-z0-9-]+_[a-z0-9-]+$/,
-    why: `${STORYBOOK_UI}: a composed component's aria-controls lists story ids without the ref prefix, so no element has them`,
-  },
-];
 
 let failures = 0;
 const fail = (message) => {
@@ -127,8 +108,7 @@ async function checkAxe(context, id, base, stories) {
 }
 
 async function checkStorybookUi(context, url, refIds) {
-  const seen = new Set();
-  let fresh = 0;
+  let findings = 0;
   for (const scheme of SCHEMES) {
     const page = await context.newPage();
     await page.emulateMedia({ colorScheme: scheme });
@@ -137,27 +117,20 @@ async function checkStorybookUi(context, url, refIds) {
       await page.waitForSelector(`[data-ref-id="${id}"]`);
       for (const button of await page.locator(`[data-ref-id="${id}"] [data-action="expand-all"]`).all()) await button.click();
     }
-    const { violations } = await new AxeBuilder({ page }).exclude('iframe').withTags(WCAG_TAGS).analyze();
+    const { violations, incomplete } = await new AxeBuilder({ page }).exclude('iframe').withTags(WCAG_TAGS).analyze();
     await page.close();
     for (const v of violations) {
       for (const node of v.nodes) {
         const target = node.target.join(' ');
-        const known = KNOWN_IN_STORYBOOK_UI.find(
-          (k) => k.rule === v.id && k.target.test(target) && (!k.html || k.html.test(node.html)),
-        );
-        if (known) seen.add(known);
-        else {
-          fresh += 1;
-          fail(`axe ${scheme.padEnd(5)} Storybook UI: ${v.id}: ${target}  ${v.help}`);
-        }
+        findings += 1;
+        fail(`axe ${scheme.padEnd(5)} Storybook UI: ${v.id}: ${target}  ${v.help}`);
       }
     }
+    for (const { id, nodes } of incomplete) {
+      console.log(`review axe ${scheme.padEnd(5)} Storybook UI: ${id} (${nodes.length} nodes)`);
+    }
   }
-  for (const known of KNOWN_IN_STORYBOOK_UI) {
-    if (seen.has(known)) console.log(`known axe Storybook UI: ${known.rule}  (${known.why})`);
-    else fail(`axe Storybook UI: known ${known.rule} no longer occurs, remove it from KNOWN_IN_STORYBOOK_UI`);
-  }
-  console.log(`${fresh ? 'FAIL' : 'pass'}  axe Storybook UI: host page with every ref expanded, ${SCHEMES.length} color schemes, ${fresh} new violations`);
+  console.log(`${findings ? 'FAIL' : 'pass'}  axe Storybook UI: host page with every ref expanded, ${SCHEMES.length} color schemes, ${findings} violations`);
 }
 
 async function checkLinks(url, roots) {
@@ -188,6 +161,14 @@ try {
   }
 
   await checkStorybookUi(context, url, Object.keys(refs));
+  for (const scheme of SCHEMES) {
+    try {
+      const result = await checkManagerNavigation(context, `${url}/`, scheme);
+      console.log(`pass  composed manager keyboard and outage (${scheme}): ${JSON.stringify(result)}`);
+    } catch (error) {
+      fail(`composed manager keyboard and outage (${scheme}): ${error.message}`);
+    }
+  }
 
   for (const { id, url: planned } of composed.filter((entry) => entry.planned)) {
     const live = await fetch(new URL('index.json', planned)).then((r) => r.ok, () => false);
