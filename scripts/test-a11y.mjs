@@ -1,5 +1,6 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import { WCAG_TAGS } from '../.storybook/a11y-rules.js';
+import { AA_NORMAL, contrastRatio } from '../stories/lib/contrast.js';
 import { withStorybook } from './lib/static-storybook.mjs';
 
 const SCHEMES = ['light', 'dark'];
@@ -19,6 +20,25 @@ const KNOWN = [];
 const known = (story, scheme, rule, target) =>
   KNOWN.find((k) => k.story === story && k.scheme === scheme && k.rule === rule && k.target.test(target));
 
+async function wordmarkContrast(page) {
+  const wordmark = page.getByRole('img', { name: 'courtneyr.dev wordmark' });
+  const { background, fills } = await wordmark.evaluate((svg) => ({
+    background: getComputedStyle(document.body).backgroundColor,
+    fills: [...new Set([...svg.querySelectorAll('path')].map((path) => getComputedStyle(path).fill))],
+  }));
+  const hex = (rgb) => '#' + rgb.slice(4, -1)
+    .split(', ')
+    .map((value) => Number(value).toString(16).padStart(2, '0'))
+    .join('');
+  const ratio = Math.min(...fills.map((fill) => contrastRatio(hex(fill), hex(background))));
+  if (Number.isFinite(ratio) && ratio >= AA_NORMAL) return [];
+  return [{
+    id: 'wordmark-contrast',
+    target: '.fd-wordmark svg',
+    help: `Lowest fill contrast: ${ratio.toFixed(2)}:1 against ${background}, expected at least ${AA_NORMAL}:1`,
+  }];
+}
+
 let failures = 0;
 const seenKnown = new Set();
 
@@ -28,6 +48,7 @@ await withStorybook(async ({ context, index, openStory }) => {
     for (const story of stories) {
       const page = await context.newPage();
       await openStory(page, story.id, scheme);
+      const wordmark = story.id === 'foundations-brand--wordmark' ? await wordmarkContrast(page) : [];
       await page.addStyleTag({ content: TEXTURE_OFF });
       const { violations, incomplete } = await new AxeBuilder({ page })
         .include('#storybook-root')
@@ -39,6 +60,7 @@ await withStorybook(async ({ context, index, openStory }) => {
         .filter((node) => !node.any.some((check) => check.data?.messageKey === 'nonBmp'))
         .map((node) => ({ id: 'color-contrast-unmeasured', target: node.target.join(' '), help: node.any[0]?.message }));
       const found = [
+        ...wordmark,
         ...violations.flatMap((v) => v.nodes.map((node) => ({ id: v.id, target: node.target.join(' '), help: v.help }))),
         ...unmeasured,
       ];

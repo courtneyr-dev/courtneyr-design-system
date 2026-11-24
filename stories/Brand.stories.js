@@ -7,7 +7,7 @@ export default { title: 'Foundations/Brand' };
 export const Wordmark = {
   render: () => `
     <h1>Wordmark</h1>
-    <p><code>brand/wordmark.svg</code> is Rock Salt converted to paths, so it renders without the font.</p>
+    <p><code>brand/wordmark.svg</code> uses Rock Salt paths. The site paints them with the current theme’s ink color.</p>
     <figure class="fd-wordmark">${wordmark}</figure>`,
 };
 
