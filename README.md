@@ -171,7 +171,7 @@ STORYBOOK_REF_URLS='{"post-formats":"http://localhost:6007"}' npm run storybook
 2. Run `npm run pages`. It fails if the new Storybook doesn't compose, fails axe, or has a broken link.
 3. Open a pull request. Merging to `main` publishes the result once Pages is on.
 
-The host composes the courtneyr.dev site Storybook, Post Formats for Block Themes and Post Kinds for IndieWeb. Outpost joins the same way once its Storybook publishes at its `/storybook/` URL.
+The host composes the courtneyr.dev site Storybook, Post Formats for Block Themes, Post Kinds for IndieWeb, and Outpost.
 
 ---
 
