@@ -79,7 +79,7 @@ Modifiers:
 
 <div class="cr-callout cr-callout--warn">
   <span class="cr-callout__label">Warning</span>
-  <p>Loud, deliberate, used sparingly.</p>
+  <p>Check the <a href="https://www.w3.org/TR/WCAG22/#contrast-minimum">minimum text contrast</a> before publishing.</p>
 </div>
 ```
 

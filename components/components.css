@@ -92,7 +92,8 @@
   /* In dark mode, the marker-style gradient leaves the top half of each letter
      sitting against photocopier-black (russian-violet on that = 1.6:1, invisible).
      Switch to a solid yellow block so contrast holds across the whole letter. */
-  :root:not([data-theme]) .cr-highlight {
+  :root:not([data-theme]) .cr-highlight,
+  :root[data-theme="system"] .cr-highlight {
     background: var(--cr-highlight);                /* solid, overrides the gradient */
     color: var(--cr-russian-violet);
   }
@@ -166,7 +167,7 @@
   background: var(--cr-selective-yellow);
   color: var(--cr-prussian-blue);
 }
-.cr-callout--warn a { color: var(--cr-cerulean); }
+.cr-callout--warn a { color: inherit; }
 
 
 /* ============ Card ============
