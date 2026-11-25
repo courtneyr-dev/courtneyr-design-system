@@ -5,7 +5,7 @@
     "path": "/site/",
     "build": {
       "repo": "courtneyr-dev/courtneyr-child",
-      "sha": "e71980cf410bb502299c04939fbd1c472cf19656",
+      "sha": "14a84252b2f9ad5569ac37e89f71feb78edf276f",
       "dir": "storybook"
     }
   },
@@ -18,5 +18,10 @@
     "id": "post-kinds",
     "title": "Post Kinds for IndieWeb",
     "url": "https://courtneyr-dev.github.io/post-kinds-for-indieweb/storybook/"
+  },
+  {
+    "id": "outpost",
+    "title": "Outpost",
+    "url": "https://courtneyr-dev.github.io/outpost/storybook/"
   }
 ]

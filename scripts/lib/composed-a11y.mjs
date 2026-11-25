@@ -24,7 +24,7 @@ export async function checkManagerNavigation(context, url, colorScheme) {
     assert.equal(await refButton.getAttribute('aria-expanded'), 'true');
 
     const recovery = page.getByRole('navigation', { name: 'Storybook catalogs' });
-    assert.equal(await recovery.count(), 0);
+    await recovery.waitFor({ state: 'hidden' });
     await page.keyboard.press(process.platform === 'darwin' ? 'Meta+k' : 'Control+k');
     const search = page.locator(`#${searchId}`);
     await search.fill('Numeric Star Rating');
@@ -67,36 +67,45 @@ export async function checkManagerNavigation(context, url, colorScheme) {
     await page.close();
   }
 
-  const outage = await context.newPage();
-  try {
-    await outage.emulateMedia({ colorScheme });
-    const blocked = [];
-    await outage.route(/\/post-kinds-for-indieweb\/storybook\/(?:index|stories)\.json(?:\?|$)/, (route) => {
-      blocked.push(route.request().url());
-      return route.abort('failed');
-    });
-    await outage.goto(home);
-    const recovery = outage.getByRole('navigation', { name: 'Storybook catalogs' });
-    const status = recovery.getByRole('status');
-    await status.waitFor();
-    assert.match(await status.textContent(), /Story index unavailable for Post Kinds for IndieWeb/);
-    assert.ok(blocked.some((entry) => new URL(entry).pathname.endsWith('/index.json')));
-    const direct = await recovery.getByRole('link').evaluateAll((links) => links.map(({ href }) => href));
-    assert.deepEqual(direct.map((href) => new URL(href).pathname), [
-      '/courtneyr-design-system/site/',
-      '/post-formats-for-block-themes/storybook/',
-      '/post-kinds-for-indieweb/storybook/',
-    ]);
-    const other = 'editor-status-character-counter--near-limit';
-    const otherBranch = outage.getByRole('button', { name: 'Status character counter', exact: true });
-    await otherBranch.click();
-    const frame = await (await outage.waitForSelector('#storybook-ref-post-formats')).contentFrame();
-    await frame.locator('.pfpu-char-counter', { hasText: '160 characters remaining' }).waitFor();
-    const storyLink = outage.locator(`a[id="post-formats_${other}"]`);
-    await storyLink.click();
-    await frame.locator('.pfpu-char-counter', { hasText: '15 characters remaining' }).waitFor();
-    return { journey, outage: { blocked, message: await status.textContent(), direct, otherStory: other } };
-  } finally {
-    await outage.close();
+  const outages = [];
+  const catalogPaths = [
+    '/courtneyr-design-system/site/',
+    '/post-formats-for-block-themes/storybook/',
+    '/post-kinds-for-indieweb/storybook/',
+    '/outpost/storybook/',
+  ];
+  for (const [path, title] of [
+    ['/post-kinds-for-indieweb/storybook/', 'Post Kinds for IndieWeb'],
+    ['/outpost/storybook/', 'Outpost'],
+  ]) {
+    const outage = await context.newPage();
+    try {
+      await outage.emulateMedia({ colorScheme });
+      const blocked = [];
+      const indexPath = `${path}index.json`;
+      await outage.route(({ pathname }) => pathname === indexPath || pathname === `${path}stories.json`, (route) => {
+        blocked.push(route.request().url());
+        return route.abort('failed');
+      });
+      await outage.goto(home);
+      const recovery = outage.getByRole('navigation', { name: 'Storybook catalogs' });
+      const status = recovery.getByRole('status');
+      await status.filter({ hasText: `Story index unavailable for ${title}` }).waitFor();
+      assert.ok(blocked.some((entry) => new URL(entry).pathname === indexPath));
+      const direct = await recovery.getByRole('link').evaluateAll((links) => links.map(({ href }) => href));
+      assert.deepEqual(direct.map((href) => new URL(href).pathname), catalogPaths);
+      const other = 'editor-status-character-counter--near-limit';
+      const otherBranch = outage.getByRole('button', { name: 'Status character counter', exact: true });
+      await otherBranch.click();
+      const frame = await (await outage.waitForSelector('#storybook-ref-post-formats')).contentFrame();
+      await frame.locator('.pfpu-char-counter', { hasText: '160 characters remaining' }).waitFor();
+      const storyLink = outage.locator(`a[id="post-formats_${other}"]`);
+      await storyLink.click();
+      await frame.locator('.pfpu-char-counter', { hasText: '15 characters remaining' }).waitFor();
+      outages.push({ blocked, message: await status.textContent(), direct, otherStory: other });
+    } finally {
+      await outage.close();
+    }
   }
+  return { journey, outages };
 }
